@@ -1,0 +1,1 @@
+BaseURL must have a trailing slash, but "https://sherlock.qa.do.appknox.io" does not

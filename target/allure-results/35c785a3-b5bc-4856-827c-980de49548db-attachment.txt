@@ -1,0 +1,1 @@
+Get "https://invalid-host-url.com/api/me": dial tcp: lookup invalid-host-url.com: no such host

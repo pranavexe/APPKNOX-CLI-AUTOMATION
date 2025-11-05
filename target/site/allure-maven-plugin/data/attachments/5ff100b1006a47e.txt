@@ -1,0 +1,14 @@
+Error: file path is required
+Usage:
+  appknox upload [flags]
+
+Flags:
+  -h, --help   help for upload
+
+Global Flags:
+  -a, --access-token string   Appknox Access Token
+      --host string           Appknox Server
+  -k, --insecure              Disable Security Checks
+      --pac string            pac file path or url
+      --proxy string          proxy url
+      --region string         Region names, e.g., global, saudi, uae. By default, global is used

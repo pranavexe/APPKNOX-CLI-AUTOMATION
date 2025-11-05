@@ -1,0 +1,26 @@
+verify login with invalid password
+--verigy login with invalid email format
+--verify login with blank email field
+verfify login with black password feild
+verify login with both feild empty
+verify login after multiple failed attempts
+verify if password is hidden or masked
+verify show password toogle or button is working
+verify copy paste are restriced
+verify forget password link
+verify email with with max character
+verify pass feild with min/max char limit
+check sql enjection
+verify placeholder text in input feilds
+
+
+9686d04021920e6f8d3de7c507bf0485f41761a1
+app
+49be3e0ca5d5f3a2524e63dcb629164fc1165cb7
+
+49be3e0ca5d5f3a2524e63dcb629164fc1165cb7
+
+
+98d35e2d138f78d16cb0df9ce23217babe506630
+
+f6874449e619be0ff21144d130911b5672952405

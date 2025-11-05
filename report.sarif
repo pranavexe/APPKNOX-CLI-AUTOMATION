@@ -1,0 +1,1075 @@
+{
+  "$schema": "https://raw.githubusercontent.com/oasis-tcs/sarif-spec/master/Schemata/sarif-schema-2.1.0.json",
+  "version": "2.1.0",
+  "runs": [
+    {
+      "tool": {
+        "driver": {
+          "name": "Appknox",
+          "version": "1.3.0",
+          "informationUri": "https://www.appknox.com/",
+          "rules": [
+            {
+              "id": "APX02",
+              "name": "ImproperContentProviderPermissions",
+              "shortDescription": {
+                "text": "Improper Content Provider Permissions"
+              },
+              "fullDescription": {
+                "text": "\u003cp\u003eThe \u003ccode\u003eContentProvider\u003c/code\u003e class provides a mechanism for managing and sharing\ndata with other applications. When sharing a provider's data with other\napps, access control should be carefully implemented to prohibit\nunauthorized access to sensitive data.\u003c/p\u003e\n\u003cp\u003eThere are three ways to limit access to the content provider:\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003ePublic\u003c/li\u003e\n\u003cli\u003ePrivate\u003c/li\u003e\n\u003cli\u003eRestricted access\u003c/li\u003e\n\u003c/ul\u003e"
+              },
+              "help": {
+                "text": "Summary of Findings",
+                "markdown": "## Summary of Findings\n\n### Description:\n\u003cp\u003eA content provider permission was set to allow access from any other app\non the device. Content providers may contain sensitive information about\nan app and therefore should not be shared.\u003c/p\u003e\n\n### Recommendations:\n\n####  Compliant Solution:\n\u003cp\u003eThe following entry in the AndroidManifest.xml file makes the content\nprovider private so that other apps cannot access the data:\u003c/p\u003e\n\u003cpre\u003e\u003ccode\u003e\u0026lt;provider\n    android:name=\".content.AccountProvider\"\n    android:exported=\"false\"\n    android:authorities=\"jp.co.vulnerable.accountprovider\" /\u0026gt;\n\u003c/code\u003e\u003c/pre\u003e\n\n####  Noncompliant Code Example:\n\u003cp\u003eMovatwiTouch, a Twitter client application, used a content provider to\nmanage Twitter's consumer key, consumer secret, and access token.\nHowever, the content provider was made public, which enabled\napplications installed on users' devices to access this sensitive\ninformation.\u003c/p\u003e\n\u003cp\u003eThe following entry in the AndroidManifest.xml does not have the\n\u003ccode\u003eandroid:exported\u003c/code\u003e attribute, which means, before API Level 16, the\ncontent provider is made public:\u003c/p\u003e\n\u003cpre\u003e\u003ccode\u003e\u0026lt;provider\n    android:name=\".content.AccountProvider\"\n    android:authorities=\"jp.co.vulnerable.accountprovider\" /\u0026gt;\n\u003c/code\u003e\u003c/pre\u003e\n\n### Business Implication:\n\u003cp\u003eIf security controls are not properly implemented, content providers can\nlead to client side attacks like SQL injection. This works similarly to\ntraditional SQL injection attacks.\u003c/p\u003e\n\n"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "CWE-926"
+                ],
+                "kind": "",
+                "precision": "high",
+                "problem.severity": "error",
+                "security-severity": "7.3"
+              }
+            },
+            {
+              "id": "APX03",
+              "name": "ApplicationDebugging",
+              "shortDescription": {
+                "text": "Application Debugging"
+              },
+              "fullDescription": {
+                "text": "\u003cp\u003eAndroid allows the attribute \u003ccode\u003eandroid:debuggable\u003c/code\u003e to be set to true so\nthat the app can be debugged. By default this attribute is disabled,\ni.e., it is set to false, but it may be set to true to help with\ndebugging during development of the app. However, an app should never be\nreleased with this attribute set to true as it enables users to gain\naccess to details of the app that should be kept secure. With the\nattribute set to true, users can debug the app even without access to\nits source code.\u003c/p\u003e"
+              },
+              "help": {
+                "text": "Summary of Findings",
+                "markdown": "## Summary of Findings\n\n### Description:\n\u003cp\u003eDebugging was enabled on the app which makes it easier for reverse\nengineers to hook a debugger to it. This allows dumping a stack trace\nand accessing debugging helper classes.\u003c/p\u003e\n\n### Recommendations:\n\n####  Compliant Solution:\n\u003cp\u003eEnsure that the \u003ccode\u003eandroid:debuggable\u003c/code\u003e attribute is set to false before the\napp is released:\u003c/p\u003e\n\u003cpre\u003e\u003ccode\u003e\u0026lt;application\n    ...\n    android:debuggable=\"false\" \u0026gt;\n    ...\n\u0026lt;/application\u0026gt;\n\u003c/code\u003e\u003c/pre\u003e\n\u003cp\u003eNote that some development environments (including Eclipse/ADT and Ant)\nautomatically set \u003ccode\u003eandroid:debuggable\u003c/code\u003e to true for incremental or\ndebugging builds but set it to false for release builds.\u003c/p\u003e\n\n####  Noncompliant Code Example:\n\u003cp\u003eThis non-compliant code example shows an app that has the\n\u003ccode\u003eandroid:debuggable\u003c/code\u003e attribute set to true being accessed to reveal\nsensitive data.\u003c/p\u003e\n\u003cpre\u003e\u003ccode\u003e$ adb shell\nshell@android:/ $ run-as com.example.someapp sh\nshell@android:/data/data/com.example.someapp $ id\nuid=10060(app_60) gid=10060(app_60)\nshell@android:/data/data/com.example.someapp $ ls files/\nsecret_data.txt\nshell@android:/data/data/com.example.some $ cat files/secret_data.txt\npassword=GoogolPlex\naccount_number=31974286\n\u003c/code\u003e\u003c/pre\u003e\n\u003cp\u003eClearly, with the \u003ccode\u003eandroid:debuggable\u003c/code\u003e attribute set to true, sensitive\ndate related to the app can be revealed to any user.\u003c/p\u003e\n\n### Business Implication:\n\u003cp\u003eApplication can be debugged and reverse engineers can debug and manipulate the\nruntime logic of the application.\u003c/p\u003e\n\n"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "CWE-489"
+                ],
+                "kind": "",
+                "precision": "high",
+                "problem.severity": "error",
+                "security-severity": "7.7"
+              }
+            },
+            {
+              "id": "APX010",
+              "name": "UnusedPermissions",
+              "shortDescription": {
+                "text": "Unused Permissions"
+              },
+              "fullDescription": {
+                "text": "\u003cp\u003eAn app might request a user for certain permissions, like access to SD\ncard, contacts, social profiles, etc. which has not actually been\ninvoked while the scan was running. We list out all these permissions so\nthat you can optimize your app and follow proper compliance checks.\u003c/p\u003e"
+              },
+              "help": {
+                "text": "Summary of Findings",
+                "markdown": "## Summary of Findings\n\n### Description:\n\u003cp\u003eApplication seems to be using extra permissions which are not really\nneeded\u003c/p\u003e\n\n### Recommendations:\n\n####  Compliant Solution:\n\u003cp\u003eDo not request for permissions beyond what your app actually needs\u003c/p\u003e\n\n####  Noncompliant Code Example:\nSecurity issues identified. Please review and mitigate.\n\n### Business Implication:\n\u003cp\u003eUsers may not download your app when presented with a long list of\npermissions. Imagine a flashlight app requesting access to SD card,\ncamera, contacts, SMS and more. This is an invitation to poor ratings\nand reviews on App Stores. This also breaks compliance standards.\u003c/p\u003e\n\n"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "CWE-250"
+                ],
+                "kind": "",
+                "precision": "high",
+                "problem.severity": "note",
+                "security-severity": "2.3"
+              }
+            },
+            {
+              "id": "APX016",
+              "name": "DerivedCryptoKeys",
+              "shortDescription": {
+                "text": "Derived Crypto Keys"
+              },
+              "fullDescription": {
+                "text": "\u003cp\u003eThe predominant Android cryptographic security provider API defaults to\nusing an insecure AES encryption method: ECB block cipher mode for AES\nencryption. Android's default cryptographic security provider (since\nversion 2.1) is BouncyCastle.\u003c/p\u003e\n\u003cp\u003eNote that Java also selects ECB as a default value when only the AES\nencryption method is chosen. So, this rule also applies to Java, but for\nJava's different default cryptographic security provider. Oracle Java's\ndefault cryptographic security provider is SunJCE.\u003c/p\u003e\n\u003cp\u003eDefault behaviors of cryptographic libraries used in Android systems\noften do not use recommended practices. For example, the predominant\nAndroid Java security provider API defaults to using an insecure AES\nencryption method: ECB block cipher mode for AES encryption. Extensive\napp testing by Egele 2013 has shown that the following 6 rules are\noften not followed, resulting in 88 percent of apps with cryptographic APIs on\nGoogle Play making at least one mistake.\u003c/p\u003e\n\u003cp\u003eSix common cryptography rules that were tested:\u003c/p\u003e\n\u003col\u003e\n\u003cli\u003eDo not use ECB mode for encryption.\u003c/li\u003e\n\u003cli\u003eDo not use a non-random IV for CBC encryption.\u003c/li\u003e\n\u003cli\u003eDo not use constant encryption keys.\u003c/li\u003e\n\u003cli\u003eDo not use constant salts for PBE.\u003c/li\u003e\n\u003cli\u003eDo not use fewer than 1,000 iterations for PBE.\u003c/li\u003e\n\u003cli\u003eDo not use static seeds to seed SecureRandom().\u003c/li\u003e\n\u003c/ol\u003e"
+              },
+              "help": {
+                "text": "Summary of Findings",
+                "markdown": "## Summary of Findings\n\n### Description:\n\u003cp\u003eTraces of Crypto Keys which might be intermediate keys used when loading\nthe different libraries.\u003c/p\u003e\n\n### Recommendations:\n\n####  Compliant Solution:\n\u003cp\u003eThe following are the rules which should be followed while using\nencryption:\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003eIf AES encryption is used, always pair it with CBC (Cipher Block Chaining)\u003c/li\u003e\n\u003cli\u003eNever use just AES as encryption because it defaults to AES/ECB (Electronic Codebook)\u003c/li\u003e\n\u003cli\u003eAlways use padding with the encryption, for example, AES/CBC/PKCS7 is stronger than just AES/CBC\u003c/li\u003e\n\u003cli\u003eNever use older algorithm like DES (Data Encryption Standard)\u003c/li\u003e\n\u003cli\u003eAssume that the network layer is not secure and may potentially be hostile and eavesdropping.\u003c/li\u003e\n\u003cli\u003eEnforce the use of SSL/TLS for all transport channels in which\n  sensitive information, session tokens, or other sensitive data is\n  going to be communicated to a backend API or web service.\u003c/li\u003e\n\u003cli\u003eRemember to account for outside entities like third-party analytics,\n  social networks, etc. and use their SSL versions even when an\n  application runs a routine via the browser/webkit. Mixed SSL\n  sessions should be avoided and may expose the user's session ID.\u003c/li\u003e\n\u003cli\u003eUse strong, industry standard encryption algorithms and appropriate\n  key lengths.\u003c/li\u003e\n\u003cli\u003eUse certificates signed by a trusted CA provider.\u003c/li\u003e\n\u003cli\u003eNever allow self-signed certificates, and consider certificate\n  pinning for security conscious applications.\u003c/li\u003e\n\u003cli\u003eDo not disable or ignore SSL chain verification.\u003c/li\u003e\n\u003cli\u003eOnly establish a secure connection after verifying the identity of\n  the endpoint server with trusted certificates in the key chain.\u003c/li\u003e\n\u003cli\u003eAlert users through the UI if an invalid certificate is detected.\u003c/li\u003e\n\u003cli\u003eDo not send sensitive data over alternate channels, such as SMS,\n  MMS, or notifications.\u003c/li\u003e\n\u003c/ul\u003e\n\n####  Noncompliant Code Example:\nSecurity issues identified. Please review and mitigate.\n\n### Business Implication:\n\u003cp\u003eBroken cryptography will result in the following:\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003ePrivacy Violations\u003c/li\u003e\n\u003cli\u003eInformation Theft\u003c/li\u003e\n\u003cli\u003eCode Theft\u003c/li\u003e\n\u003cli\u003eIntellectual Property Theft\u003c/li\u003e\n\u003cli\u003eReputational Damage\u003c/li\u003e\n\u003c/ul\u003e\n\n"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "CWE-327"
+                ],
+                "kind": "",
+                "precision": "high",
+                "problem.severity": "error",
+                "security-severity": "8.6"
+              }
+            },
+            {
+              "id": "APX017",
+              "name": "ApplicationLogs",
+              "shortDescription": {
+                "text": "Application Logs"
+              },
+              "fullDescription": {
+                "text": "\u003cp\u003eAndroid provides capabilities for an app to output logging information\nand obtain log output. Applications can send information to log output\nusing the android.util.Log class. To obtain log output, applications can\nexecute the logcat command.\u003c/p\u003e"
+              },
+              "help": {
+                "text": "Summary of Findings",
+                "markdown": "## Summary of Findings\n\n### Description:\n\u003cp\u003eApplication was found to be writing logs to the system logs\u003c/p\u003e\n\n### Recommendations:\n\n####  Compliant Solution:\n\u003cp\u003eNever use logs in production. Find all \u003ccode\u003eLog.d()\u003c/code\u003e and remove them.\u003c/p\u003e\n\u003cp\u003eUse exception parsers and crash-based-analytics tool capture crashes in\nproduction so that it can be debugged\u003c/p\u003e\n\n####  Noncompliant Code Example:\n\u003cp\u003eFacebook SDK for Android contained the following code which sends Facebook access tokens to log output in plain text format.\u003c/p\u003e\n\u003cpre\u003e\u003ccode\u003eLog.d(\"Facebook-authorize\", \"Login Success! access_token=\" + getAccessToken() + \" expires=\" + getAccessExpires());\n\u003c/code\u003e\u003c/pre\u003e\n\u003cp\u003eHere is another example. A weather report for Android sent a user's location data to the log output as follows:\u003c/p\u003e\n\u003cpre\u003e\u003ccode\u003eI/MyWeatherReport( 6483): Re-use MyWeatherReport data\nI/ ( 6483): GET JSON:\nhttp://example.com/smart/repo_piece.cgi?arc=0\u0026amp;lat=26.209026\u0026amp;lon=127.650803\u0026amp;rad=50\u0026amp;dir=-999\u0026amp;lim=52\u0026amp;category=1000\n\u003c/code\u003e\u003c/pre\u003e\n\u003cp\u003eIf a user is using Android OS 4.0 or before, other applications with READ_LOGS\npermission can obtain the user's location information without declaring\nACCESS_FINE_LOCATION permission in the manifest file.\u003c/p\u003e\n\n### Business Implication:\n\u003cp\u003eSensitive data can inadvertently leak into the logs and may aid in\nfurther attacks\u003c/p\u003e\n\n"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "CWE-779"
+                ],
+                "kind": "",
+                "precision": "high",
+                "problem.severity": "warning",
+                "security-severity": "6.2"
+              }
+            },
+            {
+              "id": "APX037",
+              "name": "ConnectionToExternalRedisServer",
+              "shortDescription": {
+                "text": "Connection to External Redis Server"
+              },
+              "fullDescription": {
+                "text": "\u003cp\u003eRedis framework should be used strictly in server to server\ncommunication. Using Redis in the client side compromises security\nbecause the credentials can be read in plain text.\u003c/p\u003e"
+              },
+              "help": {
+                "text": "Summary of Findings",
+                "markdown": "## Summary of Findings\n\n### Description:\n\u003cp\u003eAndroid applications which use Redis to communicate are vulnerable\u003c/p\u003e\n\n### Recommendations:\n\n####  Compliant Solution:\n\u003cp\u003eRemove Redis client completely. If any SDK uses this component, then\nplease remove the SDK itself\u003c/p\u003e\n\n####  Noncompliant Code Example:\nSecurity issues identified. Please review and mitigate.\n\n### Business Implication:\n\u003cp\u003eThe database and associated data including user credentials may get\ncompromised.\u003c/p\u003e\n\n"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "CWE-16"
+                ],
+                "kind": "",
+                "precision": "high",
+                "problem.severity": "error",
+                "security-severity": "8.1"
+              }
+            },
+            {
+              "id": "APX038",
+              "name": "UnprotectedExportedActivities",
+              "shortDescription": {
+                "text": "Unprotected Exported Activities"
+              },
+              "fullDescription": {
+                "text": "\u003cp\u003eActivities provide user interfaces. Activities are started with Intents,\nand they can return data to their invoking components upon completion.\nAll visible portions of applications are Activities.\u003c/p\u003e\n\u003cp\u003eExported Activities can be called by any other application installed in\nthe phone leading to XAS (Cross Application Scripting)\u003c/p\u003e"
+              },
+              "help": {
+                "text": "Summary of Findings",
+                "markdown": "## Summary of Findings\n\n### Description:\n\u003cp\u003eThe Android application exports Activity for use by other applications,\nbut does not properly restrict which applications can launch the\ncomponent or access the data it contains.\u003c/p\u003e\n\n### Recommendations:\n\n####  Compliant Solution:\n\u003cp\u003eIf you are using a Activity for sharing between only your own apps, it\nis preferable to use the android:protectionLevel attribute set to\n\"signature\" protection. Signature permissions do not require user\nconfirmation, so they provide a better user experience and more\ncontrolled access to the application when the apps accessing the\nActivity are signed with the same key\u003c/p\u003e\n\u003cp\u003eIf the activity is called within itself, then don't export it or use\nIntent-Filter for custom permissions\u003c/p\u003e\n\n####  Noncompliant Code Example:\nSecurity issues identified. Please review and mitigate.\n\n### Business Implication:\n\u003cp\u003eAttackers may use non-privileged services to intercept and track the\nuser's activity. Furthermore, it may be possible to insert data that may\nmaliciously modify the behaviour of the application.\u003c/p\u003e\n\n"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "CWE-926"
+                ],
+                "kind": "",
+                "precision": "high",
+                "problem.severity": "note",
+                "security-severity": "3.3"
+              }
+            },
+            {
+              "id": "APX039",
+              "name": "UnprotectedExportedReceivers",
+              "shortDescription": {
+                "text": "Unprotected Exported Receivers"
+              },
+              "fullDescription": {
+                "text": "\u003cp\u003eBroadcast Receivers receive Intents sent to multiple applications.\nReceivers are triggered by the receipt of an appropriate Intent and then\nrun in the background to handle the event. Receivers are typically\nshort-lived; they often relay messages to Activities or Services. There\nare three types of broadcast Intents: normal, sticky, and ordered.\nNormal broadcasts are sent to all registered Receivers at once, and then\nthey disappear. Ordered broadcasts are delivered to one Receiver at a\ntime; also, any Receiver in the delivery chain of an ordered broadcast\ncan stop its propagation. Broadcast Receivers have the ability to set\ntheir priority level for receiving ordered broadcasts. Sticky broadcasts\nremain accessible after they have been delivered and are re-broadcast to\nfuture Receivers.\u003c/p\u003e\n\u003cp\u003eExported Broadcast Receiver can be called by any other malicious\napplication installed in the phone to invoke the Broadcast Receiver\nleading to XAS (Cross Application Scripting)\u003c/p\u003e"
+              },
+              "help": {
+                "text": "Summary of Findings",
+                "markdown": "## Summary of Findings\n\n### Description:\n\u003cp\u003eThe Android application exports Receiver for use by other applications,\nbut does not properly restrict which applications can launch the\ncomponent or access the data it contains.\u003c/p\u003e\n\n### Recommendations:\n\n####  Compliant Solution:\n\u003cp\u003eIf you are using a Broadcast Receiver for sharing data between only your\nown apps, it is preferable to use the \u003ccode\u003eandroid:protectionLevel\u003c/code\u003e attribute\nset to \"signature\" protection. Signature permissions do not require user\nconfirmation, so they provide a better user experience and more\ncontrolled access to the Broadcast Receiver when the apps accessing the\ndata are signed with the same key\u003c/p\u003e\n\u003cp\u003eIf the Broadcast Receiver is called within itself, then don't export it\nor use Intent-Filter for custom permissions\u003c/p\u003e\n\n####  Noncompliant Code Example:\nSecurity issues identified. Please review and mitigate.\n\n### Business Implication:\n\u003cp\u003eAttackers may use non-privileged services to intercept and track the\nuser's activity. Furthermore, it may be possible to insert data that may\nmaliciously modify the behaviour of the application.\u003c/p\u003e\n\n"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "CWE-926"
+                ],
+                "kind": "",
+                "precision": "high",
+                "problem.severity": "note",
+                "security-severity": "3.3"
+              }
+            },
+            {
+              "id": "APX040",
+              "name": "UnprotectedExportedService",
+              "shortDescription": {
+                "text": "Unprotected Exported Service"
+              },
+              "fullDescription": {
+                "text": "\u003cp\u003eServices run in the background and do not interact with the user.\nDownloading a file or decompressing an archive are examples of\noperations that may take place in a Service. Other components can bind\nto a Service, which lets the binder invoke methods that are declared in\nthe target Service's interface. Intents are used to start and bind to\nServices\u003c/p\u003e\n\u003cp\u003eExported Services can be called by any other application installed in\nthe phone to bind into the service leading to XAS (Cross Application\nScripting)\u003c/p\u003e"
+              },
+              "help": {
+                "text": "Summary of Findings",
+                "markdown": "## Summary of Findings\n\n### Description:\n\u003cp\u003eThe Android application exports Service for use by other applications,\nbut does not properly restrict which applications can launch the\ncomponent or access the data it contains.\u003c/p\u003e\n\n### Recommendations:\n\n####  Compliant Solution:\n\u003cp\u003eIf you are using a Service for sharing data between only your own apps,\nit is preferable to use the \u003ccode\u003eandroid:protectionLevel\u003c/code\u003e attribute set to\n\"signature\" protection. Signature permissions do not require user\nconfirmation, so they provide a better user experience and more\ncontrolled access to the Service when the apps accessing the data are\nsigned with the same key\u003c/p\u003e\n\u003cp\u003eIf the Service is called within itself, then don't export it or use\nIntent-Filter for custom permissions\u003c/p\u003e\n\n####  Noncompliant Code Example:\nSecurity issues identified. Please review and mitigate.\n\n### Business Implication:\n\u003cp\u003eAttackers may use non-privileged services to intercept and track the\nuser's activity. Furthermore, it may be possible to insert data that may\nmaliciously modify the behaviour of the application.\u003c/p\u003e\n\n"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "CWE-926"
+                ],
+                "kind": "",
+                "precision": "high",
+                "problem.severity": "note",
+                "security-severity": "3.3"
+              }
+            },
+            {
+              "id": "APX042",
+              "name": "NonSignatureProtectedExportedActivities",
+              "shortDescription": {
+                "text": "Non-signature Protected Exported Activities"
+              },
+              "fullDescription": {
+                "text": "\u003cp\u003eActivities provide user interfaces. Activities are started with Intents,\nand they can return data to their invoking components upon completion.\nAll visible portions of applications are Activities.\u003c/p\u003e\n\u003cp\u003eExported Unprotected Activities can be called by any other application\ninstalled in the phone leading to XAS (Cross Application Scripting)\u003c/p\u003e"
+              },
+              "help": {
+                "text": "Summary of Findings",
+                "markdown": "## Summary of Findings\n\n### Description:\n\u003cp\u003eThe Android application exports Activity for use by other applications,\nbut does not properly restrict which applications can launch the\ncomponent or access the data it contains via custom signature defined by\n\u003ccode\u003eandroid:protectionLevel\u003c/code\u003e.\u003c/p\u003e\n\n### Recommendations:\n\n####  Compliant Solution:\n\u003cp\u003eIf you are using a Activity for sharing between only your own apps, it\nis preferable to use the \u003ccode\u003eandroid:protectionLevel\u003c/code\u003e attribute set to\n\"signature\" protection. Signature permissions do not require user\nconfirmation, so they provide a better user experience and more\ncontrolled access to the application when the apps accessing the\nActivity are signed with the same key\u003c/p\u003e\n\n####  Noncompliant Code Example:\nSecurity issues identified. Please review and mitigate.\n\n### Business Implication:\n\u003cp\u003eAttackers may use non-privileged services to intercept and track the\nuser's activity. Furthermore, it may be possible to insert data that may\nmaliciously modify the behaviour of the application.\u003c/p\u003e\n\n"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "CWE-926"
+                ],
+                "kind": "",
+                "precision": "high",
+                "problem.severity": "note",
+                "security-severity": "3.3"
+              }
+            },
+            {
+              "id": "APX043",
+              "name": "NonSignatureProtectedExportedReceivers",
+              "shortDescription": {
+                "text": "Non-signature Protected Exported Receivers"
+              },
+              "fullDescription": {
+                "text": "\u003cp\u003eBroadcast Receivers receive Intents sent to multiple applications.\nReceivers are triggered by the receipt of an appropriate Intent and then\nrun in the background to handle the event. Receivers are typically\nshort-lived; they often relay messages to Activities or Services. There\nare three types of broadcast Intents: normal, sticky, and ordered.\nNormal broadcasts are sent to all registered Receivers at once, and then\nthey disappear. Ordered broadcasts are delivered to one Receiver at a\ntime; also, any Receiver in the delivery chain of an ordered broadcast\ncan stop its propagation. Broadcast Receivers have the ability to set\ntheir priority level for receiving ordered broadcasts. Sticky broadcasts\nremain accessible after they have been delivered and are re-broadcast to\nfuture Receivers.\u003c/p\u003e\n\u003cp\u003eExported Unprotected Broadcast Receiver can be called by any other\nmalicious application installed in the phone to invoke the Broadcast\nReceiver leading to XAS (Cross Application Scripting)\u003c/p\u003e"
+              },
+              "help": {
+                "text": "Summary of Findings",
+                "markdown": "## Summary of Findings\n\n### Description:\n\u003cp\u003eThe Android application exports Broadcast Receiver for use by other\napplications, but does not properly restrict which applications can\nlaunch the component or access the data it containscustom signature\ndefined by \u003ccode\u003eandroid:protectionLevel\u003c/code\u003e.\u003c/p\u003e\n\n### Recommendations:\n\n####  Compliant Solution:\n\u003cp\u003eIf you are using a Broadcast Receiver for sharing data between only your\nown apps, it is preferable to use the \u003ccode\u003eandroid:protectionLevel\u003c/code\u003e attribute\nset to \"signature\" protection. Signature permissions do not require user\nconfirmation, so they provide a better user experience and more\ncontrolled access to the Broadcast Receiver when the apps accessing the\ndata are signed with the same key\u003c/p\u003e\n\n####  Noncompliant Code Example:\nSecurity issues identified. Please review and mitigate.\n\n### Business Implication:\n\u003cp\u003eAttackers may use non-privileged services to intercept and track the\nuser's activity. Furthermore, it may be possible to insert data that may\nmaliciously modify the behaviour of the application.\u003c/p\u003e\n\n"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "CWE-926"
+                ],
+                "kind": "",
+                "precision": "high",
+                "problem.severity": "note",
+                "security-severity": "3.3"
+              }
+            },
+            {
+              "id": "APX044",
+              "name": "NonSignatureProtectedExportedServices",
+              "shortDescription": {
+                "text": "Non-signature Protected Exported Services"
+              },
+              "fullDescription": {
+                "text": "\u003cp\u003eServices run in the background and do not interact with the user.\nDownloading a file or decompressing an archive are examples of\noperations that may take place in a Service. Other components can bind\nto a Service, which lets the binder invoke methods that are declared in\nthe target Service's interface. Intents are used to start and bind to\nServices\u003c/p\u003e\n\u003cp\u003eExported Unprotected Services can be called by any other application\ninstalled in the phone to bind into the service leading to XAS (Cross\nApplication Scripting)\u003c/p\u003e"
+              },
+              "help": {
+                "text": "Summary of Findings",
+                "markdown": "## Summary of Findings\n\n### Description:\n\u003cp\u003eThe Android application exports Service for use by other applications,\nbut does not properly restrict which applications can launch the\ncomponent or access the data it containscustom signature defined by\n\u003ccode\u003eandroid:protectionLevel\u003c/code\u003e.\u003c/p\u003e\n\n### Recommendations:\n\n####  Compliant Solution:\n\u003cp\u003eIf you are using a Service for sharing data between only your own apps,\nit is preferable to use the \u003ccode\u003eandroid:protectionLevel\u003c/code\u003e attribute set to\n\u003ccode\u003esignature\u003c/code\u003e protection. Signature permissions do not require user\nconfirmation, so they provide a better user experience and more\ncontrolled access to the Service when the apps accessing the data are\nsigned with the same key\u003c/p\u003e\n\n####  Noncompliant Code Example:\nSecurity issues identified. Please review and mitigate.\n\n### Business Implication:\n\u003cp\u003eAttackers may use non-privileged services to intercept and track the\nuser's activity. Furthermore, it may be possible to insert data that may\nmaliciously modify the behaviour of the application.\u003c/p\u003e\n\n"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "CWE-926"
+                ],
+                "kind": "",
+                "precision": "high",
+                "problem.severity": "note",
+                "security-severity": "3.3"
+              }
+            },
+            {
+              "id": "APX045",
+              "name": "NonSignatureProtectedExportedProviders",
+              "shortDescription": {
+                "text": "Non-signature Protected Exported Providers"
+              },
+              "fullDescription": {
+                "text": "\u003cp\u003eContent Providers are databases addressable by their application-defined\nURIs. They are used for both persistent internal data storage and as a\nmechanism for sharing information between applications.\u003c/p\u003e\n\u003cp\u003eExported and Unprotected Content Provider can be called by any other\nmalicious application installed in the phone to get the data via Content\nProvider leading to XAS (Cross Application Scripting)\u003c/p\u003e"
+              },
+              "help": {
+                "text": "Summary of Findings",
+                "markdown": "## Summary of Findings\n\n### Description:\n\u003cp\u003eThe Android application exports Content Provider for use by other\napplications, but does not properly restrict which applications can\nlaunch the component or access the data it containscustom signature\ndefined by \u003ccode\u003eandroid:protectionLevel\u003c/code\u003e.\u003c/p\u003e\n\n### Recommendations:\n\n####  Compliant Solution:\n\u003cp\u003eIf you are using a Content Provider for sharing data between only your\nown apps, it is preferable to use the \u003ccode\u003eandroid:protectionLevel\u003c/code\u003e attribute\nset to \u003ccode\u003esignature\u003c/code\u003e protection. Signature permissions do not require user\nconfirmation, so they provide a better user experience and more\ncontrolled access to the content provider data when the apps accessing\nthe data are signed with the same key\u003c/p\u003e\n\n####  Noncompliant Code Example:\nSecurity issues identified. Please review and mitigate.\n\n### Business Implication:\n\u003cp\u003eAttackers may use non-privileged services to intercept and track the\nuser's activity. Furthermore, it may be possible to insert data that may\nmaliciously modify the behaviour of the application.\u003c/p\u003e\n\n"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "CWE-926"
+                ],
+                "kind": "",
+                "precision": "high",
+                "problem.severity": "note",
+                "security-severity": "3.3"
+              }
+            },
+            {
+              "id": "APX083",
+              "name": "DisabledSslCaValidationAndCertificatePinning",
+              "shortDescription": {
+                "text": "Disabled SSL CA Validation and Certificate Pinning"
+              },
+              "fullDescription": {
+                "text": "\u003cp\u003eCertificate Pinning is the process of associating a host with their expected\nX509 certificate or public key. Once a certificate or public key is known or\nseen for a host, the certificate or public key is associated or 'pinned' to\nthe host. If more than one certificate or public key is acceptable.\nIn this case, the advertised identity must match one of the\nelements in the pinset.\u003c/p\u003e"
+              },
+              "help": {
+                "text": "Summary of Findings",
+                "markdown": "## Summary of Findings\n\n### Description:\n\u003cp\u003eA host or service's certificate or public key can be added to an\napplication at development time, or it can be added upon first encountering\nthe certificate or public key. The former - adding at development time -\nis preferred since preloading the certificate or public key out of band\nusually means the attacker cannot taint the pin.\u003c/p\u003e\n\n### Recommendations:\n\n####  Compliant Solution:\n\u003cp\u003eCertificate Pinning can be done with these two options:\u003c/p\u003e\n\u003cp\u003eYou can\n1. pin the certificate or\n2. pin the public key\u003c/p\u003e\n\u003cp\u003eIf you choose public keys, you have two additional choices:\n- pin the \u003ccode\u003esubjectPublicKeyInfo\u003c/code\u003e or\n- pin one of the concrete types such as \u003ccode\u003eRSAPublicKey\u003c/code\u003e or \u003ccode\u003eDSAPublicKey\u003c/code\u003e.\u003c/p\u003e\n\u003cp\u003eThe three choices are explained below in more detail. I would encourage you to pin the subjectPublicKeyInfo because it has the public parameters (such as {e,n} for an RSA public key) and contextual information such as an algorithm and OID. The context will help you keep your bearings at times, and the figure to the right shows the additional information available.\u003c/p\u003e\n\u003ch3\u003eCertificate\u003c/h3\u003e\n\u003cp\u003eThe certificate is easiest to pin. You can fetch the certificate out of band for the website, have the IT folks email your company certificate to you, use openssl s_client to retrieve the certificate etc. At runtime, you retrieve the website or server's certificate in the callback. Within the callback, you compare the retrieved certificate with the certificate embedded within the program. If the comparison fails, then fail the method or function. There is a downside to pinning a certificate. If the site rotates its certificate on a regular basis, then your application would need to be updated regularly. For example, Google rotates its certificates, so you will need to update your application about once a month (if it depended on Google services). Even though Google rotates its certificates, the underlying public keys (within the certificate) remain static.\u003c/p\u003e\n\u003ch3\u003ePublic Key\u003c/h3\u003e\n\u003cp\u003ePublic key pinning is more flexible but a little trickier due to the extra steps necessary to extract the public key from a certificate. As with a certificate, the program checks the extracted public key with its embedded copy of the public key. There are two downsides to public key pinning. First, it's harder to work with keys (versus certificates) since you must extract the key from the certificate. Extraction is a minor inconvenience in Java and .Net, buts it's uncomfortable in Cocoa/CocoaTouch and OpenSSL. Second, the key is static and may violate key rotation policies.\u003c/p\u003e\n\u003ch3\u003eHashing\u003c/h3\u003e\n\u003cp\u003eWhile the three choices above used DER encoding, its also acceptable to use a hash of the information. In fact, the original sample programs were written using digested certificates and public keys. The samples were changed to allow a programmer to inspect the objects with tools like dumpasn1 and other ASN.1 decoders.\u003c/p\u003e\n\u003cp\u003eHashing also provides three additional benefits. First, hashing allows you to anonymize a certificate or public key. This might be important if you application is concerned about leaking information during decompilation and re-engineering. Second, a digested certificate fingerprint is often available as a native API for many libraries, so its convenient to use. Finally, an  organization might want to supply a reserve (or back-up) identity in  case the primary identity is compromised. Hashing ensures your adversaries  do not see the reserved certificate or public key in advance of its use. In fact,  Google's IETF draft websec-key-pinning uses the technique.\u003c/p\u003e\n\n####  Noncompliant Code Example:\nSecurity issues identified. Please review and mitigate.\n\n### Business Implication:\n\u003cp\u003eIn the event that a user (anonymous or verified) is able to execute\nover-privileged functionality, the business may experience:\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003eReputational Damage\u003c/li\u003e\n\u003cli\u003eFraud\u003c/li\u003e\n\u003cli\u003eInformation Theft\u003c/li\u003e\n\u003c/ul\u003e\n\n"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "CWE-295"
+                ],
+                "kind": "",
+                "precision": "high",
+                "problem.severity": "warning",
+                "security-severity": "5.9"
+              }
+            },
+            {
+              "id": "APX092",
+              "name": "MediaProjectionAndroidServiceAllowsRecordingOfAudioScreenActivity",
+              "shortDescription": {
+                "text": "MediaProjection: Android Service Allows Recording of Audio, Screen Activity"
+              },
+              "fullDescription": {
+                "text": "\u003cp\u003eStarting with Android 5.0, Google introduced the android.media.projection API which allows any third-party App to perform screen capture and screen sharing (fixed in Android 8).\u003c/p\u003e\n\u003cp\u003eSuch an App can capture everything on the device’s screen, including sensitive activity from all other Apps such as password keystrokes, credit card data, etc. The capturing ability remains on even if the user terminates/closes the App, but not after a reboot.\u003c/p\u003e"
+              },
+              "help": {
+                "text": "Summary of Findings",
+                "markdown": "## Summary of Findings\n\n### Description:\n\u003cp\u003eProtect all sensitive windows within the App by enabling the \u003ccode\u003eFLAG_SECURE\u003c/code\u003e flag. This flag will prevent Apps from being able to record the protected windows. Also, the flag will prevent users from taking screenshots of these windows (by pressing the VOLUME_DOWN and POWER buttons). As such screenshots are stored on the SDCard by default, they are accessible to all Apps and sensitive data may be exposed.\u003c/p\u003e\n\n### Recommendations:\n\n####  Compliant Solution:\n\u003cp\u003eBelow is an example of how to use \u003ccode\u003eFLAG_SECURE\u003c/code\u003e inside your activity\u003c/p\u003e\n\u003cpre\u003e\u003ccode\u003epublic class SecureActivity extends Activity {\n    @Override\n    protected void onCreate(Bundle savedInstanceState) {\n        super.onCreate(savedInstanceState);\n\n        // Set the Secure flag for this Window\n        getWindow().setFlags(LayoutParams.FLAG_SECURE, LayoutParams.FLAG_SECURE);\n    }\n}\n\u003c/code\u003e\u003c/pre\u003e\n\n####  Noncompliant Code Example:\nSecurity issues identified. Please review and mitigate.\n\n"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "CWE-200"
+                ],
+                "kind": "",
+                "precision": "high",
+                "problem.severity": "warning",
+                "security-severity": "6.8"
+              }
+            },
+            {
+              "id": "APX093",
+              "name": "ExternalDataInRawSqlQueries",
+              "shortDescription": {
+                "text": "External data in raw SQL queries"
+              },
+              "fullDescription": {
+                "text": "\u003cp\u003eSql injection is possible because we use quotation marks to delimit strings and also to be parts of strings, making it impossible to interpret them sometimes. If we had delimiters that could not be used in string data, sql injection never would have happened. Solving the delimiter problem eliminates the sql injection problem. Structure queries do that.\u003c/p\u003e\n\u003cp\u003ePrepared statements are resilient against SQL injection, because parameter values, which are transmitted later using a different protocol, need not be correctly escaped. If the original statement template is not derived from external input, SQL injection cannot occur.\u003c/p\u003e"
+              },
+              "help": {
+                "text": "Summary of Findings",
+                "markdown": "## Summary of Findings\n\n### Description:\n\u003cp\u003eInclusion of input into raw SQL queries can potentially lead to a local SQL injection vulnerability in the mobile application.\u003c/p\u003e\n\u003cp\u003eThe correct approach is to use prepared SQL statements beyond user's control.\u003c/p\u003e\n\n### Recommendations:\n\n####  Compliant Solution:\n\u003cp\u003eBelow is an example of how to use Prepeared SQL statement:\u003c/p\u003e\n\u003cpre\u003e\u003ccode\u003ePreparedStatement pstmt = con.prepareStatement(\"UPDATE EMPLOYEES SET SALARY = ? WHERE ID = ?\");\npstmt.setBigDecimal(1, 153833.00)\npstmt.setInt(2, 110592)\n\u003c/code\u003e\u003c/pre\u003e\n\n####  Noncompliant Code Example:\n\u003cp\u003eExample of an insecure code:\u003c/p\u003e\n\u003cpre\u003e\u003ccode\u003edb.rawQuery(\"SELECT username FROM users_table WHERE id = '\"+ input_id +\"'\");\ndb.execSQL(\"SELECT username FROM users_table WHERE id = '\"+ input_id +\"'\");\n\u003c/code\u003e\u003c/pre\u003e\n\n"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "CWE-89"
+                ],
+                "kind": "",
+                "precision": "high",
+                "problem.severity": "warning",
+                "security-severity": "5.3"
+              }
+            },
+            {
+              "id": "APX096",
+              "name": "EnabledAndroidApplicationBackup",
+              "shortDescription": {
+                "text": "Enabled Android Application Backup"
+              },
+              "fullDescription": {
+                "text": "\u003cp\u003eThe mobile application uses external backup functionality (default Android backup mechanism) that may store inside sensitive data from the application.\u003c/p\u003e\n\u003cp\u003eIn certain conditions, this may lead to information disclosure (e.g. when a backup server or the Gmail account is compromised).\u003c/p\u003e"
+              },
+              "help": {
+                "text": "Summary of Findings",
+                "markdown": "## Summary of Findings\n\n### Description:\n\u003cp\u003eApplication backup might contain sensitive information private data of the app into their PC\u003c/p\u003e\n\n### Recommendations:\n\n####  Compliant Solution:\n\u003cp\u003eBelow is an example of how to prevent the application from getting backed-up via adb in your AndroidManifest file:\u003c/p\u003e\n\u003cpre\u003e\u003ccode\u003eandroid:allowBackup=\"false\"\n\u003c/code\u003e\u003c/pre\u003e\n\n####  Noncompliant Code Example:\n\u003cp\u003eExample of an insecure code in AndroidManifest file:\u003c/p\u003e\n\u003cpre\u003e\u003ccode\u003eandroid:allowBackup=\"true\"\n\u003c/code\u003e\u003c/pre\u003e\n\n"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "CWE-16"
+                ],
+                "kind": "",
+                "precision": "high",
+                "problem.severity": "note",
+                "security-severity": "3.3"
+              }
+            },
+            {
+              "id": "APX0104",
+              "name": "BytecodeObfuscation",
+              "shortDescription": {
+                "text": "Bytecode Obfuscation"
+              },
+              "fullDescription": {
+                "text": "\u003cp\u003eGenerally, all mobile code is susceptible to reverse engineering. Some apps are more susceptible than others. Code written in languages / frameworks that allow for dynamic introspection at runtime (Java, .NET, Objective C, Swift) are particularly at risk for reverse engineering. Detecting susceptibility to reverse engineering is fairly straight forward. First, decrypt the app store version of the app (if binary encryption is applied). Code will be susceptible if it is fairly easy to understand the app’s controlflow path, string table, and any pseudocode/source-code generated by these tools.\u003c/p\u003e\n\u003cp\u003eBytecode obfuscation consists of multiple complementary techniques\nthat can help create a layered defense against reverse engineering and\ntampering. Some typical examples of obfuscation techniques include:\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e\u003cb\u003eRenaming\u003c/b\u003e to alter the name of methods and variables to make\n    the decompiled source much harder for a human to understand.\u003c/li\u003e\n\u003cli\u003e\u003cb\u003eControl Flow Obfuscation\u003c/b\u003ecreates conditional, branching, and\n    iterative constructs that produce valid executable logic, but yield\n    non-deterministic semantic results when decompiled.\u003c/li\u003e\n\u003cli\u003e\u003cb\u003eString Encryption\u003c/b\u003e hides strings in the executable and only\n    restores their original value when needed\u003c/li\u003e\n\u003cli\u003e\u003cb\u003eInstruction Pattern Transformation\u003c/b\u003e converts common\n    instructions to other, less obvious constructs potential confusing\n    decompliers.\u003c/li\u003e\n\u003cli\u003e\u003cb\u003eDummy Code Insertion\u003c/b\u003e inserts code that does not affect the\n    program’s logic, but breaks decompilers or makes reverse-engineered\n    code harder to analyze.\u003c/li\u003e\n\u003cli\u003e\u003cb\u003eUnused Code and Metadata Removal\u003c/b\u003e prunes out debug,\n    non-essential metadata and used code from applications to reduce the\n    information available to an attacker.\u003c/li\u003e\n\u003c/ul\u003e"
+              },
+              "help": {
+                "text": "Summary of Findings",
+                "markdown": "## Summary of Findings\n\n### Description:\n\u003cp\u003eJava source code is typically compiled into Java bytecode – the instruction set of the Java virtual machine.\nThe compiled Java bytecode can be easily reversed engineered back into source\ncode by freely available decompilers. Bytecode Obfuscation is the process of modifying\nJava bytecode (executable or library) so that it is much harder to read and understand\nfor a hacker but remains fully functional.\u003c/p\u003e\n\n### Recommendations:\n\n####  Compliant Solution:\n\u003cp\u003eTo enable shrinking, obfuscation, and optimization, using proguard include the following in your project-level \u003ccode\u003ebuild.gradle\u003c/code\u003e file.\u003c/p\u003e\n\u003cpre\u003e\u003ccode\u003eandroid {\n    buildTypes {\n        release {\n            // Enables code shrinking, obfuscation, and optimization for only\n            // your project's release build type.\n            minifyEnabled true\n\n            // Enables resource shrinking, which is performed by the\n            // Android Gradle plugin.\n            shrinkResources true\n\n            // Includes the default ProGuard rules files that are packaged with\n            // the Android Gradle plugin. To learn more, go to the section about\n            // R8 configuration files.\n            proguardFiles getDefaultProguardFile(\n                    'proguard-android-optimize.txt'),\n                    'proguard-rules.pro'\n        }\n    }\n    ...\n}\n\u003c/code\u003e\u003c/pre\u003e\n\u003cp\u003eSample \u003ccode\u003eproguard-rules.pro\u003c/code\u003e which you can use to obfuscate code:\u003c/p\u003e\n\u003cpre\u003e\u003ccode\u003e// Basic proguard rules\n-optimizations !code/simplification/arithmetic\n-keepattributes \u0026lt;em\u0026gt;Annotation\u0026lt;/em\u0026gt;\n-keepattributes InnerClasses\n-keepattributes EnclosingMethod\n-keep class *\u0026lt;em\u0026gt;.R$\u0026lt;/em\u0026gt;\n\n-dontskipnonpubliclibraryclasses\n-forceprocessing\n-optimizationpasses 5\n-overloadaggressively\n\n// Removing logging code\n-assumenosideeffects class android.util.Log {\npublic static *** d();\npublic static *** v();\npublic static *** i();\npublic static *** w();\npublic static *** e();\n}\n\n// Crashlytics code as given below which one can exclude\n\n-keep class com.crashlytics.** { *; }\n-keep class com.crashlytics.android.**\n-keepattributes SourceFile,LineNumberTable\n\u003c/code\u003e\u003c/pre\u003e\n\n####  Noncompliant Code Example:\n\u003cp\u003eSample \u003ccode\u003eproguard-rules.pro\u003c/code\u003e lines which fails obfuscation when used:\u003c/p\u003e\n\u003cpre\u003e\u003ccode\u003e-dontobfuscate\n\u003c/code\u003e\u003c/pre\u003e\n\u003cp\u003eOr if no proguard or obfuscation is used then you can use number of freely\navailable Java decompilers that can\nrecreate source code from Java bytecode (executables or libraries).\u003c/p\u003e\n\u003cp\u003ePopular decompilers include:\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e\u003ca href=\"https://bytecodeviewer.com\"\u003eBytecode Viewer\u003c/a\u003e - A Java 8 Jar \u0026amp;\n    Android APK Reverse Engineering Suite (Decompiler, Editor, Debugger\n    \u0026amp; More)\u003c/li\u003e\n\u003cli\u003e\u003ca href=\"http://www.benf.org/other/cfr/\"\u003eCFR\u003c/a\u003e - Another Java decompiler\u003c/li\u003e\n\u003cli\u003e\u003ca href=\"http://jd.benow.ca/\"\u003eJDGui\u003c/a\u003e - Yet another fast Java decompiler\u003c/li\u003e\n\u003cli\u003e\u003ca href=\"https://github.com/fesh0r/fernflower\"\u003eFernflower\u003c/a\u003e - An analytical\n    decompiler for Java\u003c/li\u003e\n\u003cli\u003e\u003ca href=\"https://github.com/skylot/jadx\"\u003eJadX\u003c/a\u003e - tool to decompile APK and DEX files\u003c/li\u003e\n\u003c/ul\u003e\n\n"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "CWE-693"
+                ],
+                "kind": "",
+                "precision": "high",
+                "problem.severity": "note",
+                "security-severity": "2.3"
+              }
+            },
+            {
+              "id": "APX0113",
+              "name": "NetworkSecurityMisconfiguration",
+              "shortDescription": {
+                "text": "Network Security Misconfiguration"
+              },
+              "fullDescription": {
+                "text": "\u003cp\u003eThe Network Security Configuration feature lets apps customize their network security\nsettings in a safe, declarative configuration file without modifying app code. These\nsettings can be configured for specific domains and for a specific app. The key\ncapabilities of this feature are as follows:\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e\u003cstrong\u003eCustom trust anchors\u003c/strong\u003e: Customize which Certificate Authorities (CA) are trusted for an app's secure connections. For example, trusting particular self-signed certificates or restricting the set of public CAs that the app trusts.\u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003eDebug-only overrides\u003c/strong\u003e: Safely debug secure connections in an app without added risk to the installed base.\u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003eCleartext traffic opt-out\u003c/strong\u003e: Protect apps from accidental usage of cleartext traffic.\u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003eCertificate pinning\u003c/strong\u003e: Restrict an app's secure connection to particular certificates.\u003c/li\u003e\n\u003c/ul\u003e"
+              },
+              "help": {
+                "text": "Summary of Findings",
+                "markdown": "## Summary of Findings\n\n### Description:\n\u003cp\u003eThis technique allows the user to secure the communication in the application\nby specifying proper values to the flags which are present in the network security\nconfiguration file. If implemented correctly it can help in securing the application\nby communicating only on secure protocols like HTTPS. It can also be used to implement\ncertificate pinning by using the SHA-256 hashes of the public certificate.\u003c/p\u003e\n\n### Recommendations:\n\n####  Compliant Solution:\n\u003cp\u003eThe following is a good network security configuration:\u003c/p\u003e\n\u003cpre\u003e\u003ccode\u003e\u0026lt;?xml version=\"1.0\" encoding=\"utf-8\"?\u0026gt;\n\u0026lt;network-security-config\u0026gt;\n    \u0026lt;base-config cleartextTrafficPermitted=\"false\"\u0026gt;\n        \u0026lt;trust-anchors\u0026gt;\n            \u0026lt;certificates src=\"...\"/\u0026gt;\n            ...\n        \u0026lt;/trust-anchors\u0026gt;\n    \u0026lt;/base-config\u0026gt;\n\n    \u0026lt;domain-config cleartextTrafficPermitted=\"false\"\u0026gt;\n        \u0026lt;domain\u0026gt;android.com\u0026lt;/domain\u0026gt;\n        ...\n        \u0026lt;trust-anchors\u0026gt;\n            \u0026lt;certificates src=\"...\"/\u0026gt;\n            ...\n        \u0026lt;/trust-anchors\u0026gt;\n        \u0026lt;pin-set\u0026gt;\n            \u0026lt;pin digest=\"...\"\u0026gt;...\u0026lt;/pin\u0026gt;\n            ...\n        \u0026lt;/pin-set\u0026gt;\n    \u0026lt;/domain-config\u0026gt;\n    ...\n\u0026lt;/network-security-config\u0026gt;\n\u003c/code\u003e\u003c/pre\u003e\n\n####  Noncompliant Code Example:\n\u003cp\u003eIf you have set the base configuration or domain configuration with\ncleartextTrafficPermitted to True then it is a problem.\nIf the \u003ccode\u003esrc\u003c/code\u003e is set to \u003ccode\u003e\"user\"\u003c/code\u003e then, a user can install his own certificate\nin the device and the app will use that instead of the pinned certificate.\u003c/p\u003e\n\u003cpre\u003e\u003ccode\u003e\u0026lt;?xml version=\"1.0\" encoding=\"utf-8\"?\u0026gt;\n\u0026lt;network-security-config\u0026gt;\n    \u0026lt;base-config cleartextTrafficPermitted=\"true\"\u0026gt;\n        \u0026lt;trust-anchors\u0026gt;\n            \u0026lt;certificates src=\"system\" /\u0026gt;\n            \u0026lt;certificates src=\"user\" /\u0026gt;\n        \u0026lt;/trust-anchors\u0026gt;\n    \u0026lt;/base-config\u0026gt;\n\u0026lt;/network-security-config\u0026gt;\n\u003c/code\u003e\u003c/pre\u003e\n\u003cp\u003eAdding a debug-overrides can expose your debug certificate which can be used to\nperform MITM attack on your application.\u003c/p\u003e\n\u003cpre\u003e\u003ccode\u003e\u0026lt;?xml version=\"1.0\" encoding=\"utf-8\"?\u0026gt;\n\u0026lt;network-security-config\u0026gt;\n    \u0026lt;debug-overrides\u0026gt;\n        \u0026lt;trust-anchors\u0026gt;\n            \u0026lt;certificates src=\"@raw/debug_cas\"/\u0026gt;\n        \u0026lt;/trust-anchors\u0026gt;\n    \u0026lt;/debug-overrides\u0026gt;\n\u0026lt;/network-security-config\u0026gt;\n\u003c/code\u003e\u003c/pre\u003e\n\n### Business Implication:\n\u003cp\u003eAn attacker can gain sensitive information which can result in loss of confidential data.\u003c/p\u003e\n\n"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "CWE-16"
+                ],
+                "kind": "",
+                "precision": "high",
+                "problem.severity": "error",
+                "security-severity": "9.1"
+              }
+            },
+            {
+              "id": "APX0117",
+              "name": "JanusVulnerabilityCve201713156",
+              "shortDescription": {
+                "text": "Janus Vulnerability (CVE-2017-13156)"
+              },
+              "fullDescription": {
+                "text": "\u003cp\u003eJanus vulnerability (CVE-2017-13156) allows attackers to inject a malicious DEX file into an APK file without affecting the signatures which can result in the attacker gaining access to the victim's device.\u003c/p\u003e"
+              },
+              "help": {
+                "text": "Summary of Findings",
+                "markdown": "## Summary of Findings\n\n### Description:\n\u003cp\u003eThe application is signed using v1 signature scheme which makes it vulnerable to Janus Vulnerability on unpatched Android 5.1.1 to 8.0. Please note that apps that are dual signed with v1 and v2 or v3 are still vulnerable on devices that does not enforce rollback protection on the specified unpatched Android versions supporting v2 and above.\u003c/p\u003e\n\n### Recommendations:\n\n####  Compliant Solution:\n\u003cp\u003eSign the apk using scheme v2 and above.\u003c/p\u003e\n\n####  Noncompliant Code Example:\n\u003cp\u003eApplication is signed using v1 scheme.\u003c/p\u003e\n\n### Business Implication:\n\u003cp\u003eAn attacker can prepend a malicious DEX file to an APK file without affecting its signature which the Android runtime accepts as a valid update of a legitimate earlier version of the app.\u003c/p\u003e\n\n"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "CWE-345"
+                ],
+                "kind": "",
+                "precision": "high",
+                "problem.severity": "warning",
+                "security-severity": "6.7"
+              }
+            },
+            {
+              "id": "APX0118",
+              "name": "StrandHoggVulnerability",
+              "shortDescription": {
+                "text": "StrandHogg Vulnerability"
+              },
+              "fullDescription": {
+                "text": "\u003cp\u003eStrandHogg is a vulnerability in the task management system on Android that allows an attacker to hijack tasks. This can be exploited such that when the end user starts a legitimate app, instead of actually getting that app, the user is presented with a malicious look-a-like instead.\u003c/p\u003e"
+              },
+              "help": {
+                "text": "Summary of Findings",
+                "markdown": "## Summary of Findings\n\n### Description:\n\u003cp\u003eOne or more than one public facing activities of the application is vulnerable to StandHogg vulnerability.\u003c/p\u003e\n\u003cp\u003eIn StrandHogg and regular task hijacking, malicious applications typically deploy one of the following techniques or a selection in tandem:\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e\n\u003cp\u003e\u003cstrong\u003eTask Affinity Manipulation\u003c/strong\u003e: The malicious application leverages two activities, M1 and M2, wherein M2.taskAffinity = com.victim.app and M2.allowTaskReparenting = true. In the eventuality that the malicious app is opened on M2, M2 would be relocated to the front and the user will interact with the malicious application once the victim application has initiated.\u003c/p\u003e\n\u003c/li\u003e\n\u003cli\u003e\n\u003cp\u003e\u003cstrong\u003eSingle Task Mode\u003c/strong\u003e: In the eventuality that the victim application sets launchMode to singleTask, malicious applications can leverage M2.taskAffinity = com.victim.app to hijack the victim's application task stack.\u003c/p\u003e\n\u003c/li\u003e\n\u003cli\u003e\n\u003cp\u003e\u003cstrong\u003eTask Reparenting\u003c/strong\u003e: In the eventuality that the victim application sets taskReparenting to true, malicious applications can move the victim's application task to the malicious application's stack.\u003c/p\u003e\n\u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003eHowever, in the case of StrandHogg 2.0, all exported activities without a launchMode of singleTask or singleInstance are affected on vulnerable Android versions.\u003c/p\u003e\n\n### Recommendations:\n\n####  Compliant Solution:\n\u003cpre\u003e\u003ccode\u003e\u0026lt;activity android:theme=\"@style/AppTheme.NoActionBar\"\nandroid:name=\"com.demo.MainActivity\" android:exported=\"true\"\nandroid:screenOrientation=\"portrait\" android:windowSoftInputMode=\"adjustNothing\"\nandroid:launchMode=\"singleInstance\" android:taskAffinity=\"\"\u0026gt;\n\u003c/code\u003e\u003c/pre\u003e\n\n####  Noncompliant Code Example:\n\u003cpre\u003e\u003ccode\u003e\u0026lt;activity android:theme=\"@style/AppTheme.NoActionBar\"\nandroid:name=\"com.demo.MainActivity\" android:exported=\"true\"\nandroid:screenOrientation=\"portrait\"\nandroid:windowSoftInputMode=\"adjustNothing\"\u0026gt;\n\u003c/code\u003e\u003c/pre\u003e\n\n### Business Implication:\n\u003cp\u003eA malicious app could leverage this weakness to manipulate the way in which users interact with the app. Specifically, this could be instigated by relocating a malicious attacker-controlled activity in the screen flow of the user, which may prove useful towards performing phishing, DoS or user-credential capture. This issue has been verified as a known exploit leveraged by banking malware Trojans in the past.\u003c/p\u003e\n\n"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "CWE-200"
+                ],
+                "kind": "",
+                "precision": "high",
+                "problem.severity": "warning",
+                "security-severity": "6.5"
+              }
+            },
+            {
+              "id": "APX0121",
+              "name": "AndroidTapjacking",
+              "shortDescription": {
+                "text": "Android Tapjacking"
+              },
+              "fullDescription": {
+                "text": "\u003cp\u003eAndroid tapjacking is a type of attack where an attacker tricks or deceives a user into tapping on a seemingly harmless element on their Android device's screen, while secretly performing malicious actions in the background without the user's knowledge or consent.\u003c/p\u003e"
+              },
+              "help": {
+                "text": "Summary of Findings",
+                "markdown": "## Summary of Findings\n\n### Description:\n\u003cp\u003eAndroid tapjacking is a type of attack where an attacker tricks or deceives a user into tapping on a seemingly harmless element on their Android device's screen, while secretly performing malicious actions in the background. Cybercriminals deploy overlay attacks to steal victims’ login credentials, bank card details, and other confidential information.\u003c/p\u003e\n\n### Recommendations:\n\n####  Compliant Solution:\n\u003cpre\u003e\u003ccode\u003e\u0026lt;?xml version=\"1.0\" encoding=\"utf-8\"?\u0026gt;\n\u0026lt;LinearLayout android:orientation=\"vertical\" android:layout_width=\"fill_parent\" android:layout_height=\"fill_parent\"\nxmlns:android=\"http://schemas.android.com/apk/res/android\" xmlns:app=\"http://schemas.android.com/apk/res-auto\" android:filterTouchesWhenObscured=\"true\"\u0026gt;\n    \u0026lt;Button android:id=\"@id/button_calculate_checksum\" android:layout_width=\"fill_parent\" android:layout_height=\"wrap_content\" android:text=\"@string/button_calculate_checksum\" /\u0026gt;\n    \u0026lt;Button android:id=\"@id/button_encrypt\" android:layout_width=\"fill_parent\" android:layout_height=\"wrap_content\" android:text=\"@string/button_encrypt\" /\u0026gt;\n\u0026lt;/LinearLayout\u0026gt;\n\nOR\n\nView rootView = getWindow().getDecorView().getRootView();\nrootView.setFilterTouchesWhenObscured(true);\n\u003c/code\u003e\u003c/pre\u003e\n\n####  Noncompliant Code Example:\n\u003cpre\u003e\u003ccode\u003e\u0026lt;?xml version=\"1.0\" encoding=\"utf-8\"?\u0026gt;\n\u0026lt;LinearLayout android:orientation=\"vertical\" android:layout_width=\"fill_parent\" android:layout_height=\"fill_parent\"\nxmlns:android=\"http://schemas.android.com/apk/res/android\" xmlns:app=\"http://schemas.android.com/apk/res-auto\"\u0026gt;\n    \u0026lt;Button android:id=\"@id/button_calculate_checksum\" android:layout_width=\"fill_parent\" android:layout_height=\"wrap_content\" android:text=\"@string/button_calculate_checksum\" android:filterTouchesWhenObscured=\"true\"/\u0026gt;\n    \u0026lt;Button android:id=\"@id/button_encrypt\" android:layout_width=\"fill_parent\" android:layout_height=\"wrap_content\" android:text=\"@string/button_encrypt\" android:filterTouchesWhenObscured=\"true\"/\u0026gt;\n\u0026lt;/LinearLayout\u0026gt;\n\nOR\n\nView rootView = getWindow().getDecorView().getRootView();\nrootView.setFilterTouchesWhenObscured(false);\n\u003c/code\u003e\u003c/pre\u003e\n\n### Business Implication:\n\u003cp\u003eTapjacking attacks are used to trick users into performing certain actions. A properly executed attack can lead to loss of confidential information\u003c/p\u003e\n\n"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "CWE-1021"
+                ],
+                "kind": "",
+                "precision": "high",
+                "problem.severity": "warning",
+                "security-severity": "4.8"
+              }
+            },
+            {
+              "id": "APX0127",
+              "name": "WeakPrngPseudorandomNumberGenerator",
+              "shortDescription": {
+                "text": "Weak PRNG (Pseudorandom number generator)"
+              },
+              "fullDescription": {
+                "text": "\u003cp\u003eWeak PRNG (Pseudorandom Number Generator) vulnerability in Android refers to a security weakness where the algorithms responsible for generating random numbers within an application lack the required level of unpredictability and randomness.\u003c/p\u003e"
+              },
+              "help": {
+                "text": "Summary of Findings",
+                "markdown": "## Summary of Findings\n\n### Description:\n\u003cp\u003eWeak PRNG vulnerabilities stem from insufficiently random initializations, improper algorithms, or inadequate entropy sources. Such vulnerabilities can result in unauthorized access, data breaches, and compromised cryptographic operations.\u003c/p\u003e\n\n### Recommendations:\n\n####  Compliant Solution:\n\u003cpre\u003e\u003ccode\u003e    import java.security.SecureRandom;\n\n    public class generateRandom {\n        public static void main(String args[]) {\n            SecureRandom rand = new SecureRandom();\n            int rand_int = rand.nextInt(1000);\n        }\n    }\n\u003c/code\u003e\u003c/pre\u003e\n\n####  Noncompliant Code Example:\n\u003cpre\u003e\u003ccode\u003e    import java.util.Random;\n\n    public class generateRandom {\n        public static void main(String args[]) {\n            Random rand = new Random();\n            int rand_int = rand.nextInt(1000);\n        }\n    }\n\u003c/code\u003e\u003c/pre\u003e\n\u003cp\u003eOR\u003c/p\u003e\n\u003cpre\u003e\u003ccode\u003e    import java.lang.Math;\n\n    public class generateRandom {\n        public static void main(String[] args) {\n            double randomValue = Math.random();\n        }\n    }\n\u003c/code\u003e\u003c/pre\u003e\n\n### Business Implication:\n\u003cp\u003eWeak PRNG (Pseudorandom Number Generator) vulnerabilities within Android applications can have far-reaching business consequences. Such vulnerabilities can lead to data breaches and unauthorized access, undermining user trust and potentially violating regulatory requirements. Financial losses may result from legal actions, compensations, and operational disruptions caused by security incidents. Moreover, a compromised reputation can lead to decreased user adoption, loss of competitive advantage, and even app removal from stores\u003c/p\u003e\n\n"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "CWE-338"
+                ],
+                "kind": "",
+                "precision": "high",
+                "problem.severity": "warning",
+                "security-severity": "6.1"
+              }
+            },
+            {
+              "id": "APX0133",
+              "name": "KeyloggerProtection",
+              "shortDescription": {
+                "text": "Keylogger Protection"
+              },
+              "fullDescription": {
+                "text": "\u003cp\u003eKeylogger protection is crucial for safeguarding sensitive information from malicious applications that may be installed on a device.\nA keylogger is a type of malware designed to capture and record keystrokes or other input data from the user.\nIf such an application is present on the device, it can potentially intercept and\nsteal personal or confidential information by tracking what you type.\u003c/p\u003e"
+              },
+              "help": {
+                "text": "Summary of Findings",
+                "markdown": "## Summary of Findings\n\n### Description:\n\u003cp\u003eKeyloggers are malicious software designed to capture and record keystrokes or input data from users,\nposing a significant threat to personal and sensitive information. They operate by monitoring keyboard activity,\npotentially stealing passwords, credit card details, and other confidential data.\nKeylogger protection involves implementing secure input methods, such as custom keyboards and virtual keyboards,\nto prevent unauthorized access to typed information. Effective protection ensures that even if a keylogger is present,\nit cannot intercept or compromise the data being entered.\u003c/p\u003e\n\n### Recommendations:\n\n####  Compliant Solution:\n\u003cp\u003eApplication should utilize a virtual or custom keyboard. By doing so, the app can prevent keyloggers from capturing sensitive input.\nBelow is an example of how to implement a virtual keyboard.\u003c/p\u003e\n\u003cp\u003eCreate a new service\u003c/p\u003e\n\u003cpre\u003e\u003ccode\u003eclass MyInputMethodService : InputMethodService() {\n    override fun onCreateInputView(): View {\n        val keyboardView = layoutInflater.inflate(R.layout.keyboard_view, null) as KeyboardView\n        return keyboardView\n    }\n}\n\u003c/code\u003e\u003c/pre\u003e\n\u003cp\u003eCreate an Input Method XML Configuration\u003c/p\u003e\n\u003cpre\u003e\u003ccode\u003e\u0026lt;?xml version=\"1.0\" encoding=\"utf-8\"?\u0026gt;\n\u0026lt;input-method xmlns:android=\"http://schemas.android.com/apk/res/android\"\n    android:settingsActivity=\".SettingsActivity\"\n    android:service=\"com.example.MyInputMethodService\"\u0026gt;\n    \u0026lt;subtype\n        android:label=\"@string/subtype_label\"\n        android:locale=\"en_US\"\n        android:mode=\"keyboard\"\n        android:imeSubtypeLocale=\"en_US\"/\u0026gt;\n\u0026lt;/input-method\u0026gt;\n\u003c/code\u003e\u003c/pre\u003e\n\u003cp\u003eCreate the keyboard layout XML\u003c/p\u003e\n\u003cpre\u003e\u003ccode\u003e\u0026lt;?xml version=\"1.0\" encoding=\"utf-8\"?\u0026gt;\n\u0026lt;Keyboard xmlns:android=\"http://schemas.android.com/apk/res/android\"\u0026gt;\n    \u0026lt;Row\u0026gt;\n        \u0026lt;Key android:codes=\"113\" android:keyLabel=\"Q\" /\u0026gt;\n        \u0026lt;Key android:codes=\"119\" android:keyLabel=\"W\" /\u0026gt;\n        \u0026lt;!-- Add more keys as needed --\u0026gt;\n    \u0026lt;/Row\u0026gt;\n    \u0026lt;!-- Add more rows as needed --\u0026gt;\n\u0026lt;/Keyboard\u0026gt;\n\u003c/code\u003e\u003c/pre\u003e\n\u003cp\u003eCreate the keyboard view layout\u003c/p\u003e\n\u003cpre\u003e\u003ccode\u003e\u0026lt;?xml version=\"1.0\" encoding=\"utf-8\"?\u0026gt;\n\u0026lt;LinearLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\n    android:orientation=\"vertical\"\n    android:layout_width=\"match_parent\"\n    android:layout_height=\"wrap_content\"\u0026gt;\n    \u0026lt;com.example.KeyboardView\n        android:id=\"@+id/keyboard_view\"\n        android:layout_width=\"match_parent\"\n        android:layout_height=\"wrap_content\"/\u0026gt;\n\u0026lt;/LinearLayout\u0026gt;\n\u003c/code\u003e\u003c/pre\u003e\n\u003cp\u003eImplement the keyboard logic and events\u003c/p\u003e\n\u003cpre\u003e\u003ccode\u003eclass MyInputMethodService : InputMethodService(), KeyboardView.OnKeyboardActionListener {\n    private lateinit var keyboardView: KeyboardView\n    private lateinit var keyboard: Keyboard\n    override fun onCreateInputView(): View {\n        keyboardView = layoutInflater.inflate(R.layout.keyboard_view, null) as KeyboardView\n        keyboard = Keyboard(this, R.xml.keyboard_layout)\n        keyboardView.keyboard = keyboard\n        keyboardView.setOnKeyboardActionListener(this)\n        return keyboardView\n    }\n    override fun onKey(primaryCode: Int, keyCodes: IntArray) {\n        val inputConnection = currentInputConnection\n        inputConnection?.commitText(primaryCode.toChar().toString(), 1)\n    }\n}\n\u003c/code\u003e\u003c/pre\u003e\n\u003cp\u003eAdd the service declaration in the manifest with correct permissions\u003c/p\u003e\n\u003cpre\u003e\u003ccode\u003e\u0026lt;service\n    android:name=\".MyInputMethodService\"\n    android:permission=\"android.permission.BIND_INPUT_METHOD\"\u0026gt;\n    \u0026lt;intent-filter\u0026gt;\n        \u0026lt;action android:name=\"android.service.inputmethod.InputMethodService\" /\u0026gt;\n    \u0026lt;/intent-filter\u0026gt;\n    \u0026lt;meta-data\n        android:name=\"android.view.im\"\n        android:resource=\"@xml/input_method_config\"/\u0026gt;\n\u0026lt;/service\u0026gt;\n\u003c/code\u003e\u003c/pre\u003e\n\n####  Noncompliant Code Example:\nSecurity issues identified. Please review and mitigate.\n\n### Business Implication:\n\u003cp\u003eWithout keylogger protection, there is a significant risk of sensitive information being stolen, which could lead to serious consequences such as\nidentity theft and financial loss. This vulnerability exposes both the application\nand its users to potential security breaches.\u003c/p\u003e\n\n"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "CWE-693"
+                ],
+                "kind": "",
+                "precision": "high",
+                "problem.severity": "note",
+                "security-severity": "3.9"
+              }
+            }
+          ]
+        }
+      },
+      "results": [
+        {
+          "ruleId": "APX02",
+          "level": "error",
+          "message": {
+            "text": "\u003cp\u003eThe \u003ccode\u003eContentProvider\u003c/code\u003e class provides a mechanism for managing and sharing\ndata with other applications. When sharing a provider's data with other\napps, access control should be carefully implemented to prohibit\nunauthorized access to sensitive data.\u003c/p\u003e\n\u003cp\u003eThere are three ways to limit access to the content provider:\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003ePublic\u003c/li\u003e\n\u003cli\u003ePrivate\u003c/li\u003e\n\u003cli\u003eRestricted access\u003c/li\u003e\n\u003c/ul\u003e"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "SRCROOT",
+                  "uriBaseId": ""
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "vulnerabilityId": "2"
+          }
+        },
+        {
+          "ruleId": "APX03",
+          "level": "error",
+          "message": {
+            "text": "\u003cp\u003eAndroid allows the attribute \u003ccode\u003eandroid:debuggable\u003c/code\u003e to be set to true so\nthat the app can be debugged. By default this attribute is disabled,\ni.e., it is set to false, but it may be set to true to help with\ndebugging during development of the app. However, an app should never be\nreleased with this attribute set to true as it enables users to gain\naccess to details of the app that should be kept secure. With the\nattribute set to true, users can debug the app even without access to\nits source code.\u003c/p\u003e"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "SRCROOT",
+                  "uriBaseId": ""
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "vulnerabilityId": "3"
+          }
+        },
+        {
+          "ruleId": "APX010",
+          "level": "note",
+          "message": {
+            "text": "\u003cp\u003eAn app might request a user for certain permissions, like access to SD\ncard, contacts, social profiles, etc. which has not actually been\ninvoked while the scan was running. We list out all these permissions so\nthat you can optimize your app and follow proper compliance checks.\u003c/p\u003e"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "SRCROOT",
+                  "uriBaseId": ""
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "vulnerabilityId": "10"
+          }
+        },
+        {
+          "ruleId": "APX016",
+          "level": "error",
+          "message": {
+            "text": "\u003cp\u003eThe predominant Android cryptographic security provider API defaults to\nusing an insecure AES encryption method: ECB block cipher mode for AES\nencryption. Android's default cryptographic security provider (since\nversion 2.1) is BouncyCastle.\u003c/p\u003e\n\u003cp\u003eNote that Java also selects ECB as a default value when only the AES\nencryption method is chosen. So, this rule also applies to Java, but for\nJava's different default cryptographic security provider. Oracle Java's\ndefault cryptographic security provider is SunJCE.\u003c/p\u003e\n\u003cp\u003eDefault behaviors of cryptographic libraries used in Android systems\noften do not use recommended practices. For example, the predominant\nAndroid Java security provider API defaults to using an insecure AES\nencryption method: ECB block cipher mode for AES encryption. Extensive\napp testing by Egele 2013 has shown that the following 6 rules are\noften not followed, resulting in 88 percent of apps with cryptographic APIs on\nGoogle Play making at least one mistake.\u003c/p\u003e\n\u003cp\u003eSix common cryptography rules that were tested:\u003c/p\u003e\n\u003col\u003e\n\u003cli\u003eDo not use ECB mode for encryption.\u003c/li\u003e\n\u003cli\u003eDo not use a non-random IV for CBC encryption.\u003c/li\u003e\n\u003cli\u003eDo not use constant encryption keys.\u003c/li\u003e\n\u003cli\u003eDo not use constant salts for PBE.\u003c/li\u003e\n\u003cli\u003eDo not use fewer than 1,000 iterations for PBE.\u003c/li\u003e\n\u003cli\u003eDo not use static seeds to seed SecureRandom().\u003c/li\u003e\n\u003c/ol\u003e"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "SRCROOT",
+                  "uriBaseId": ""
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "vulnerabilityId": "16"
+          }
+        },
+        {
+          "ruleId": "APX017",
+          "level": "warning",
+          "message": {
+            "text": "\u003cp\u003eAndroid provides capabilities for an app to output logging information\nand obtain log output. Applications can send information to log output\nusing the android.util.Log class. To obtain log output, applications can\nexecute the logcat command.\u003c/p\u003e"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "SRCROOT",
+                  "uriBaseId": ""
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "vulnerabilityId": "17"
+          }
+        },
+        {
+          "ruleId": "APX037",
+          "level": "error",
+          "message": {
+            "text": "\u003cp\u003eRedis framework should be used strictly in server to server\ncommunication. Using Redis in the client side compromises security\nbecause the credentials can be read in plain text.\u003c/p\u003e"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "SRCROOT",
+                  "uriBaseId": ""
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "vulnerabilityId": "37"
+          }
+        },
+        {
+          "ruleId": "APX038",
+          "level": "note",
+          "message": {
+            "text": "\u003cp\u003eActivities provide user interfaces. Activities are started with Intents,\nand they can return data to their invoking components upon completion.\nAll visible portions of applications are Activities.\u003c/p\u003e\n\u003cp\u003eExported Activities can be called by any other application installed in\nthe phone leading to XAS (Cross Application Scripting)\u003c/p\u003e"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "SRCROOT",
+                  "uriBaseId": ""
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "vulnerabilityId": "38"
+          }
+        },
+        {
+          "ruleId": "APX039",
+          "level": "note",
+          "message": {
+            "text": "\u003cp\u003eBroadcast Receivers receive Intents sent to multiple applications.\nReceivers are triggered by the receipt of an appropriate Intent and then\nrun in the background to handle the event. Receivers are typically\nshort-lived; they often relay messages to Activities or Services. There\nare three types of broadcast Intents: normal, sticky, and ordered.\nNormal broadcasts are sent to all registered Receivers at once, and then\nthey disappear. Ordered broadcasts are delivered to one Receiver at a\ntime; also, any Receiver in the delivery chain of an ordered broadcast\ncan stop its propagation. Broadcast Receivers have the ability to set\ntheir priority level for receiving ordered broadcasts. Sticky broadcasts\nremain accessible after they have been delivered and are re-broadcast to\nfuture Receivers.\u003c/p\u003e\n\u003cp\u003eExported Broadcast Receiver can be called by any other malicious\napplication installed in the phone to invoke the Broadcast Receiver\nleading to XAS (Cross Application Scripting)\u003c/p\u003e"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "SRCROOT",
+                  "uriBaseId": ""
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "vulnerabilityId": "39"
+          }
+        },
+        {
+          "ruleId": "APX040",
+          "level": "note",
+          "message": {
+            "text": "\u003cp\u003eServices run in the background and do not interact with the user.\nDownloading a file or decompressing an archive are examples of\noperations that may take place in a Service. Other components can bind\nto a Service, which lets the binder invoke methods that are declared in\nthe target Service's interface. Intents are used to start and bind to\nServices\u003c/p\u003e\n\u003cp\u003eExported Services can be called by any other application installed in\nthe phone to bind into the service leading to XAS (Cross Application\nScripting)\u003c/p\u003e"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "SRCROOT",
+                  "uriBaseId": ""
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "vulnerabilityId": "40"
+          }
+        },
+        {
+          "ruleId": "APX042",
+          "level": "note",
+          "message": {
+            "text": "\u003cp\u003eActivities provide user interfaces. Activities are started with Intents,\nand they can return data to their invoking components upon completion.\nAll visible portions of applications are Activities.\u003c/p\u003e\n\u003cp\u003eExported Unprotected Activities can be called by any other application\ninstalled in the phone leading to XAS (Cross Application Scripting)\u003c/p\u003e"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "SRCROOT",
+                  "uriBaseId": ""
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "vulnerabilityId": "42"
+          }
+        },
+        {
+          "ruleId": "APX043",
+          "level": "note",
+          "message": {
+            "text": "\u003cp\u003eBroadcast Receivers receive Intents sent to multiple applications.\nReceivers are triggered by the receipt of an appropriate Intent and then\nrun in the background to handle the event. Receivers are typically\nshort-lived; they often relay messages to Activities or Services. There\nare three types of broadcast Intents: normal, sticky, and ordered.\nNormal broadcasts are sent to all registered Receivers at once, and then\nthey disappear. Ordered broadcasts are delivered to one Receiver at a\ntime; also, any Receiver in the delivery chain of an ordered broadcast\ncan stop its propagation. Broadcast Receivers have the ability to set\ntheir priority level for receiving ordered broadcasts. Sticky broadcasts\nremain accessible after they have been delivered and are re-broadcast to\nfuture Receivers.\u003c/p\u003e\n\u003cp\u003eExported Unprotected Broadcast Receiver can be called by any other\nmalicious application installed in the phone to invoke the Broadcast\nReceiver leading to XAS (Cross Application Scripting)\u003c/p\u003e"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "SRCROOT",
+                  "uriBaseId": ""
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "vulnerabilityId": "43"
+          }
+        },
+        {
+          "ruleId": "APX044",
+          "level": "note",
+          "message": {
+            "text": "\u003cp\u003eServices run in the background and do not interact with the user.\nDownloading a file or decompressing an archive are examples of\noperations that may take place in a Service. Other components can bind\nto a Service, which lets the binder invoke methods that are declared in\nthe target Service's interface. Intents are used to start and bind to\nServices\u003c/p\u003e\n\u003cp\u003eExported Unprotected Services can be called by any other application\ninstalled in the phone to bind into the service leading to XAS (Cross\nApplication Scripting)\u003c/p\u003e"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "SRCROOT",
+                  "uriBaseId": ""
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "vulnerabilityId": "44"
+          }
+        },
+        {
+          "ruleId": "APX045",
+          "level": "note",
+          "message": {
+            "text": "\u003cp\u003eContent Providers are databases addressable by their application-defined\nURIs. They are used for both persistent internal data storage and as a\nmechanism for sharing information between applications.\u003c/p\u003e\n\u003cp\u003eExported and Unprotected Content Provider can be called by any other\nmalicious application installed in the phone to get the data via Content\nProvider leading to XAS (Cross Application Scripting)\u003c/p\u003e"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "SRCROOT",
+                  "uriBaseId": ""
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "vulnerabilityId": "45"
+          }
+        },
+        {
+          "ruleId": "APX083",
+          "level": "warning",
+          "message": {
+            "text": "\u003cp\u003eCertificate Pinning is the process of associating a host with their expected\nX509 certificate or public key. Once a certificate or public key is known or\nseen for a host, the certificate or public key is associated or 'pinned' to\nthe host. If more than one certificate or public key is acceptable.\nIn this case, the advertised identity must match one of the\nelements in the pinset.\u003c/p\u003e"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "SRCROOT",
+                  "uriBaseId": ""
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "vulnerabilityId": "83"
+          }
+        },
+        {
+          "ruleId": "APX092",
+          "level": "warning",
+          "message": {
+            "text": "\u003cp\u003eStarting with Android 5.0, Google introduced the android.media.projection API which allows any third-party App to perform screen capture and screen sharing (fixed in Android 8).\u003c/p\u003e\n\u003cp\u003eSuch an App can capture everything on the device’s screen, including sensitive activity from all other Apps such as password keystrokes, credit card data, etc. The capturing ability remains on even if the user terminates/closes the App, but not after a reboot.\u003c/p\u003e"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "SRCROOT",
+                  "uriBaseId": ""
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "vulnerabilityId": "92"
+          }
+        },
+        {
+          "ruleId": "APX093",
+          "level": "warning",
+          "message": {
+            "text": "\u003cp\u003eSql injection is possible because we use quotation marks to delimit strings and also to be parts of strings, making it impossible to interpret them sometimes. If we had delimiters that could not be used in string data, sql injection never would have happened. Solving the delimiter problem eliminates the sql injection problem. Structure queries do that.\u003c/p\u003e\n\u003cp\u003ePrepared statements are resilient against SQL injection, because parameter values, which are transmitted later using a different protocol, need not be correctly escaped. If the original statement template is not derived from external input, SQL injection cannot occur.\u003c/p\u003e"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "SRCROOT",
+                  "uriBaseId": ""
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "vulnerabilityId": "93"
+          }
+        },
+        {
+          "ruleId": "APX096",
+          "level": "note",
+          "message": {
+            "text": "\u003cp\u003eThe mobile application uses external backup functionality (default Android backup mechanism) that may store inside sensitive data from the application.\u003c/p\u003e\n\u003cp\u003eIn certain conditions, this may lead to information disclosure (e.g. when a backup server or the Gmail account is compromised).\u003c/p\u003e"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "SRCROOT",
+                  "uriBaseId": ""
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "vulnerabilityId": "96"
+          }
+        },
+        {
+          "ruleId": "APX0104",
+          "level": "note",
+          "message": {
+            "text": "\u003cp\u003eGenerally, all mobile code is susceptible to reverse engineering. Some apps are more susceptible than others. Code written in languages / frameworks that allow for dynamic introspection at runtime (Java, .NET, Objective C, Swift) are particularly at risk for reverse engineering. Detecting susceptibility to reverse engineering is fairly straight forward. First, decrypt the app store version of the app (if binary encryption is applied). Code will be susceptible if it is fairly easy to understand the app’s controlflow path, string table, and any pseudocode/source-code generated by these tools.\u003c/p\u003e\n\u003cp\u003eBytecode obfuscation consists of multiple complementary techniques\nthat can help create a layered defense against reverse engineering and\ntampering. Some typical examples of obfuscation techniques include:\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e\u003cb\u003eRenaming\u003c/b\u003e to alter the name of methods and variables to make\n    the decompiled source much harder for a human to understand.\u003c/li\u003e\n\u003cli\u003e\u003cb\u003eControl Flow Obfuscation\u003c/b\u003ecreates conditional, branching, and\n    iterative constructs that produce valid executable logic, but yield\n    non-deterministic semantic results when decompiled.\u003c/li\u003e\n\u003cli\u003e\u003cb\u003eString Encryption\u003c/b\u003e hides strings in the executable and only\n    restores their original value when needed\u003c/li\u003e\n\u003cli\u003e\u003cb\u003eInstruction Pattern Transformation\u003c/b\u003e converts common\n    instructions to other, less obvious constructs potential confusing\n    decompliers.\u003c/li\u003e\n\u003cli\u003e\u003cb\u003eDummy Code Insertion\u003c/b\u003e inserts code that does not affect the\n    program’s logic, but breaks decompilers or makes reverse-engineered\n    code harder to analyze.\u003c/li\u003e\n\u003cli\u003e\u003cb\u003eUnused Code and Metadata Removal\u003c/b\u003e prunes out debug,\n    non-essential metadata and used code from applications to reduce the\n    information available to an attacker.\u003c/li\u003e\n\u003c/ul\u003e"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "SRCROOT",
+                  "uriBaseId": ""
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "vulnerabilityId": "104"
+          }
+        },
+        {
+          "ruleId": "APX0113",
+          "level": "error",
+          "message": {
+            "text": "\u003cp\u003eThe Network Security Configuration feature lets apps customize their network security\nsettings in a safe, declarative configuration file without modifying app code. These\nsettings can be configured for specific domains and for a specific app. The key\ncapabilities of this feature are as follows:\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e\u003cstrong\u003eCustom trust anchors\u003c/strong\u003e: Customize which Certificate Authorities (CA) are trusted for an app's secure connections. For example, trusting particular self-signed certificates or restricting the set of public CAs that the app trusts.\u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003eDebug-only overrides\u003c/strong\u003e: Safely debug secure connections in an app without added risk to the installed base.\u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003eCleartext traffic opt-out\u003c/strong\u003e: Protect apps from accidental usage of cleartext traffic.\u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003eCertificate pinning\u003c/strong\u003e: Restrict an app's secure connection to particular certificates.\u003c/li\u003e\n\u003c/ul\u003e"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "SRCROOT",
+                  "uriBaseId": ""
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "vulnerabilityId": "113"
+          }
+        },
+        {
+          "ruleId": "APX0117",
+          "level": "warning",
+          "message": {
+            "text": "\u003cp\u003eJanus vulnerability (CVE-2017-13156) allows attackers to inject a malicious DEX file into an APK file without affecting the signatures which can result in the attacker gaining access to the victim's device.\u003c/p\u003e"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "SRCROOT",
+                  "uriBaseId": ""
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "vulnerabilityId": "117"
+          }
+        },
+        {
+          "ruleId": "APX0118",
+          "level": "warning",
+          "message": {
+            "text": "\u003cp\u003eStrandHogg is a vulnerability in the task management system on Android that allows an attacker to hijack tasks. This can be exploited such that when the end user starts a legitimate app, instead of actually getting that app, the user is presented with a malicious look-a-like instead.\u003c/p\u003e"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "SRCROOT",
+                  "uriBaseId": ""
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "vulnerabilityId": "118"
+          }
+        },
+        {
+          "ruleId": "APX0121",
+          "level": "warning",
+          "message": {
+            "text": "\u003cp\u003eAndroid tapjacking is a type of attack where an attacker tricks or deceives a user into tapping on a seemingly harmless element on their Android device's screen, while secretly performing malicious actions in the background without the user's knowledge or consent.\u003c/p\u003e"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "SRCROOT",
+                  "uriBaseId": ""
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "vulnerabilityId": "121"
+          }
+        },
+        {
+          "ruleId": "APX0127",
+          "level": "warning",
+          "message": {
+            "text": "\u003cp\u003eWeak PRNG (Pseudorandom Number Generator) vulnerability in Android refers to a security weakness where the algorithms responsible for generating random numbers within an application lack the required level of unpredictability and randomness.\u003c/p\u003e"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "SRCROOT",
+                  "uriBaseId": ""
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "vulnerabilityId": "127"
+          }
+        },
+        {
+          "ruleId": "APX0133",
+          "level": "note",
+          "message": {
+            "text": "\u003cp\u003eKeylogger protection is crucial for safeguarding sensitive information from malicious applications that may be installed on a device.\nA keylogger is a type of malware designed to capture and record keystrokes or other input data from the user.\nIf such an application is present on the device, it can potentially intercept and\nsteal personal or confidential information by tracking what you type.\u003c/p\u003e"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "SRCROOT",
+                  "uriBaseId": ""
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "vulnerabilityId": "133"
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.appknox.tests.authentication.AuthenticationTests
+-------------------------------------------------------------------------------
+Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.082 s -- in com.appknox.tests.authentication.AuthenticationTests

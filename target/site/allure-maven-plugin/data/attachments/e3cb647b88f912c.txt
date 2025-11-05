@@ -1,0 +1,34 @@
+A CLI tool to interact with appknox api
+
+Usage:
+  appknox [command]
+
+Available Commands:
+  analyses                 List analyses for file
+  cicheck                  Check for vulnerabilities based on risk threshold.
+  completion               Generate the autocompletion script for the specified shell
+  dastcheck                Check the status of a DAST scan for the specified file
+  files                    List files for project
+  help                     Help about any command
+  init                     Used to initialize Appknox CLI
+  organizations            List organizations
+  owasp                    Fetch OWASP by ID
+  projects                 List projects
+  reports                  Vulnerability Analysis Reports
+  sarif                    Create SARIF report
+  schedule-dast-automation Schedule a DAST automation for the specified file
+  upload                   Upload and scan package
+  vulnerability            Get vulnerability
+  whoami                   Shows current authenticated user
+
+Flags:
+  -a, --access-token string   Appknox Access Token
+  -h, --help                  help for appknox
+      --host string           Appknox Server
+  -k, --insecure              Disable Security Checks
+      --pac string            pac file path or url
+      --proxy string          proxy url
+      --region string         Region names, e.g., global, saudi, uae. By default, global is used
+  -v, --version               version for appknox
+
+Use "appknox [command] --help" for more information about a command.
