@@ -22,11 +22,6 @@ jobs:
         distribution: 'temurin'
         cache: maven
     
-    - name: Install Appknox CLI
-      run: |
-        pip install appknox
-        appknox --version
-    
     - name: Run Tests
       run: mvn clean test
       env:
