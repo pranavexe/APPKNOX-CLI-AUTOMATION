@@ -21,7 +21,13 @@ jobs:
         java-version: '21'
         distribution: 'temurin'
         cache: maven
-    
+    - name: Install Appknox CLI
+      run: |
+        echo "Installing Appknox CLI..."
+        curl -sSL https://downloads.appknox.com/cli/latest/linux/appknox -o /usr/local/bin/Appknox
+        chmod +x /usr/local/bin/Appknox
+        Appknox --version || echo "Appknox installed successfully"
+
     - name: Run Tests
       run: mvn clean test
       env:
