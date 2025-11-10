@@ -96,7 +96,7 @@ public class CICheckTests extends BaseTest {
 
         step("Execute cicheck with high risk threshold", () -> {
             List<String> cmdList = new ArrayList<>();
-            cmdList.add(config.getCliPath());
+            cmdList.add(config.getCliPath ());
             cmdList.add("cicheck");
             cmdList.add(fileId);
             cmdList.add("--risk-threshold");
