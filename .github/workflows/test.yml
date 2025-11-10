@@ -22,19 +22,39 @@ jobs:
         distribution: 'temurin'
         cache: maven
     
-    - name: Install Appknox CLI
+    # - name: Install Appknox CLI
+    #   shell: pwsh
+    #   run: |
+    #     Write-Host "Downloading Appknox CLI..."
+    #     $installPath = "$env:USERPROFILE\appknox.exe"
+    #     [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+    #     Invoke-WebRequest -Uri "https://github.com/appknox/appknox-go/releases/download/latest/appknox-Windows-x86_64.exe" -OutFile $installPath
+        
+    #     Write-Host "Adding Appknox CLI to PATH..."
+    #     Add-Content -Path $env:GITHUB_PATH -Value "$env:USERPROFILE"
+        
+    #     Write-Host "Verifying Appknox CLI installation..."
+    #     & $installPath --version
+
+
+    - name: Install Appknox CLI (Windows)
       shell: pwsh
       run: |
-        Write-Host "Downloading Appknox CLI..."
-        $installPath = "$env:USERPROFILE\appknox.exe"
-        [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
-        Invoke-WebRequest -Uri "https://github.com/appknox/appknox-go/releases/download/latest/appknox-Windows-x86_64.exe" -OutFile $installPath
-        
-        Write-Host "Adding Appknox CLI to PATH..."
-        Add-Content -Path $env:GITHUB_PATH -Value "$env:USERPROFILE"
-        
-        Write-Host "Verifying Appknox CLI installation..."
-        & $installPath --version
+          Write-Host "Fetching latest Appknox CLI release URL..."
+          $latestRelease = Invoke-RestMethod -Uri "https://api.github.com/repos/appknox/appknox-go/releases/latest"
+          $asset = $latestRelease.assets | Where-Object { $_.name -match "Windows-x86_64.exe" }
+          if (-not $asset) { throw "Appknox Windows binary not found in latest release assets!" }
+
+          $downloadUrl = $asset.browser_download_url
+          $installPath = "$env:USERPROFILE\appknox.exe"
+
+          Write-Host "Downloading from: $downloadUrl"
+          Invoke-WebRequest -Uri $downloadUrl -OutFile $installPath
+          Write-Host "Adding Appknox CLI to PATH..."
+          Add-Content -Path $env:GITHUB_PATH -Value "$env:USERPROFILE"
+          Write-Host "Verifying installation..."
+          & $installPath --version
+
     
     - name: Verify Appknox CLI in PATH
       shell: pwsh
