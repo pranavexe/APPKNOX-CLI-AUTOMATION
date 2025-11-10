@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.appknox.tests.analyses.AnalysesTests" time="5.471" tests="7" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.appknox.tests.analyses.AnalysesTests" time="8.725" tests="7" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="25"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -15,7 +15,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="IN"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-25\bin"/>
-    <property name="sun.java.command" value="C:\Users\ombul\AppData\Local\Temp\surefire8253070157686074632\surefirebooter-20251105125801742_3.jar C:\Users\ombul\AppData\Local\Temp\surefire8253070157686074632 2025-11-05T12-58-01_596-jvmRun1 surefire-20251105125801742_1tmp surefire_0-20251105125801742_2tmp"/>
+    <property name="sun.java.command" value="C:\Users\ombul\AppData\Local\Temp\surefire6328385547938480619\surefirebooter-20251105174507062_3.jar C:\Users\ombul\AppData\Local\Temp\surefire6328385547938480619 2025-11-05T17-45-06_896-jvmRun1 surefire-20251105174507062_1tmp surefire_0-20251105174507062_2tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="C:\Users\ombul\appknox-cli-automation\target\test-classes;C:\Users\ombul\appknox-cli-automation\target\classes;C:\Users\ombul\.m2\repository\org\junit\jupiter\junit-jupiter\5.9.3\junit-jupiter-5.9.3.jar;C:\Users\ombul\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.9.3\junit-jupiter-api-5.9.3.jar;C:\Users\ombul\.m2\repository\org\opentest4j\opentest4j\1.2.0\opentest4j-1.2.0.jar;C:\Users\ombul\.m2\repository\org\junit\platform\junit-platform-commons\1.9.3\junit-platform-commons-1.9.3.jar;C:\Users\ombul\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\ombul\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.9.3\junit-jupiter-params-5.9.3.jar;C:\Users\ombul\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.9.3\junit-jupiter-engine-5.9.3.jar;C:\Users\ombul\.m2\repository\org\junit\platform\junit-platform-engine\1.9.3\junit-platform-engine-1.9.3.jar;C:\Users\ombul\.m2\repository\org\assertj\assertj-core\3.24.2\assertj-core-3.24.2.jar;C:\Users\ombul\.m2\repository\net\bytebuddy\byte-buddy\1.12.21\byte-buddy-1.12.21.jar;C:\Users\ombul\.m2\repository\io\qameta\allure\allure-junit5\2.24.0\allure-junit5-2.24.0.jar;C:\Users\ombul\.m2\repository\io\qameta\allure\allure-junit-platform\2.24.0\allure-junit-platform-2.24.0.jar;C:\Users\ombul\.m2\repository\io\qameta\allure\allure-java-commons\2.24.0\allure-java-commons-2.24.0.jar;C:\Users\ombul\.m2\repository\org\slf4j\slf4j-api\1.7.36\slf4j-api-1.7.36.jar;C:\Users\ombul\.m2\repository\io\qameta\allure\allure-model\2.24.0\allure-model-2.24.0.jar;C:\Users\ombul\.m2\repository\io\qameta\allure\allure-test-filter\2.24.0\allure-test-filter-2.24.0.jar;C:\Users\ombul\.m2\repository\org\junit\platform\junit-platform-launcher\1.9.2\junit-platform-launcher-1.9.2.jar;"/>
     <property name="allure.results.directory" value="C:\Users\ombul\appknox-cli-automation\target/allure-results"/>
@@ -31,7 +31,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="C:\Users\ombul\AppData\Local\Temp\surefire8253070157686074632\surefirebooter-20251105125801742_3.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\ombul\AppData\Local\Temp\surefire6328385547938480619\surefirebooter-20251105174507062_3.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="25.0.1+8-LTS-27"/>
@@ -60,16 +60,16 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="69.0"/>
   </properties>
-  <testcase name="testOwaspDetailsForInvalidId" classname="com.appknox.tests.analyses.AnalysesTests" time="0.709">
+  <testcase name="testOwaspDetailsForInvalidId" classname="com.appknox.tests.analyses.AnalysesTests" time="0.893">
     <system-err><![CDATA[SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
 SLF4J: Defaulting to no-operation (NOP) logger implementation
 SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
 ]]></system-err>
   </testcase>
-  <testcase name="testAnalysesWithoutFileId" classname="com.appknox.tests.analyses.AnalysesTests" time="0.089"/>
-  <testcase name="testOwaspDetailsForValidId" classname="com.appknox.tests.analyses.AnalysesTests" time="0.523"/>
-  <testcase name="testVulnerabilityDetailsForInvalidId" classname="com.appknox.tests.analyses.AnalysesTests" time="0.462"/>
-  <testcase name="testVulnerabilityDetailsForValidId" classname="com.appknox.tests.analyses.AnalysesTests" time="0.448"/>
-  <testcase name="testAnalysesListForInvalidFile" classname="com.appknox.tests.analyses.AnalysesTests" time="0.408"/>
-  <testcase name="testAnalysesListForValidFile" classname="com.appknox.tests.analyses.AnalysesTests" time="2.761"/>
+  <testcase name="testAnalysesWithoutFileId" classname="com.appknox.tests.analyses.AnalysesTests" time="0.085"/>
+  <testcase name="testOwaspDetailsForValidId" classname="com.appknox.tests.analyses.AnalysesTests" time="4.499"/>
+  <testcase name="testVulnerabilityDetailsForInvalidId" classname="com.appknox.tests.analyses.AnalysesTests" time="0.369"/>
+  <testcase name="testVulnerabilityDetailsForValidId" classname="com.appknox.tests.analyses.AnalysesTests" time="0.397"/>
+  <testcase name="testAnalysesListForInvalidFile" classname="com.appknox.tests.analyses.AnalysesTests" time="0.406"/>
+  <testcase name="testAnalysesListForValidFile" classname="com.appknox.tests.analyses.AnalysesTests" time="1.974"/>
 </testsuite>

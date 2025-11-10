@@ -1,0 +1,49 @@
+Starting scan at: 2025-11-05T17:45:27+05:30 with timeout of 30m0s
+Static Scan Progress:  0 % [----------------------------| ] 
+[1A[JStatic Scan Progress:  0 % [----------------------------| ] 
+[1A[JStatic Scan Progress:  0 % [----------------------------| ] 
+[1A[JStatic Scan Progress:  100 % [==========================| ] 
+[1A[JStatic Scan Progress:  100 % [==========================| ] 
+[1A[JStatic Scan Progress:  100 % [==========================| ] 
+[1A[JStatic Scan Progress:  100 % [==========================| ] 
+[1A[JStatic Scan Progress:  100 % [==========================| ] 
+[1A[JStatic Scan Progress:  100 % [==========================| ] 
+[1A[JStatic Scan Progress:  100 % [==========================| ] 
+[1A[JStatic Scan Progress:  100 % [==========================| ] 
+[1A[JStatic Scan Progress:  100 % [==========================| ] 
+[1A[JStatic Scan Progress:  100 % [==========================| ] 
+[1A[JStatic Scan Progress:  100 % [==========================| ] 
+[1A[JStatic Scan Progress:  100 % [==========================| ] 
+[1A[JStatic Scan Progress:  100 % [==========================| ] 
+[1A[JStatic Scan Progress:  100 % [==========================| ] 
+[1A[JStatic Scan Progress:  100 % [==========================| ] 
+[1A[JStatic Scan Progress:  100 % [==========================| ] 
+[1A[JStatic Scan Progress:  100 % [==========================| ] 
+[1A[JStatic Scan Progress:  100 % [==========================| ] 
+[1A[JStatic Scan Progress:  100 % [==========================| ] 
+[1A[JStatic Scan Progress:  100 % [==========================| ] 
+[1A[JStatic Scan Progress:  100 % [==========================| ] 
+[1A[JStatic Scan Progress:  100 % [==========================| ] 
+[1A[JStatic Scan Progress:  100 % [==========================| ] 
+[1A[JStatic Scan Progress:  100 % [==========================| ] 
+[1A[JStatic Scan Progress:  100 % [==========================| ] 
+[1A[JStatic Scan Progress:  100 % [==========================| ] 
+[1A[JStatic Scan Progress:  100 % [==========================| ] 
+[1A[JStatic Scan Progress:  100 % [==========================| ] 
+[1A[JStatic Scan Progress:  100 % [==========================| ] 
+[1A[JStatic Scan Progress:  100 % [==========================| ] 
+[1A[JStatic Scan Progress:  100 % [==========================| ] 
+[1A[JStatic Scan Progress:  100 % [==========================| ] 
+[1A[JStatic Scan Progress:  100 % [==========================| ] 
+[1A[JStatic Scan Progress:  100 % [==========================| ] 
+[1A[JStatic Scan Progress:  100 % [==========================| ] 
+[1A[JStatic Scan Progress:  100 % [==========================| ] 
+[1A[JStatic Scan Progress:  100 % [==========================| ] 
+Found 2 vulnerabilities with risk >= Critical
+
+ANALYSIS-ID  RISK      CVSS-VECTOR                                   CVSS-BASE  VULNERABILITY-ID  VULNERABILITY-NAME
+-----------  ----      -----------                                   ---------  ----------------  ------------------
+28618        Critical  CVSS:3.0/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:L  7.3        2                 Improper Content Provider Permissions
+28698        Critical  CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:N  9.1        113               Network Security Misconfiguration
+
+Check file ID 306 on appknox dashboard for more details.
