@@ -9,7 +9,7 @@ on:
 
 jobs:
   test:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     
     steps:
     - name: Checkout Code
@@ -21,14 +21,30 @@ jobs:
         java-version: '21'
         distribution: 'temurin'
         cache: maven
+    
     - name: Install Appknox CLI
+      shell: pwsh
       run: |
-        echo "Installing Appknox CLI..."
-        curl -sSL https://downloads.appknox.com/cli/latest/linux/appknox -o /usr/local/bin/Appknox
-        chmod +x /usr/local/bin/Appknox
-        Appknox --version || echo "Appknox installed successfully"
-
+        Write-Host "Downloading Appknox CLI..."
+        $installPath = "$env:USERPROFILE\appknox.exe"
+        [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+        Invoke-WebRequest -Uri "https://github.com/appknox/appknox-go/releases/download/latest/appknox-Windows-x86_64.exe" -OutFile $installPath
+        
+        Write-Host "Adding Appknox CLI to PATH..."
+        Add-Content -Path $env:GITHUB_PATH -Value "$env:USERPROFILE"
+        
+        Write-Host "Verifying Appknox CLI installation..."
+        & $installPath --version
+    
+    - name: Verify Appknox CLI in PATH
+      shell: pwsh
+      run: |
+        Write-Host "Checking if appknox is in PATH..."
+        $env:PATH = "$env:USERPROFILE;$env:PATH"
+        appknox.exe --version
+    
     - name: Run Tests
+      shell: pwsh
       run: mvn clean test
       env:
         APPKNOX_API_HOST: ${{ secrets.APPKNOX_HOST }}
@@ -36,6 +52,7 @@ jobs:
     
     - name: Generate Allure Report
       if: always()
+      shell: pwsh
       run: mvn allure:report
     
     - name: Upload Allure Results
@@ -58,11 +75,37 @@ jobs:
     
     - name: Test Summary
       if: always()
+      shell: pwsh
       run: |
-        echo "## Test Execution Summary" >> $GITHUB_STEP_SUMMARY
-        echo "" >> $GITHUB_STEP_SUMMARY
-        if [ -f target/surefire-reports/*.xml ]; then
-          echo "Tests completed" >> $GITHUB_STEP_SUMMARY
-          echo " Check 'Actions' tab for detailed reports" >> $GITHUB_STEP_SUMMARY
-        else
-          echo "Tests failed to generate reports" >> $GITHUB_STEP_SUMMARY
+        Write-Host "## Test Execution Summary" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append
+        Write-Host "" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append
+        
+        $xmlFiles = Get-ChildItem -Path "target/surefire-reports" -Filter "*.xml" -ErrorAction SilentlyContinue
+        
+        if ($xmlFiles) {
+          Write-Host "✅ Tests completed" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append
+          Write-Host "📊 Check 'Actions' tab for detailed reports" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append
+          
+          # Count tests
+          $totalTests = 0
+          $failures = 0
+          $errors = 0
+          
+          foreach ($file in $xmlFiles) {
+            [xml]$xml = Get-Content $file.FullName
+            if ($xml.testsuite) {
+              $totalTests += [int]$xml.testsuite.tests
+              $failures += [int]$xml.testsuite.failures
+              $errors += [int]$xml.testsuite.errors
+            }
+          }
+          
+          Write-Host "" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append
+          Write-Host "**Test Statistics:**" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append
+          Write-Host "- Total Tests: $totalTests" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append
+          Write-Host "- Passed: $($totalTests - $failures - $errors)" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append
+          Write-Host "- Failed: $failures" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append
+          Write-Host "- Errors: $errors" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append
+        } else {
+          Write-Host "❌ Tests failed to generate reports" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append
+        }
