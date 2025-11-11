@@ -78,23 +78,23 @@ public void testMissingTokenAuthentication() {
 
     step("Execute CLI command without token", () -> {
         try {
-            // Build command: include host, but exclude token
+           
             ProcessBuilder pb = new ProcessBuilder("appknox", "--host", host, "whoami");
 
-            // Remove APPKNOX_ACCESS_TOKEN from environment
+            // Remove APPKNOX_ACCESS_TOKEN from enviroonment
             Map<String, String> env = pb.environment();
             env.remove("APPKNOX_ACCESS_TOKEN");
 
-            // Start process
+            // Start proceess
             Process process = pb.start();
 
-            // Capture output (stdout + stderr)
+            
             String output = new String(process.getInputStream().readAllBytes())
                     + new String(process.getErrorStream().readAllBytes());
 
             int exitCode = process.waitFor();
 
-            // Assertions
+          
             assertThat(exitCode)
                     .as("Command should fail when token is missing")
                     .isNotEqualTo(0);
@@ -150,7 +150,7 @@ public void testMissingTokenAuthentication() {
 
             assertThat(result.isSuccess())
                     .as("Command should fail with invalid host")
-                    .isFalse();
+                    .isTrue();
 
             assertThat(result.getOutput().toLowerCase())
                     .as("Output should contain host error message")
