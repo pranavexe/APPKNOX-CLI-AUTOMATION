@@ -11,6 +11,9 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @Epic("Appknox CLI Automation")
 @Feature("Authentication Module")
 @DisplayName("Authentication Test Suite")
@@ -65,29 +68,42 @@ public class AuthenticationTests extends BaseTest {
         });
     }
 
-    @Test
-    @Story("Missing Token Authentication")
-    @Severity(SeverityLevel.CRITICAL)
-    @Description("Verify CLI behavior when APPKNOX_ACCESS_TOKEN is missing.")
-    @DisplayName("AUTH-003: Verify behavior when token is missing")
-    public void testMissingTokenAuthentication() {
-        String host = config.getValidHost();
-        String token = null;
+ @Test
+@Story("Missing Token Authentication")
+@Severity(SeverityLevel.CRITICAL)
+@Description("Verify CLI behavior when APPKNOX_ACCESS_TOKEN is missing.")
+@DisplayName("AUTH-003: Verify behavior when token is missing")
+public void testMissingTokenAuthentication() {
+    String host = config.getValidHost();
 
-        step("Execute CLI command without token", () -> {
-            CommandResult result = runAppknoxCommand("whoami", host, token);
+    step("Temporarily clear APPKNOX_ACCESS_TOKEN from environment", () -> {
+        try {
+            
+            Map<String, String> newEnv = new HashMap<>(System.getenv());
+            newEnv.remove("APPKNOX_ACCESS_TOKEN");
 
-            assertThat(result.isSuccess())
-                    .as("Command should fail when token is missing")
-                    .isFalse();
+            ProcessBuilder pb = new ProcessBuilder("appknox", "whoami");
+            pb.environment().putAll(newEnv);
 
-            assertThat(result.getOutput())
-                    .as("Output should indicate missing APPKNOX_ACCESS_TOKEN")
-                    .containsIgnoringCase("APPKNOX_ACCESS_TOKEN");
+            Process process = pb.start();
+            String output = new String(process.getInputStream().readAllBytes());
+            int exitCode = process.waitFor();
 
-            Allure.addAttachment("AUTH-003 Output", result.getOutput());
-        });
-    }
+            assertThat(exitCode)
+                .as("Command should fail when token is missing")
+                .isNotEqualTo(0);
+
+            assertThat(output)
+                .as("Output should indicate missing APPKNOX_ACCESS_TOKEN")
+                .containsIgnoringCase("APPKNOX_ACCESS_TOKEN");
+
+            Allure.addAttachment("AUTH-003 Output", output);
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    });
+}
 
     @Test
     @Story("Valid Host Verification")
