@@ -101,31 +101,48 @@ jobs:
         Write-Host "" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append
         
         $xmlFiles = Get-ChildItem -Path "target/surefire-reports" -Filter "*.xml" -ErrorAction SilentlyContinue
-        
+
         if ($xmlFiles) {
-          Write-Host "Tests completed" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append
-          Write-Host "Check 'Actions' tab for detailed reports" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append
-          
-          # Count tests
           $totalTests = 0
           $failures = 0
           $errors = 0
-          
+          $failedTests = @()
+
           foreach ($file in $xmlFiles) {
             [xml]$xml = Get-Content $file.FullName
             if ($xml.testsuite) {
               $totalTests += [int]$xml.testsuite.tests
               $failures += [int]$xml.testsuite.failures
               $errors += [int]$xml.testsuite.errors
+
+              # Collect failed test names and messages
+              foreach ($testcase in $xml.testsuite.testcase) {
+                if ($testcase.failure) {
+                  $failedTests += "❌ $($testcase.name) — $($testcase.failure.message)"
+                } elseif ($testcase.error) {
+                  $failedTests += "💥 $($testcase.name) — $($testcase.error.message)"
+                }
+              }
             }
           }
-          
-          Write-Host "" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append
+
+          # Write summary
           Write-Host "**Test Statistics:**" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append
           Write-Host "- Total Tests: $totalTests" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append
           Write-Host "- Passed: $($totalTests - $failures - $errors)" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append
           Write-Host "- Failed: $failures" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append
           Write-Host "- Errors: $errors" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append
+          Write-Host "" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append
+
+          if ($failedTests.Count -gt 0) {
+            Write-Host "### ❌ Failed Test Cases" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append
+            foreach ($fail in $failedTests) {
+              Write-Host "$fail" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append
+            }
+          } else {
+            Write-Host "✅ All test cases passed successfully!" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append
+          }
+
         } else {
-          Write-Host "Tests failed to generate reports" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append
+          Write-Host "❌ Tests failed to generate reports" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append
         }
