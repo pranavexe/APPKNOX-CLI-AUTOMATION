@@ -76,34 +76,41 @@ public class AuthenticationTests extends BaseTest {
 public void testMissingTokenAuthentication() {
     String host = config.getValidHost();
 
-    step("Temporarily clear APPKNOX_ACCESS_TOKEN from environment", () -> {
+    step("Execute CLI command without token", () -> {
         try {
-            
-            Map<String, String> newEnv = new HashMap<>(System.getenv());
-            newEnv.remove("APPKNOX_ACCESS_TOKEN");
+            // Build command: include host, but exclude token
+            ProcessBuilder pb = new ProcessBuilder("appknox", "--host", host, "whoami");
 
-            ProcessBuilder pb = new ProcessBuilder("appknox", "whoami");
-            pb.environment().putAll(newEnv);
+            // Remove APPKNOX_ACCESS_TOKEN from environment
+            Map<String, String> env = pb.environment();
+            env.remove("APPKNOX_ACCESS_TOKEN");
 
+            // Start process
             Process process = pb.start();
-            String output = new String(process.getInputStream().readAllBytes());
+
+            // Capture output (stdout + stderr)
+            String output = new String(process.getInputStream().readAllBytes())
+                    + new String(process.getErrorStream().readAllBytes());
+
             int exitCode = process.waitFor();
 
+            // Assertions
             assertThat(exitCode)
-                .as("Command should fail when token is missing")
-                .isNotEqualTo(0);
+                    .as("Command should fail when token is missing")
+                    .isNotEqualTo(0);
 
             assertThat(output)
-                .as("Output should indicate missing APPKNOX_ACCESS_TOKEN")
-                .containsIgnoringCase("APPKNOX_ACCESS_TOKEN");
+                    .as("Output should mention missing APPKNOX_ACCESS_TOKEN")
+                    .containsIgnoringCase("APPKNOX_ACCESS_TOKEN");
 
             Allure.addAttachment("AUTH-003 Output", output);
 
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException("Failed to execute CLI test without token", e);
         }
     });
 }
+
 
     @Test
     @Story("Valid Host Verification")
