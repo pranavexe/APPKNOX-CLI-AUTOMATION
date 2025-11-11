@@ -6,6 +6,12 @@ on:
   pull_request:
     branches: [ main, master ]
   workflow_dispatch:  # Allows manual trigger
+    inputs:
+      rerun_failed_only:
+        description: 'Rerun only failed tests from last run'
+        required: false
+        type: boolean
+        default: false
 
 jobs:
   test:
@@ -21,21 +27,6 @@ jobs:
         java-version: '21'
         distribution: 'temurin'
         cache: maven
-    
-    # - name: Install Appknox CLI
-    #   shell: pwsh
-    #   run: |
-    #     Write-Host "Downloading Appknox CLI..."
-    #     $installPath = "$env:USERPROFILE\appknox.exe"
-    #     [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
-    #     Invoke-WebRequest -Uri "https://github.com/appknox/appknox-go/releases/download/latest/appknox-Windows-x86_64.exe" -OutFile $installPath
-        
-    #     Write-Host "Adding Appknox CLI to PATH..."
-    #     Add-Content -Path $env:GITHUB_PATH -Value "$env:USERPROFILE"
-        
-    #     Write-Host "Verifying Appknox CLI installation..."
-    #     & $installPath --version
-
 
     - name: Install Appknox CLI (Windows)
       shell: pwsh
@@ -54,7 +45,6 @@ jobs:
           Add-Content -Path $env:GITHUB_PATH -Value "$env:USERPROFILE"
           Write-Host "Verifying installation..."
           & $installPath --version
-
     
     - name: Verify Appknox CLI in PATH
       shell: pwsh
@@ -63,9 +53,61 @@ jobs:
         $env:PATH = "$env:USERPROFILE;$env:PATH"
         appknox.exe --version
     
+    # Download previous test results if rerunning failed tests
+    - name: Download Previous Test Results
+      if: github.event.inputs.rerun_failed_only == 'true'
+      uses: dawidd6/action-download-artifact@v2
+      continue-on-error: true
+      with:
+        workflow: test.yml
+        name: test-reports
+        path: previous-results
+    
+    # Extract failed test names
+    - name: Identify Failed Tests
+      if: github.event.inputs.rerun_failed_only == 'true'
+      id: failed_tests
+      shell: pwsh
+      run: |
+        $failedTests = @()
+        
+        if (Test-Path "previous-results/surefire-reports") {
+          $xmlFiles = Get-ChildItem -Path "previous-results/surefire-reports" -Filter "TEST-*.xml" -ErrorAction SilentlyContinue
+          
+          foreach ($file in $xmlFiles) {
+            [xml]$xml = Get-Content $file.FullName
+            foreach ($testcase in $xml.testsuite.testcase) {
+              if ($testcase.failure -or $testcase.error) {
+                $className = $testcase.classname
+                $methodName = $testcase.name
+                $failedTests += "${className}#${methodName}"
+                Write-Host "Found failed test: ${className}#${methodName}"
+              }
+            }
+          }
+        }
+        
+        if ($failedTests.Count -gt 0) {
+          $testList = $failedTests -join ","
+          Write-Host "Failed tests to rerun: $testList"
+          Add-Content -Path $env:GITHUB_OUTPUT -Value "tests=$testList"
+          Add-Content -Path $env:GITHUB_OUTPUT -Value "has_failed_tests=true"
+        } else {
+          Write-Host "No failed tests found in previous run"
+          Add-Content -Path $env:GITHUB_OUTPUT -Value "has_failed_tests=false"
+        }
+    
+    # Run all tests or only failed tests
     - name: Run Tests
       shell: pwsh
-      run: mvn clean test
+      run: |
+        if ("${{ github.event.inputs.rerun_failed_only }}" -eq "true" -and "${{ steps.failed_tests.outputs.has_failed_tests }}" -eq "true") {
+          Write-Host "Rerunning only failed tests..."
+          mvn clean test -Dtest="${{ steps.failed_tests.outputs.tests }}"
+        } else {
+          Write-Host "Running all tests..."
+          mvn clean test
+        }
       env:
         APPKNOX_API_HOST: ${{ secrets.APPKNOX_HOST }}
         APPKNOX_ACCESS_TOKEN: ${{ secrets.APPKNOX_TOKEN }}
@@ -93,23 +135,77 @@ jobs:
           target/site/allure-maven-plugin
         retention-days: 30
     
-    - name: Test Summary
+    # Detailed failure analysis
+    - name: Analyze Test Failures
+      if: always()
+      id: analyze_failures
+      shell: pwsh
+      run: |
+        $failureDetails = @()
+        $xmlFiles = Get-ChildItem -Path "target/surefire-reports" -Filter "TEST-*.xml" -ErrorAction SilentlyContinue
+        
+        if ($xmlFiles) {
+          foreach ($file in $xmlFiles) {
+            [xml]$xml = Get-Content $file.FullName
+            
+            if ($xml.testsuite.testcase) {
+              foreach ($testcase in $xml.testsuite.testcase) {
+                if ($testcase.failure -or $testcase.error) {
+                  $detail = @{
+                    Class = $testcase.classname
+                    Method = $testcase.name
+                    Time = $testcase.time
+                    Type = if ($testcase.failure) { "Failure" } else { "Error" }
+                    Message = if ($testcase.failure) { $testcase.failure.message } else { $testcase.error.message }
+                  }
+                  $failureDetails += $detail
+                }
+              }
+            }
+          }
+        }
+        
+        if ($failureDetails.Count -gt 0) {
+          Add-Content -Path $env:GITHUB_OUTPUT -Value "has_failures=true"
+          
+          # Save failure details to file
+          $failureDetails | ConvertTo-Json | Out-File -FilePath "failure-details.json"
+        } else {
+          Add-Content -Path $env:GITHUB_OUTPUT -Value "has_failures=false"
+        }
+    
+    # Upload failure details
+    - name: Upload Failure Details
+      if: steps.analyze_failures.outputs.has_failures == 'true'
+      uses: actions/upload-artifact@v4
+      with:
+        name: failure-details
+        path: failure-details.json
+        retention-days: 30
+    
+    # Enhanced Test Summary with Failure Details
+    - name: Test Summary with Failure Details
       if: always()
       shell: pwsh
       run: |
-        Write-Host "## Test Execution Summary" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append
+        Write-Host "Test Execution Summary" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append
         Write-Host "" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append
         
-        $xmlFiles = Get-ChildItem -Path "target/surefire-reports" -Filter "*.xml" -ErrorAction SilentlyContinue
+        if ("${{ github.event.inputs.rerun_failed_only }}" -eq "true") {
+          Write-Host "Mode:** Rerunning Failed Tests Only" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append
+          Write-Host "" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append
+        }
+        
+        $xmlFiles = Get-ChildItem -Path "target/surefire-reports" -Filter "TEST-*.xml" -ErrorAction SilentlyContinue
         
         if ($xmlFiles) {
-          Write-Host "✅ Tests completed" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append
-          Write-Host "📊 Check 'Actions' tab for detailed reports" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append
-          
-          # Count tests
+          # Calculate statistics
           $totalTests = 0
           $failures = 0
           $errors = 0
+          $skipped = 0
+          $totalTime = 0
+          $failedTests = @()
           
           foreach ($file in $xmlFiles) {
             [xml]$xml = Get-Content $file.FullName
@@ -117,15 +213,94 @@ jobs:
               $totalTests += [int]$xml.testsuite.tests
               $failures += [int]$xml.testsuite.failures
               $errors += [int]$xml.testsuite.errors
+              $skipped += [int]$xml.testsuite.skipped
+              $totalTime += [double]$xml.testsuite.time
+              
+              # Collect failed test details
+              foreach ($testcase in $xml.testsuite.testcase) {
+                if ($testcase.failure -or $testcase.error) {
+                  $failedTests += @{
+                    Name = "$($testcase.classname)#$($testcase.name)"
+                    Message = if ($testcase.failure) { $testcase.failure.message } else { $testcase.error.message }
+                  }
+                }
+              }
             }
           }
           
+          $passed = $totalTests - $failures - $errors - $skipped
+          
+          # Status badge
+          if ($failures -eq 0 -and $errors -eq 0) {
+            Write-Host "All Tests Passed!" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append
+          } else {
+            Write-Host "Tests Failed" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append
+          }
+          
           Write-Host "" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append
-          Write-Host "**Test Statistics:**" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append
-          Write-Host "- Total Tests: $totalTests" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append
-          Write-Host "- Passed: $($totalTests - $failures - $errors)" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append
-          Write-Host "- Failed: $failures" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append
-          Write-Host "- Errors: $errors" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append
+          Write-Host "Test Statistics" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append
+          Write-Host "" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append
+          Write-Host "| Metric | Count |" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append
+          Write-Host "|--------|-------|" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append
+          Write-Host "| **Passed** | $passed |" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append
+          Write-Host "| **Failed** | $failures |" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append
+          Write-Host "| **Errors** | $errors |" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append
+          Write-Host "| **Skipped** | $skipped |" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append
+          Write-Host "| **Total** | $totalTests |" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append
+          Write-Host "| **Time** | $([math]::Round($totalTime, 2))s |" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append
+          Write-Host "" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append
+          
+          # Failed tests details
+          if ($failedTests.Count -gt 0) {
+            Write-Host " Failed Tests Details" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append
+            Write-Host "" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append
+            
+            foreach ($test in $failedTests) {
+              Write-Host "#### ``$($test.Name)``" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append
+              Write-Host "``````" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append
+              Write-Host "$($test.Message)" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append
+              Write-Host "``````" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append
+              Write-Host "" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append
+            }
+            
+            Write-Host "---" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append
+            Write-Host "" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append
+            Write-Host "### Rerun Failed Tests" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append
+            Write-Host "To rerun only failed tests:" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append
+            Write-Host "1. Go to **Actions** tab" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append
+            Write-Host "2. Select this workflow" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append
+            Write-Host "3. Click **Run workflow**" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append
+            Write-Host "4. Check **Rerun only failed tests**" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append
+            Write-Host "5. Click **Run workflow**" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append
+          }
+          
+          Write-Host "" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append
+          Write-Host "Download detailed reports from Artifacts section below**" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append
+          
         } else {
-          Write-Host "❌ Tests failed to generate reports" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append
+          Write-Host "## Tests Failed to Generate Reports" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append
+        }
+    
+    # Set workflow status based on test results
+    - name: Check Test Results
+      if: always()
+      shell: pwsh
+      run: |
+        $xmlFiles = Get-ChildItem -Path "target/surefire-reports" -Filter "TEST-*.xml" -ErrorAction SilentlyContinue
+        $hasFailures = $false
+        
+        foreach ($file in $xmlFiles) {
+          [xml]$xml = Get-Content $file.FullName
+          if ($xml.testsuite.failures -gt 0 -or $xml.testsuite.errors -gt 0) {
+            $hasFailures = $true
+            break
+          }
+        }
+        
+        if ($hasFailures) {
+          Write-Host "Tests failed"
+          exit 1
+        } else {
+          Write-Host "All tests passed"
+          exit 0
         }
