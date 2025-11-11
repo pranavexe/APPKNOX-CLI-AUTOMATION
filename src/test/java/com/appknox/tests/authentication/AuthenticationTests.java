@@ -150,7 +150,7 @@ public void testMissingTokenAuthentication() {
 
             assertThat(result.isSuccess())
                     .as("Command should fail with invalid host")
-                    .isTrue();
+                    .isFalse();
 
             assertThat(result.getOutput().toLowerCase())
                     .as("Output should contain host error message")
