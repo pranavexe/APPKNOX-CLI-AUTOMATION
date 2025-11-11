@@ -22,19 +22,7 @@ jobs:
         distribution: 'temurin'
         cache: maven
     
-    # - name: Install Appknox CLI
-    #   shell: pwsh
-    #   run: |
-    #     Write-Host "Downloading Appknox CLI..."
-    #     $installPath = "$env:USERPROFILE\appknox.exe"
-    #     [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
-    #     Invoke-WebRequest -Uri "https://github.com/appknox/appknox-go/releases/download/latest/appknox-Windows-x86_64.exe" -OutFile $installPath
-        
-    #     Write-Host "Adding Appknox CLI to PATH..."
-    #     Add-Content -Path $env:GITHUB_PATH -Value "$env:USERPROFILE"
-        
-    #     Write-Host "Verifying Appknox CLI installation..."
-    #     & $installPath --version
+  
 
 
     - name: Install Appknox CLI (Windows)
@@ -97,7 +85,7 @@ jobs:
       if: always()
       shell: pwsh
       run: |
-        Write-Host "## Test Execution Summary" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append
+        Write-Host "Test Execution Summary" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append
         Write-Host "" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append
         
         $xmlFiles = Get-ChildItem -Path "target/surefire-reports" -Filter "*.xml" -ErrorAction SilentlyContinue
@@ -120,7 +108,7 @@ jobs:
                 if ($testcase.failure) {
                   $failedTests += "❌ $($testcase.name) — $($testcase.failure.message)"
                 } elseif ($testcase.error) {
-                  $failedTests += "💥 $($testcase.name) — $($testcase.error.message)"
+                  $failedTests += "💥$($testcase.name) — $($testcase.error.message)"
                 }
               }
             }
@@ -128,14 +116,14 @@ jobs:
 
           # Write summary
           Write-Host "**Test Statistics:**" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append
-          Write-Host "- Total Tests: $totalTests" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append
-          Write-Host "- Passed: $($totalTests - $failures - $errors)" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append
-          Write-Host "- Failed: $failures" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append
+          Write-Host "-Total Tests: $totalTests" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append
+          Write-Host "-✅Passed: $($totalTests - $failures - $errors)" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append
+          Write-Host "- ❌Failed: $failures" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append
           Write-Host "- Errors: $errors" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append
           Write-Host "" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append
 
           if ($failedTests.Count -gt 0) {
-            Write-Host "### ❌ Failed Test Cases" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append
+            Write-Host "❌ Failed Test Cases" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append
             foreach ($fail in $failedTests) {
               Write-Host "$fail" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append
             }
@@ -144,5 +132,5 @@ jobs:
           }
 
         } else {
-          Write-Host "❌ Tests failed to generate reports" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append
+          Write-Host "❌Tests failed to generate reports" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append
         }
