@@ -11,11 +11,13 @@ import org.junit.jupiter.api.Test;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -24,37 +26,53 @@ import static org.assertj.core.api.Assertions.assertThat;
 @DisplayName("Report Generation Test Suite")
 public class ReportTests extends BaseTest {
 
-    @Test
-    @Story("Report Creation")
-    @Severity(SeverityLevel.CRITICAL)
-    @Description("Verify that a report is successfully created for a valid file ID using 'appknox reports create' command.")
-    @DisplayName("REP-001: Verify report creation for valid file ID")
-    public void testReportCreation() {
-        String fileId = config.getProperty("test.file.id", "1");
+ @Test
+@Story("Report Creation")
+@Severity(SeverityLevel.CRITICAL)
+@Description("Verify that a report is successfully created for a valid file ID using 'appknox reports create' command.")
+@DisplayName("REP-001: Verify report creation for valid file ID")
+public void testReportCreation() {
+    String fileId = config.getProperty("test.file.id", "1");
 
-        List<String> cmdList = List.of(
-                config.getCliPath(),
-                "reports", "create", fileId
-        );
+    List<String> cmdList = List.of(
+            config.getCliPath(), "reports", "create", fileId);
 
-        Map<String, String> env = Map.of(
-                "APPKNOX_API_HOST", config.getValidHost(),
-                "APPKNOX_ACCESS_TOKEN", config.getValidToken()
-        );
+    Map<String, String> env = Map.of(
+            "APPKNOX_API_HOST", config.getValidHost(),
+            "APPKNOX_ACCESS_TOKEN", config.getValidToken()
+    );
 
-        Allure.step("Execute CLI command: appknox reports create " + fileId);
-        CommandResult result = cliExecutor.executeCommand(cmdList, env);
+    Allure.step("Execute CLI command: appknox reports create " + fileId);
+    CommandResult result = cliExecutor.executeCommand(cmdList, env);
 
-        assertThat(result.isSuccess())
-                .as("Report creation should succeed with valid file ID")
-                .isTrue();
+    assertThat(result.isSuccess())
+            .as("Report creation should succeed with valid file ID")
+            .isTrue();
 
-        String output = result.getOutput().trim();
-        // assertThat(output).isNotEmpty().matches("\\d+");
+    String output = result.getOutput().trim();
 
-        System.out.println("REP-001 Output - Report ID: " + output);
-        Allure.addAttachment("REP-001 CLI Output", new ByteArrayInputStream(output.getBytes()));
+    // Extract numeric report ID from output
+    String reportId = output.replaceAll("[^0-9]", "");
+    System.out.println("Extracted Report ID: " + reportId);
+
+    // Save to config.properties
+    if (!reportId.isEmpty()) {
+        try (FileOutputStream out = new FileOutputStream("src/test/resources/config.properties", true)) {
+            Properties props = new Properties();
+            props.setProperty("test.report.id", reportId);
+            props.store(out, null);
+            System.out.println("Saved Report ID to config.properties: " + reportId);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    } else {
+        System.out.println("No Report ID found in output.");
     }
+
+    System.out.println("REP-001 Output - Report ID: " + reportId + " for File ID: " + fileId);
+    Allure.addAttachment("REP-001 CLI Output", new ByteArrayInputStream(output.getBytes()));
+}
+
 
     @Test
     @Story("Report Download")
@@ -90,6 +108,7 @@ public class ReportTests extends BaseTest {
         assertThat(result.isSuccess()).isTrue();
         assertThat(csvFile.exists()).isTrue();
         assertThat(csvFile.length()).isGreaterThan(0);
+        
 
         Allure.addAttachment("REP-004 CLI Output", new ByteArrayInputStream(result.getOutput().getBytes()));
         Allure.addAttachment("Downloaded CSV Report", "text/csv", new FileInputStream(csvFile), "csv");

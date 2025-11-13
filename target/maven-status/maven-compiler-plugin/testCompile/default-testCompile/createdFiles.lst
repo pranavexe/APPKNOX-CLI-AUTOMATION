@@ -4,5 +4,6 @@ com\appknox\tests\cicheck\CICheckTests.class
 com\appknox\tests\BaseTest.class
 com\appknox\tests\cliflags\CLIFlagsTests.class
 com\appknox\tests\reports\ReportTests.class
+com\appknox\tests\TestSuite.class
 com\appknox\tests\upload\UploadTests.class
 com\appknox\tests\information\InformationTests.class

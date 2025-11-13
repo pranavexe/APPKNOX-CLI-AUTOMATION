@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.appknox.tests.analyses.AnalysesTests
 -------------------------------------------------------------------------------
-Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 8.725 s -- in com.appknox.tests.analyses.AnalysesTests
+Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.797 s -- in com.appknox.tests.analyses.AnalysesTests

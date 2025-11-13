@@ -51,9 +51,9 @@ jobs:
         $env:PATH = "$env:USERPROFILE;$env:PATH"
         appknox.exe --version
     
-    - name: Run Tests
+    - name: Run TestSuite
       shell: pwsh
-      run: mvn clean test
+      run: mvn clean test -Dtest=com.appknox.tests.TestSuite
       env:
         APPKNOX_API_HOST: ${{ secrets.APPKNOX_HOST }}
         APPKNOX_ACCESS_TOKEN: ${{ secrets.APPKNOX_TOKEN }}

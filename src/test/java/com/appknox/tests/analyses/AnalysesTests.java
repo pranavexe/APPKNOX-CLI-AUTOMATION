@@ -23,7 +23,7 @@ public class AnalysesTests extends BaseTest {
     @Description("Verify that the 'analyses' command executes successfully for a valid file ID and returns expected output.")
     @DisplayName("ANA-001: Verify analyses list for valid file ID")
     public void testAnalysesListForValidFile() {
-        String fileId = config.getProperty("test.file.id.analyses", "14");
+        String fileId = config.getProperty("test.file.id", "14");
         step("Execute CLI command with valid file ID", () -> {
             List<String> cmdList = List.of(config.getCliPath(), "analyses", fileId);
             Map<String, String> env = Map.of(
@@ -38,7 +38,9 @@ public class AnalysesTests extends BaseTest {
             assertThat(result.getOutput()).isNotEmpty()
                     .as("Output should display list of analyses");
 
-            Allure.addAttachment("ANA-001 Output", result.getOutput());
+                    System.out.println("for file id "+fileId);
+
+            Allure.addAttachment("ANA-001 Output", result.getOutput() );
         });
     }
 

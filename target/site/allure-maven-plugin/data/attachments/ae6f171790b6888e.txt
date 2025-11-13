@@ -1,0 +1,12 @@
+ID  NAME  VERSION  VERSION-CODE  DYNAMIC-STATUS  API-SCAN-PROGRESS  IS-STATIC-DONE  IS-DYNAMIC-DONE  STATIC-SCAN-PROGRESS  API-SCAN-STATUS  RATING  IS-MANUAL-DONE  IS-API-DONE  CREATED-ON
+--  ----  -------  ------------  --------------  -----------------  --------------  ---------------  --------------------  ---------------  ------  --------------  -----------  ----------
+37  MFVA  1.1.1    8             None            0                  true            false            100                   Unknown          24.21   false           false        2025-11-13 08:32:11.540764 +0000 UTC
+36  MFVA  1.1.1    8             None            0                  true            false            100                   Unknown          24.21   false           false        2025-11-13 08:31:41.352662 +0000 UTC
+35  MFVA  1.1.1    8             None            0                  true            false            100                   Unknown          24.21   false           false        2025-11-13 08:31:16.459781 +0000 UTC
+34  MFVA  1.1.1    8             None            0                  true            false            100                   Unknown          24.21   false           false        2025-11-13 08:30:30.673183 +0000 UTC
+33  MFVA  1.1.1    8             None            0                  true            false            100                   Unknown          24.21   false           false        2025-11-13 08:03:51.002499 +0000 UTC
+32  MFVA  1.1.1    8             None            0                  true            false            100                   Unknown          24.21   false           false        2025-11-13 08:03:28.945445 +0000 UTC
+31  MFVA  1.1.1    8             None            0                  true            false            100                   Unknown          24.21   false           false        2025-11-13 08:02:33.811652 +0000 UTC
+30  MFVA  1.1.1    8             None            0                  true            false            100                   Unknown          24.21   false           false        2025-11-13 08:02:20.732051 +0000 UTC
+29  MFVA  1.1.1    8             None            0                  true            false            100                   Unknown          24.21   false           false        2025-11-13 07:57:15.595751 +0000 UTC
+28  MFVA  1.1.1    8             None            0                  true            false            100                   Unknown          24.21   false           false        2025-11-13 07:56:56.506103 +0000 UTC

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.appknox.tests.cicheck.CICheckTests" time="30.882" tests="5" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.appknox.tests.cicheck.CICheckTests" time="35.139" tests="5" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="25"/>
     <property name="sun.cpu.isalist" value="amd64"/>
     <property name="sun.jnu.encoding" value="Cp1252"/>
-    <property name="java.class.path" value="C:\Users\ombul\appknox-cli-automation\target\test-classes;C:\Users\ombul\appknox-cli-automation\target\classes;C:\Users\ombul\.m2\repository\org\junit\jupiter\junit-jupiter\5.9.3\junit-jupiter-5.9.3.jar;C:\Users\ombul\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.9.3\junit-jupiter-api-5.9.3.jar;C:\Users\ombul\.m2\repository\org\opentest4j\opentest4j\1.2.0\opentest4j-1.2.0.jar;C:\Users\ombul\.m2\repository\org\junit\platform\junit-platform-commons\1.9.3\junit-platform-commons-1.9.3.jar;C:\Users\ombul\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\ombul\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.9.3\junit-jupiter-params-5.9.3.jar;C:\Users\ombul\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.9.3\junit-jupiter-engine-5.9.3.jar;C:\Users\ombul\.m2\repository\org\junit\platform\junit-platform-engine\1.9.3\junit-platform-engine-1.9.3.jar;C:\Users\ombul\.m2\repository\org\assertj\assertj-core\3.24.2\assertj-core-3.24.2.jar;C:\Users\ombul\.m2\repository\net\bytebuddy\byte-buddy\1.12.21\byte-buddy-1.12.21.jar;C:\Users\ombul\.m2\repository\io\qameta\allure\allure-junit5\2.24.0\allure-junit5-2.24.0.jar;C:\Users\ombul\.m2\repository\io\qameta\allure\allure-junit-platform\2.24.0\allure-junit-platform-2.24.0.jar;C:\Users\ombul\.m2\repository\io\qameta\allure\allure-java-commons\2.24.0\allure-java-commons-2.24.0.jar;C:\Users\ombul\.m2\repository\org\slf4j\slf4j-api\1.7.36\slf4j-api-1.7.36.jar;C:\Users\ombul\.m2\repository\io\qameta\allure\allure-model\2.24.0\allure-model-2.24.0.jar;C:\Users\ombul\.m2\repository\io\qameta\allure\allure-test-filter\2.24.0\allure-test-filter-2.24.0.jar;C:\Users\ombul\.m2\repository\org\junit\platform\junit-platform-launcher\1.9.2\junit-platform-launcher-1.9.2.jar;"/>
+    <property name="java.class.path" value="C:\Users\ombul\appknox-cli-automation\target\test-classes;C:\Users\ombul\appknox-cli-automation\target\classes;C:\Users\ombul\.m2\repository\org\junit\jupiter\junit-jupiter\5.9.3\junit-jupiter-5.9.3.jar;C:\Users\ombul\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.9.3\junit-jupiter-api-5.9.3.jar;C:\Users\ombul\.m2\repository\org\opentest4j\opentest4j\1.2.0\opentest4j-1.2.0.jar;C:\Users\ombul\.m2\repository\org\junit\platform\junit-platform-commons\1.9.3\junit-platform-commons-1.9.3.jar;C:\Users\ombul\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\ombul\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.9.3\junit-jupiter-params-5.9.3.jar;C:\Users\ombul\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.9.3\junit-jupiter-engine-5.9.3.jar;C:\Users\ombul\.m2\repository\org\junit\platform\junit-platform-engine\1.9.3\junit-platform-engine-1.9.3.jar;C:\Users\ombul\.m2\repository\org\assertj\assertj-core\3.24.2\assertj-core-3.24.2.jar;C:\Users\ombul\.m2\repository\net\bytebuddy\byte-buddy\1.12.21\byte-buddy-1.12.21.jar;C:\Users\ombul\.m2\repository\org\junit\platform\junit-platform-suite\1.10.0\junit-platform-suite-1.10.0.jar;C:\Users\ombul\.m2\repository\org\junit\platform\junit-platform-suite-api\1.10.0\junit-platform-suite-api-1.10.0.jar;C:\Users\ombul\.m2\repository\org\junit\platform\junit-platform-suite-engine\1.10.0\junit-platform-suite-engine-1.10.0.jar;C:\Users\ombul\.m2\repository\org\junit\platform\junit-platform-suite-commons\1.10.0\junit-platform-suite-commons-1.10.0.jar;C:\Users\ombul\.m2\repository\io\qameta\allure\allure-junit5\2.24.0\allure-junit5-2.24.0.jar;C:\Users\ombul\.m2\repository\io\qameta\allure\allure-junit-platform\2.24.0\allure-junit-platform-2.24.0.jar;C:\Users\ombul\.m2\repository\io\qameta\allure\allure-java-commons\2.24.0\allure-java-commons-2.24.0.jar;C:\Users\ombul\.m2\repository\org\slf4j\slf4j-api\1.7.36\slf4j-api-1.7.36.jar;C:\Users\ombul\.m2\repository\io\qameta\allure\allure-model\2.24.0\allure-model-2.24.0.jar;C:\Users\ombul\.m2\repository\io\qameta\allure\allure-test-filter\2.24.0\allure-test-filter-2.24.0.jar;C:\Users\ombul\.m2\repository\org\junit\platform\junit-platform-launcher\1.9.2\junit-platform-launcher-1.9.2.jar;"/>
     <property name="java.vm.vendor" value="Oracle Corporation"/>
     <property name="sun.arch.data.model" value="64"/>
     <property name="user.variant" value=""/>
@@ -15,9 +15,10 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="IN"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-25\bin"/>
-    <property name="sun.java.command" value="C:\Users\ombul\AppData\Local\Temp\surefire6328385547938480619\surefirebooter-20251105174507062_3.jar C:\Users\ombul\AppData\Local\Temp\surefire6328385547938480619 2025-11-05T17-45-06_896-jvmRun1 surefire-20251105174507062_1tmp surefire_0-20251105174507062_2tmp"/>
+    <property name="sun.java.command" value="C:\Users\ombul\AppData\Local\Temp\surefire5881244254459110233\surefirebooter-20251113140928592_3.jar C:\Users\ombul\AppData\Local\Temp\surefire5881244254459110233 2025-11-13T14-09-28_469-jvmRun1 surefire-20251113140928592_1tmp surefire_0-20251113140928592_2tmp"/>
     <property name="jdk.debug" value="release"/>
-    <property name="surefire.test.class.path" value="C:\Users\ombul\appknox-cli-automation\target\test-classes;C:\Users\ombul\appknox-cli-automation\target\classes;C:\Users\ombul\.m2\repository\org\junit\jupiter\junit-jupiter\5.9.3\junit-jupiter-5.9.3.jar;C:\Users\ombul\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.9.3\junit-jupiter-api-5.9.3.jar;C:\Users\ombul\.m2\repository\org\opentest4j\opentest4j\1.2.0\opentest4j-1.2.0.jar;C:\Users\ombul\.m2\repository\org\junit\platform\junit-platform-commons\1.9.3\junit-platform-commons-1.9.3.jar;C:\Users\ombul\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\ombul\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.9.3\junit-jupiter-params-5.9.3.jar;C:\Users\ombul\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.9.3\junit-jupiter-engine-5.9.3.jar;C:\Users\ombul\.m2\repository\org\junit\platform\junit-platform-engine\1.9.3\junit-platform-engine-1.9.3.jar;C:\Users\ombul\.m2\repository\org\assertj\assertj-core\3.24.2\assertj-core-3.24.2.jar;C:\Users\ombul\.m2\repository\net\bytebuddy\byte-buddy\1.12.21\byte-buddy-1.12.21.jar;C:\Users\ombul\.m2\repository\io\qameta\allure\allure-junit5\2.24.0\allure-junit5-2.24.0.jar;C:\Users\ombul\.m2\repository\io\qameta\allure\allure-junit-platform\2.24.0\allure-junit-platform-2.24.0.jar;C:\Users\ombul\.m2\repository\io\qameta\allure\allure-java-commons\2.24.0\allure-java-commons-2.24.0.jar;C:\Users\ombul\.m2\repository\org\slf4j\slf4j-api\1.7.36\slf4j-api-1.7.36.jar;C:\Users\ombul\.m2\repository\io\qameta\allure\allure-model\2.24.0\allure-model-2.24.0.jar;C:\Users\ombul\.m2\repository\io\qameta\allure\allure-test-filter\2.24.0\allure-test-filter-2.24.0.jar;C:\Users\ombul\.m2\repository\org\junit\platform\junit-platform-launcher\1.9.2\junit-platform-launcher-1.9.2.jar;"/>
+    <property name="test" value="TestSuite"/>
+    <property name="surefire.test.class.path" value="C:\Users\ombul\appknox-cli-automation\target\test-classes;C:\Users\ombul\appknox-cli-automation\target\classes;C:\Users\ombul\.m2\repository\org\junit\jupiter\junit-jupiter\5.9.3\junit-jupiter-5.9.3.jar;C:\Users\ombul\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.9.3\junit-jupiter-api-5.9.3.jar;C:\Users\ombul\.m2\repository\org\opentest4j\opentest4j\1.2.0\opentest4j-1.2.0.jar;C:\Users\ombul\.m2\repository\org\junit\platform\junit-platform-commons\1.9.3\junit-platform-commons-1.9.3.jar;C:\Users\ombul\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\ombul\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.9.3\junit-jupiter-params-5.9.3.jar;C:\Users\ombul\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.9.3\junit-jupiter-engine-5.9.3.jar;C:\Users\ombul\.m2\repository\org\junit\platform\junit-platform-engine\1.9.3\junit-platform-engine-1.9.3.jar;C:\Users\ombul\.m2\repository\org\assertj\assertj-core\3.24.2\assertj-core-3.24.2.jar;C:\Users\ombul\.m2\repository\net\bytebuddy\byte-buddy\1.12.21\byte-buddy-1.12.21.jar;C:\Users\ombul\.m2\repository\org\junit\platform\junit-platform-suite\1.10.0\junit-platform-suite-1.10.0.jar;C:\Users\ombul\.m2\repository\org\junit\platform\junit-platform-suite-api\1.10.0\junit-platform-suite-api-1.10.0.jar;C:\Users\ombul\.m2\repository\org\junit\platform\junit-platform-suite-engine\1.10.0\junit-platform-suite-engine-1.10.0.jar;C:\Users\ombul\.m2\repository\org\junit\platform\junit-platform-suite-commons\1.10.0\junit-platform-suite-commons-1.10.0.jar;C:\Users\ombul\.m2\repository\io\qameta\allure\allure-junit5\2.24.0\allure-junit5-2.24.0.jar;C:\Users\ombul\.m2\repository\io\qameta\allure\allure-junit-platform\2.24.0\allure-junit-platform-2.24.0.jar;C:\Users\ombul\.m2\repository\io\qameta\allure\allure-java-commons\2.24.0\allure-java-commons-2.24.0.jar;C:\Users\ombul\.m2\repository\org\slf4j\slf4j-api\1.7.36\slf4j-api-1.7.36.jar;C:\Users\ombul\.m2\repository\io\qameta\allure\allure-model\2.24.0\allure-model-2.24.0.jar;C:\Users\ombul\.m2\repository\io\qameta\allure\allure-test-filter\2.24.0\allure-test-filter-2.24.0.jar;C:\Users\ombul\.m2\repository\org\junit\platform\junit-platform-launcher\1.9.2\junit-platform-launcher-1.9.2.jar;"/>
     <property name="allure.results.directory" value="C:\Users\ombul\appknox-cli-automation\target/allure-results"/>
     <property name="sun.cpu.endian" value="little"/>
     <property name="user.home" value="C:\Users\ombul"/>
@@ -31,7 +32,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="C:\Users\ombul\AppData\Local\Temp\surefire6328385547938480619\surefirebooter-20251105174507062_3.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\ombul\AppData\Local\Temp\surefire5881244254459110233\surefirebooter-20251113140928592_3.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="25.0.1+8-LTS-27"/>
@@ -60,9 +61,142 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="69.0"/>
   </properties>
-  <testcase name="testCICheckWithLowRiskThreshold" classname="com.appknox.tests.cicheck.CICheckTests" time="9.107"/>
-  <testcase name="testCICheckWithCriticalRiskThreshold" classname="com.appknox.tests.cicheck.CICheckTests" time="6.75"/>
-  <testcase name="testCICheckWithMediumRiskThreshold" classname="com.appknox.tests.cicheck.CICheckTests" time="7.788"/>
-  <testcase name="testCICheckWithHighRiskThreshold" classname="com.appknox.tests.cicheck.CICheckTests" time="7.143"/>
-  <testcase name="testCICheckWithInvalidRiskThreshold" classname="com.appknox.tests.cicheck.CICheckTests" time="0.08"/>
+  <testcase name="testCICheckWithLowRiskThreshold" classname="com.appknox.tests.cicheck.CICheckTests" time="10.657"/>
+  <testcase name="testCICheckWithCriticalRiskThreshold" classname="com.appknox.tests.cicheck.CICheckTests" time="7.415">
+    <system-out><![CDATA[Extracted Risks: [Critical, Critical]
+Validation passed: Only Critical vulnerabilities are displayed.
+=== CLI Raw Output ===
+Starting scan at: 2025-11-13T14:11:32+05:30 with timeout of 30m0s
+Static Scan Progress:  0 % [----------------------------| ] 
+&amp#27;[1A&amp#27;[JStatic Scan Progress:  0 % [----------------------------| ] 
+&amp#27;[1A&amp#27;[JStatic Scan Progress:  0 % [----------------------------| ] 
+&amp#27;[1A&amp#27;[JStatic Scan Progress:  0 % [----------------------------| ] 
+&amp#27;[1A&amp#27;[JStatic Scan Progress:  100 % [==========================| ] 
+&amp#27;[1A&amp#27;[JStatic Scan Progress:  100 % [==========================| ] 
+&amp#27;[1A&amp#27;[JStatic Scan Progress:  100 % [==========================| ] 
+&amp#27;[1A&amp#27;[JStatic Scan Progress:  100 % [==========================| ] 
+&amp#27;[1A&amp#27;[JStatic Scan Progress:  100 % [==========================| ] 
+&amp#27;[1A&amp#27;[JStatic Scan Progress:  100 % [==========================| ] 
+&amp#27;[1A&amp#27;[JStatic Scan Progress:  100 % [==========================| ] 
+&amp#27;[1A&amp#27;[JStatic Scan Progress:  100 % [==========================| ] 
+&amp#27;[1A&amp#27;[JStatic Scan Progress:  100 % [==========================| ] 
+&amp#27;[1A&amp#27;[JStatic Scan Progress:  100 % [==========================| ] 
+&amp#27;[1A&amp#27;[JStatic Scan Progress:  100 % [==========================| ] 
+&amp#27;[1A&amp#27;[JStatic Scan Progress:  100 % [==========================| ] 
+&amp#27;[1A&amp#27;[JStatic Scan Progress:  100 % [==========================| ] 
+&amp#27;[1A&amp#27;[JStatic Scan Progress:  100 % [==========================| ] 
+&amp#27;[1A&amp#27;[JStatic Scan Progress:  100 % [==========================| ] 
+&amp#27;[1A&amp#27;[JStatic Scan Progress:  100 % [==========================| ] 
+&amp#27;[1A&amp#27;[JStatic Scan Progress:  100 % [==========================| ] 
+&amp#27;[1A&amp#27;[JStatic Scan Progress:  100 % [==========================| ] 
+&amp#27;[1A&amp#27;[JStatic Scan Progress:  100 % [==========================| ] 
+&amp#27;[1A&amp#27;[JStatic Scan Progress:  100 % [==========================| ] 
+&amp#27;[1A&amp#27;[JStatic Scan Progress:  100 % [==========================| ] 
+&amp#27;[1A&amp#27;[JStatic Scan Progress:  100 % [==========================| ] 
+&amp#27;[1A&amp#27;[JStatic Scan Progress:  100 % [==========================| ] 
+&amp#27;[1A&amp#27;[JStatic Scan Progress:  100 % [==========================| ] 
+&amp#27;[1A&amp#27;[JStatic Scan Progress:  100 % [==========================| ] 
+&amp#27;[1A&amp#27;[JStatic Scan Progress:  100 % [==========================| ] 
+&amp#27;[1A&amp#27;[JStatic Scan Progress:  100 % [==========================| ] 
+&amp#27;[1A&amp#27;[JStatic Scan Progress:  100 % [==========================| ] 
+&amp#27;[1A&amp#27;[JStatic Scan Progress:  100 % [==========================| ] 
+&amp#27;[1A&amp#27;[JStatic Scan Progress:  100 % [==========================| ] 
+&amp#27;[1A&amp#27;[JStatic Scan Progress:  100 % [==========================| ] 
+&amp#27;[1A&amp#27;[JStatic Scan Progress:  100 % [==========================| ] 
+&amp#27;[1A&amp#27;[JStatic Scan Progress:  100 % [==========================| ] 
+&amp#27;[1A&amp#27;[JStatic Scan Progress:  100 % [==========================| ] 
+&amp#27;[1A&amp#27;[JStatic Scan Progress:  100 % [==========================| ] 
+&amp#27;[1A&amp#27;[JStatic Scan Progress:  100 % [==========================| ] 
+&amp#27;[1A&amp#27;[JStatic Scan Progress:  100 % [==========================| ] 
+&amp#27;[1A&amp#27;[JStatic Scan Progress:  100 % [==========================| ] 
+&amp#27;[1A&amp#27;[JStatic Scan Progress:  100 % [==========================| ] 
+Found 1 vulnerabilities with risk >= Critical
+
+ANALYSIS-ID  RISK      CVSS-VECTOR                                   CVSS-BASE  VULNERABILITY-ID  VULNERABILITY-NAME
+-----------  ----      -----------                                   ---------  ----------------  ------------------
+3317         Critical  CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:N  9.1        113               Network Security Misconfiguration
+
+Check file ID 34 on appknox dashboard for more details.
+]]></system-out>
+  </testcase>
+  <testcase name="testCICheckWithMediumRiskThreshold" classname="com.appknox.tests.cicheck.CICheckTests" time="8.509">
+    <system-out><![CDATA[=== CLI Raw Output ===
+Starting scan at: 2025-11-13T14:11:39+05:30 with timeout of 30m0s
+Static Scan Progress:  0 % [----------------------------| ] 
+&amp#27;[1A&amp#27;[JStatic Scan Progress:  0 % [----------------------------| ] 
+&amp#27;[1A&amp#27;[JStatic Scan Progress:  0 % [----------------------------| ] 
+&amp#27;[1A&amp#27;[JStatic Scan Progress:  0 % [----------------------------| ] 
+&amp#27;[1A&amp#27;[JStatic Scan Progress:  100 % [==========================| ] 
+&amp#27;[1A&amp#27;[JStatic Scan Progress:  100 % [==========================| ] 
+&amp#27;[1A&amp#27;[JStatic Scan Progress:  100 % [==========================| ] 
+&amp#27;[1A&amp#27;[JStatic Scan Progress:  100 % [==========================| ] 
+&amp#27;[1A&amp#27;[JStatic Scan Progress:  100 % [==========================| ] 
+&amp#27;[1A&amp#27;[JStatic Scan Progress:  100 % [==========================| ] 
+&amp#27;[1A&amp#27;[JStatic Scan Progress:  100 % [==========================| ] 
+&amp#27;[1A&amp#27;[JStatic Scan Progress:  100 % [==========================| ] 
+&amp#27;[1A&amp#27;[JStatic Scan Progress:  100 % [==========================| ] 
+&amp#27;[1A&amp#27;[JStatic Scan Progress:  100 % [==========================| ] 
+&amp#27;[1A&amp#27;[JStatic Scan Progress:  100 % [==========================| ] 
+&amp#27;[1A&amp#27;[JStatic Scan Progress:  100 % [==========================| ] 
+&amp#27;[1A&amp#27;[JStatic Scan Progress:  100 % [==========================| ] 
+&amp#27;[1A&amp#27;[JStatic Scan Progress:  100 % [==========================| ] 
+&amp#27;[1A&amp#27;[JStatic Scan Progress:  100 % [==========================| ] 
+&amp#27;[1A&amp#27;[JStatic Scan Progress:  100 % [==========================| ] 
+&amp#27;[1A&amp#27;[JStatic Scan Progress:  100 % [==========================| ] 
+&amp#27;[1A&amp#27;[JStatic Scan Progress:  100 % [==========================| ] 
+&amp#27;[1A&amp#27;[JStatic Scan Progress:  100 % [==========================| ] 
+&amp#27;[1A&amp#27;[JStatic Scan Progress:  100 % [==========================| ] 
+&amp#27;[1A&amp#27;[JStatic Scan Progress:  100 % [==========================| ] 
+&amp#27;[1A&amp#27;[JStatic Scan Progress:  100 % [==========================| ] 
+&amp#27;[1A&amp#27;[JStatic Scan Progress:  100 % [==========================| ] 
+&amp#27;[1A&amp#27;[JStatic Scan Progress:  100 % [==========================| ] 
+&amp#27;[1A&amp#27;[JStatic Scan Progress:  100 % [==========================| ] 
+&amp#27;[1A&amp#27;[JStatic Scan Progress:  100 % [==========================| ] 
+&amp#27;[1A&amp#27;[JStatic Scan Progress:  100 % [==========================| ] 
+&amp#27;[1A&amp#27;[JStatic Scan Progress:  100 % [==========================| ] 
+&amp#27;[1A&amp#27;[JStatic Scan Progress:  100 % [==========================| ] 
+&amp#27;[1A&amp#27;[JStatic Scan Progress:  100 % [==========================| ] 
+&amp#27;[1A&amp#27;[JStatic Scan Progress:  100 % [==========================| ] 
+&amp#27;[1A&amp#27;[JStatic Scan Progress:  100 % [==========================| ] 
+&amp#27;[1A&amp#27;[JStatic Scan Progress:  100 % [==========================| ] 
+&amp#27;[1A&amp#27;[JStatic Scan Progress:  100 % [==========================| ] 
+&amp#27;[1A&amp#27;[JStatic Scan Progress:  100 % [==========================| ] 
+&amp#27;[1A&amp#27;[JStatic Scan Progress:  100 % [==========================| ] 
+&amp#27;[1A&amp#27;[JStatic Scan Progress:  100 % [==========================| ] 
+&amp#27;[1A&amp#27;[JStatic Scan Progress:  100 % [==========================| ] 
+&amp#27;[1A&amp#27;[JStatic Scan Progress:  100 % [==========================| ] 
+&amp#27;[1A&amp#27;[JStatic Scan Progress:  100 % [==========================| ] 
+&amp#27;[1A&amp#27;[JStatic Scan Progress:  100 % [==========================| ] 
+&amp#27;[1A&amp#27;[JStatic Scan Progress:  100 % [==========================| ] 
+&amp#27;[1A&amp#27;[JStatic Scan Progress:  100 % [==========================| ] 
+&amp#27;[1A&amp#27;[JStatic Scan Progress:  100 % [==========================| ] 
+Found 13 vulnerabilities with risk >= Medium
+
+ANALYSIS-ID  RISK      CVSS-VECTOR                                   CVSS-BASE  VULNERABILITY-ID  VULNERABILITY-NAME
+-----------  ----      -----------                                   ---------  ----------------  ------------------
+3238         High      CVSS:3.0/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:L  7.3        2                 Improper Content Provider Permissions
+3239         High      CVSS:3.0/AV:L/AC:H/PR:N/UI:R/S:C/C:H/I:H/A:H  7.7        3                 Application Debugging
+3250         High      CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:L/A:L  8.6        16                Derived Crypto Keys
+3251         Medium    CVSS:3.0/AV:L/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N  6.2        17                Application Logs
+3255         High      CVSS:3.0/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H  8.1        37                Connection to External Redis Server
+3290         Medium    CVSS:3.0/AV:N/AC:H/PR:N/UI:R/S:U/C:H/I:L/A:N  5.9        83                Disabled SSL CA Validation and Certificate Pinning
+3298         Medium    CVSS:3.0/AV:L/AC:L/PR:N/UI:N/S:U/C:H/I:L/A:N  6.8        92                MediaProjection: Android Service Allows Recording of Audio, Screen Activity
+3299         Medium    CVSS:3.0/AV:L/AC:L/PR:L/UI:N/S:U/C:L/I:L/A:L  5.3        93                External data in raw SQL queries
+3317         Critical  CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:N  9.1        113               Network Security Misconfiguration
+3320         Medium    CVSS:3.1/AV:L/AC:L/PR:H/UI:N/S:U/C:H/I:H/A:H  6.7        117               Janus Vulnerability (CVE-2017-13156)
+3321         Medium    CVSS:3.1/AV:L/AC:H/PR:N/UI:R/S:U/C:H/I:L/A:H  6.5        118               StrandHogg Vulnerability
+3323         Medium    CVSS:3.1/AV:L/AC:L/PR:L/UI:R/S:U/C:L/I:L/A:L  4.8        121               Android Tapjacking
+3325         Medium    CVSS:3.1/AV:P/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:N  6.1        127               Weak PRNG (Pseudorandom number generator)
+
+Check file ID 34 on appknox dashboard for more details.
+Extracted Risks: [Medium, High, High, High, Medium, High, Medium, Medium, Medium, Critical, Medium, Medium, Medium, Medium]
+Validation passed: Only Medium, High, and Critical vulnerabilities are displayed.
+]]></system-out>
+  </testcase>
+  <testcase name="testCICheckWithHighRiskThreshold" classname="com.appknox.tests.cicheck.CICheckTests" time="8.471">
+    <system-out><![CDATA[Extracted Risks: [High, High, High, High, High, Critical]
+✅ Validation passed: Only High and Critical risks are displayed.
+]]></system-out>
+  </testcase>
+  <testcase name="testCICheckWithInvalidRiskThreshold" classname="com.appknox.tests.cicheck.CICheckTests" time="0.073"/>
 </testsuite>

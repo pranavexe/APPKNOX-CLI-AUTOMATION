@@ -120,7 +120,7 @@ public class ConfigManager {
         // Fall back to config.properties (local development)
         String propHost = properties.getProperty("appknox.api.host");
         if (propHost != null && !propHost.isEmpty()) {
-            System.out.println("Using appknox.api.host from config.properties");
+            //System.out.println("Using appknox.api.host from config.properties");
             return propHost;
         }
         
@@ -140,7 +140,7 @@ public class ConfigManager {
         // Fall back to config.properties (local development)
         String propToken = properties.getProperty("appknox.access.token");
         if (propToken != null && !propToken.isEmpty()) {
-            System.out.println("Using appknox.access.token from config.properties");
+           // System.out.println("Using appknox.access.token from config.properties");
             return propToken;
         }
         
