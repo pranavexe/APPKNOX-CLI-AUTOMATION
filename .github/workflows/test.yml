@@ -25,16 +25,25 @@ jobs:
     - name: Install Appknox CLI (Linux)
       run: |
         echo "Fetching latest Appknox CLI release..."
+
+        # Get latest release JSON
         latest=$(curl -s https://api.github.com/repos/appknox/appknox-go/releases/latest)
-        url=$(echo "$latest" | grep browser_download_url | grep linux-amd64 | cut -d '"' -f 4)
+
+        # Extract the ZIP asset URL
+        url=$(echo "$latest" | grep browser_download_url | grep "linux-amd64.zip" | cut -d '"' -f 4)
 
         if [ -z "$url" ]; then
-          echo "❌ Linux binary not found!"
+          echo "❌ Linux ZIP binary not found in latest release!"
           exit 1
         fi
 
         echo "Downloading: $url"
-        wget "$url" -O appknox
+        wget "$url" -O appknox.zip
+
+        echo "Unzipping..."
+        unzip appknox.zip
+
+        # The extracted folder contains the binary "appknox"
         chmod +x appknox
         sudo mv appknox /usr/local/bin/appknox
 
