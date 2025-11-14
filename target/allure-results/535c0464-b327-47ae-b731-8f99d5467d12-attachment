@@ -1,0 +1,71 @@
+Starting scan at: 2025-11-14T18:08:26+05:30 with timeout of 30m0s
+Static Scan Progress:  0 % [----------------------------| ] 
+[1A[JStatic Scan Progress:  0 % [----------------------------| ] 
+[1A[JStatic Scan Progress:  0 % [----------------------------| ] 
+[1A[JStatic Scan Progress:  100 % [==========================| ] 
+[1A[JStatic Scan Progress:  100 % [==========================| ] 
+[1A[JStatic Scan Progress:  100 % [==========================| ] 
+[1A[JStatic Scan Progress:  100 % [==========================| ] 
+[1A[JStatic Scan Progress:  100 % [==========================| ] 
+[1A[JStatic Scan Progress:  100 % [==========================| ] 
+[1A[JStatic Scan Progress:  100 % [==========================| ] 
+[1A[JStatic Scan Progress:  100 % [==========================| ] 
+[1A[JStatic Scan Progress:  100 % [==========================| ] 
+[1A[JStatic Scan Progress:  100 % [==========================| ] 
+[1A[JStatic Scan Progress:  100 % [==========================| ] 
+[1A[JStatic Scan Progress:  100 % [==========================| ] 
+[1A[JStatic Scan Progress:  100 % [==========================| ] 
+[1A[JStatic Scan Progress:  100 % [==========================| ] 
+[1A[JStatic Scan Progress:  100 % [==========================| ] 
+[1A[JStatic Scan Progress:  100 % [==========================| ] 
+[1A[JStatic Scan Progress:  100 % [==========================| ] 
+[1A[JStatic Scan Progress:  100 % [==========================| ] 
+[1A[JStatic Scan Progress:  100 % [==========================| ] 
+[1A[JStatic Scan Progress:  100 % [==========================| ] 
+[1A[JStatic Scan Progress:  100 % [==========================| ] 
+[1A[JStatic Scan Progress:  100 % [==========================| ] 
+[1A[JStatic Scan Progress:  100 % [==========================| ] 
+[1A[JStatic Scan Progress:  100 % [==========================| ] 
+[1A[JStatic Scan Progress:  100 % [==========================| ] 
+[1A[JStatic Scan Progress:  100 % [==========================| ] 
+[1A[JStatic Scan Progress:  100 % [==========================| ] 
+[1A[JStatic Scan Progress:  100 % [==========================| ] 
+[1A[JStatic Scan Progress:  100 % [==========================| ] 
+[1A[JStatic Scan Progress:  100 % [==========================| ] 
+[1A[JStatic Scan Progress:  100 % [==========================| ] 
+[1A[JStatic Scan Progress:  100 % [==========================| ] 
+[1A[JStatic Scan Progress:  100 % [==========================| ] 
+[1A[JStatic Scan Progress:  100 % [==========================| ] 
+[1A[JStatic Scan Progress:  100 % [==========================| ] 
+[1A[JStatic Scan Progress:  100 % [==========================| ] 
+[1A[JStatic Scan Progress:  100 % [==========================| ] 
+[1A[JStatic Scan Progress:  100 % [==========================| ] 
+[1A[JStatic Scan Progress:  100 % [==========================| ] 
+[1A[JStatic Scan Progress:  100 % [==========================| ] 
+[1A[JStatic Scan Progress:  100 % [==========================| ] 
+[1A[JStatic Scan Progress:  100 % [==========================| ] 
+[1A[JStatic Scan Progress:  100 % [==========================| ] 
+[1A[JStatic Scan Progress:  100 % [==========================| ] 
+[1A[JStatic Scan Progress:  100 % [==========================| ] 
+[1A[JStatic Scan Progress:  100 % [==========================| ] 
+[1A[JStatic Scan Progress:  100 % [==========================| ] 
+[1A[JStatic Scan Progress:  100 % [==========================| ] 
+Found 13 vulnerabilities with risk >= Medium
+
+ANALYSIS-ID  RISK      CVSS-VECTOR                                   CVSS-BASE  VULNERABILITY-ID  VULNERABILITY-NAME
+-----------  ----      -----------                                   ---------  ----------------  ------------------
+5630         High      CVSS:3.0/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:L  7.3        2                 Improper Content Provider Permissions
+5631         High      CVSS:3.0/AV:L/AC:H/PR:N/UI:R/S:C/C:H/I:H/A:H  7.7        3                 Application Debugging
+5642         High      CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:L/A:L  8.6        16                Derived Crypto Keys
+5643         Medium    CVSS:3.0/AV:L/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N  6.2        17                Application Logs
+5647         High      CVSS:3.0/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H  8.1        37                Connection to External Redis Server
+5682         Medium    CVSS:3.0/AV:N/AC:H/PR:N/UI:R/S:U/C:H/I:L/A:N  5.9        83                Disabled SSL CA Validation and Certificate Pinning
+5690         Medium    CVSS:3.0/AV:L/AC:L/PR:N/UI:N/S:U/C:H/I:L/A:N  6.8        92                MediaProjection: Android Service Allows Recording of Audio, Screen Activity
+5691         Medium    CVSS:3.0/AV:L/AC:L/PR:L/UI:N/S:U/C:L/I:L/A:L  5.3        93                External data in raw SQL queries
+5709         Critical  CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:N  9.1        113               Network Security Misconfiguration
+5712         Medium    CVSS:3.1/AV:L/AC:L/PR:H/UI:N/S:U/C:H/I:H/A:H  6.7        117               Janus Vulnerability (CVE-2017-13156)
+5713         Medium    CVSS:3.1/AV:L/AC:H/PR:N/UI:R/S:U/C:H/I:L/A:H  6.5        118               StrandHogg Vulnerability
+5715         Medium    CVSS:3.1/AV:L/AC:L/PR:L/UI:R/S:U/C:L/I:L/A:L  4.8        121               Android Tapjacking
+5717         Medium    CVSS:3.1/AV:P/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:N  6.1        127               Weak PRNG (Pseudorandom number generator)
+
+Check file ID 57 on appknox dashboard for more details.

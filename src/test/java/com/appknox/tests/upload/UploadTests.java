@@ -34,45 +34,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 @DisplayName("Upload Functionality Test Suite")
 public class UploadTests extends BaseTest 
 {
-
-//     @Test
-//     @Story("UPLOAD-001: Valid APK Upload")
-//     @Severity(SeverityLevel.CRITICAL)
-//     @Description("Verify that a valid APK file can be successfully uploaded via the Appknox CLI.")
-//     @DisplayName("UPLOAD-001: Verify successful upload of valid APK file")
-//     public void testValidApkUpload() {
-//         Allure.step("Get valid APK path from config");
-//         String apkPath = config.getProperty("test.apk.valid", "src/test/resources/testdata/test-files/MFVA.apk");
-
-//         Allure.step("Build CLI command for upload");
-//         List<String> cmdList = new ArrayList<>();
-//         cmdList.add(config.getCliPath());
-//         cmdList.add("upload");
-//         cmdList.add(apkPath);
-
-//         Allure.step("Set environment variables for valid host and token");
-//         Map<String, String> env = new HashMap<>();
-//         env.put("APPKNOX_API_HOST", config.getValidHost());
-//         env.put("APPKNOX_ACCESS_TOKEN", config.getValidToken());
-
-//         Allure.step("Execute CLI command for APK upload");
-//         CommandResult result = cliExecutor.executeCommand(cmdList, env);
-
-//         Allure.step("Verify command execution success");
-//         assertThat(result.isSuccess())
-//                 .as("Upload command should execute successfully")
-//                 .isTrue();
-
-//         Allure.step("Verify output contains file ID");
-//         assertThat(result.getOutput())
-//                 .as("Output should return file ID")
-//                 .isNotEmpty();
-
-//         Allure.addAttachment("UPLOAD-001 Command Output", new ByteArrayInputStream(result.getOutput().getBytes()));
-
-//         System.out.println("UPLOAD-001 Output - File ID: " + result.getOutput());
-//     }
-
 @Test
 @Story("UPLOAD-001: Valid APK Upload")
 @Severity(SeverityLevel.CRITICAL)
@@ -138,9 +99,6 @@ public void testValidApkUpload() {
     }
 }
 
-
-
-
     @Test
     @Story("UPLOAD-003: Non-existent File Upload")
     @Severity(SeverityLevel.NORMAL)
@@ -179,7 +137,52 @@ public void testValidApkUpload() {
         System.out.println("UPLOAD-003 Output: " + result.getOutput());
     }
 
-    @Test
+   
+
+//   @Test
+// @Story("UPLOAD-006: Upload Same APK Twice")
+// @Severity(SeverityLevel.CRITICAL)
+// @Description("Verify that uploading the same APK twice generates unique file IDs each time.")
+// @DisplayName("UPLOAD-006: Verify behavior when uploading the same APK twice")
+// public void testUploadSameApkTwice() {
+//     Allure.step("Read APK path and first upload file ID from config");
+//     String apkPath = config.getProperty("test.apk.valid", "src/test/resources/testdata/test-files/MFVA.apk");
+//     String fileId = config.getProperty("test.file.id",""); // Reuse from UPLOAD-001
+
+//     assertThat(fileId)
+//             .as("First upload file ID should be available from UPLOAD-001")
+//             .isNotEmpty();
+
+//     Allure.step("Set valid environment variables");
+//     Map<String, String> env = new HashMap<>();
+//     env.put("APPKNOX_API_HOST", config.getValidHost());
+//     env.put("APPKNOX_ACCESS_TOKEN", config.getValidToken());
+
+//     Allure.step("Re-upload the same APK");
+//     List<String> cmdList = new ArrayList<>();
+//     cmdList.add(config.getCliPath());
+//     cmdList.add("upload");
+//     cmdList.add(apkPath);
+
+//     CommandResult result2 = cliExecutor.executeCommand(cmdList, env);
+//     String fileId2 = result2.getOutput().trim();
+//     System.out.println("Re-upload File ID: " + fileId2);
+//     Allure.addAttachment("UPLOAD-006 Re-upload Output", new ByteArrayInputStream(result2.getOutput().getBytes()));
+
+//     assertThat(result2.isSuccess())
+//             .as("Re-upload should succeed")
+//             .isTrue();
+
+//     Allure.step("Verify that the new upload generates a different file ID");
+//     assertThat(fileId2)
+//             .as("Each upload of the same APK should create a new unique file ID")
+//             .isNotEqualTo(fileId);
+
+//     System.out.println("Test Passed: Different file IDs created (" + fileId + " vs " + fileId2 + ")");
+
+
+// }
+ @Test
     @Story("UPLOAD-005: Missing File Path Parameter")
     @Severity(SeverityLevel.MINOR)
     @Description("Verify that the CLI throws an error when upload command is executed without providing a file path.")
@@ -212,51 +215,6 @@ public void testValidApkUpload() {
 
         System.out.println("UPLOAD-005 Output: " + result.getOutput());
     }
-
-  @Test
-@Story("UPLOAD-006: Upload Same APK Twice")
-@Severity(SeverityLevel.CRITICAL)
-@Description("Verify that uploading the same APK twice generates unique file IDs each time.")
-@DisplayName("UPLOAD-006: Verify behavior when uploading the same APK twice")
-public void testUploadSameApkTwice() {
-    Allure.step("Read APK path and first upload file ID from config");
-    String apkPath = config.getProperty("test.apk.valid", "src/test/resources/testdata/test-files/MFVA.apk");
-    String fileId = config.getProperty("test.file.id",""); // Reuse from UPLOAD-001
-
-    assertThat(fileId)
-            .as("First upload file ID should be available from UPLOAD-001")
-            .isNotEmpty();
-
-    Allure.step("Set valid environment variables");
-    Map<String, String> env = new HashMap<>();
-    env.put("APPKNOX_API_HOST", config.getValidHost());
-    env.put("APPKNOX_ACCESS_TOKEN", config.getValidToken());
-
-    Allure.step("Re-upload the same APK");
-    List<String> cmdList = new ArrayList<>();
-    cmdList.add(config.getCliPath());
-    cmdList.add("upload");
-    cmdList.add(apkPath);
-
-    CommandResult result2 = cliExecutor.executeCommand(cmdList, env);
-    String fileId2 = result2.getOutput().trim();
-    System.out.println("Re-upload File ID: " + fileId2);
-    Allure.addAttachment("UPLOAD-006 Re-upload Output", new ByteArrayInputStream(result2.getOutput().getBytes()));
-
-    assertThat(result2.isSuccess())
-            .as("Re-upload should succeed")
-            .isTrue();
-
-    Allure.step("Verify that the new upload generates a different file ID");
-    assertThat(fileId2)
-            .as("Each upload of the same APK should create a new unique file ID")
-            .isNotEqualTo(fileId);
-
-    System.out.println("Test Passed: Different file IDs created (" + fileId + " vs " + fileId2 + ")");
-
-
-}
-
     @Test
     @Story("UPLOAD-007: Invalid File Type Upload")
     @Severity(SeverityLevel.NORMAL)

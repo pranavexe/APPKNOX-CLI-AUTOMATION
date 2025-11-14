@@ -46,72 +46,6 @@ public class InformationTests extends BaseTest {
         Allure.addAttachment("INFO-001 CLI Output", new ByteArrayInputStream(output.getBytes()));
     }
 
-//     @Test
-//     @Story("INFO-002: List all projects")
-//     @Description("Validate that the CLI command 'appknox projects' displays all the user's accessible projects.")
-//     @DisplayName("INFO-002: Verify projects list is displayed")
-//     public void testProjectsList() {
-//         CommandResult result = runAppknoxCommand("projects");
-
-//         assertThat(result.isSuccess())
-//                 .as("Projects command should execute successfully")
-//                 .isTrue();
-
-//         String output = result.getOutput();
-//         assertThat(output)
-//                 .as("Output should contain project details")
-//                 .isNotEmpty();
-
-//         System.out.println("INFO-002 Output:");
-//         System.out.println(output);
-
-//         Allure.addAttachment("INFO-002 CLI Output", new ByteArrayInputStream(output.getBytes()));
-//     }
-
-//     @Test
-//     @Story("INFO-003: Retrieve files for valid project ID")
-//     @Description("Validate that the CLI command 'appknox files <project_id>' retrieves the correct list of files for a valid project.")
-//     @DisplayName("INFO-003: Verify files list for valid project ID")
-//     public void testFilesListForValidProject() {
-//         String projectId = config.getProperty("test.project.id", "1");
-
-//         List<String> cmdList = new ArrayList<>();
-//         cmdList.add(config.getCliPath());
-//         cmdList.add("files");
-//         cmdList.add(projectId);
-
-//         Map<String, String> env = new HashMap<>();
-//         env.put("APPKNOX_API_HOST", config.getValidHost());
-//         env.put("APPKNOX_ACCESS_TOKEN", config.getValidToken());
-
-//         CommandResult result = cliExecutor.executeCommand(cmdList, env);
-
-//         assertThat(result.isSuccess())
-//                 .as("Files command should execute successfully with valid project ID")
-//                 .isTrue();
-
-//         String output = result.getOutput();
-//         assertThat(output)
-//                 .as("Output should contain list of files")
-//                 .isNotEmpty();
-
-//         String lowerOutput = output.toLowerCase();
-//         assertThat(lowerOutput)
-//                 .as("Output should contain file details like ID, name, version")
-//                 .containsAnyOf("id", "name", "version");
-
-//         System.out.println("INFO-003 Output:");
-//         System.out.println(output);
-
-//         Allure.addAttachment("INFO-003 CLI Output", new ByteArrayInputStream(output.getBytes()));
-//     }
-
-
-
-
-
-
-
 @Test
 @Story("INFO-003: Retrieve files for a dynamically fetched project ID")
 @Description("Fetches the first available project from 'appknox projects' and validates 'appknox files <project_id>' command output.")
@@ -128,7 +62,7 @@ public void testFilesListForDynamicProject() {
             .as("Output should contain project list")
             .isNotEmpty();
 
-    // Extract the first project ID (numeric at start of line)
+    // Extract the first project ID 
     String firstProjectId = Arrays.stream(projectsOutput.split("\\r?\\n"))
             .filter(line -> line.trim().matches("^\\d+\\s+.*")) // line starts with ID
             .map(line -> line.trim().split("\\s+")[0]) // take the first column

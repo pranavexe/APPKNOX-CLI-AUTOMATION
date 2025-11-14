@@ -1,4 +1,0 @@
-Appknox access token missing!
-Please run 'appknox init' to set the token.
-Or in case you're integrating appknox on a CI/CD tool
-Use APPKNOX_ACCESS_TOKEN as env.

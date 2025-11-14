@@ -1,3 +1,0 @@
-ID:              1
-Username:        Appknox
-ProjectsCount:   13

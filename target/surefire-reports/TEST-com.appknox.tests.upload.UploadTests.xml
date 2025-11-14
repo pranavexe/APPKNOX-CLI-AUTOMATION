@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.appknox.tests.upload.UploadTests" time="44.498" tests="1" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.appknox.tests.upload.UploadTests" time="83.279" tests="5" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="25"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -12,12 +12,12 @@
     <property name="user.timezone" value="Asia/Calcutta"/>
     <property name="os.name" value="Windows 11"/>
     <property name="java.vm.specification.version" value="25"/>
-    <property name="user.country" value="IN"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="user.country" value="IN"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-25\bin"/>
-    <property name="sun.java.command" value="C:\Users\ombul\AppData\Local\Temp\surefire17753932180001298\surefirebooter-20251113145147682_3.jar C:\Users\ombul\AppData\Local\Temp\surefire17753932180001298 2025-11-13T14-51-47_553-jvmRun1 surefire-20251113145147682_1tmp surefire_0-20251113145147682_2tmp"/>
+    <property name="sun.java.command" value="C:\Users\ombul\AppData\Local\Temp\surefire8522229368793408414\surefirebooter-20251114180617657_3.jar C:\Users\ombul\AppData\Local\Temp\surefire8522229368793408414 2025-11-14T18-06-17_538-jvmRun1 surefire-20251114180617657_1tmp surefire_0-20251114180617657_2tmp"/>
     <property name="jdk.debug" value="release"/>
-    <property name="test" value="com.appknox.tests.upload.UploadTests#testUploadSameApkTwice"/>
+    <property name="test" value="TestSuite"/>
     <property name="surefire.test.class.path" value="C:\Users\ombul\appknox-cli-automation\target\test-classes;C:\Users\ombul\appknox-cli-automation\target\classes;C:\Users\ombul\.m2\repository\org\junit\jupiter\junit-jupiter\5.9.3\junit-jupiter-5.9.3.jar;C:\Users\ombul\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.9.3\junit-jupiter-api-5.9.3.jar;C:\Users\ombul\.m2\repository\org\opentest4j\opentest4j\1.2.0\opentest4j-1.2.0.jar;C:\Users\ombul\.m2\repository\org\junit\platform\junit-platform-commons\1.9.3\junit-platform-commons-1.9.3.jar;C:\Users\ombul\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\ombul\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.9.3\junit-jupiter-params-5.9.3.jar;C:\Users\ombul\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.9.3\junit-jupiter-engine-5.9.3.jar;C:\Users\ombul\.m2\repository\org\junit\platform\junit-platform-engine\1.9.3\junit-platform-engine-1.9.3.jar;C:\Users\ombul\.m2\repository\org\assertj\assertj-core\3.24.2\assertj-core-3.24.2.jar;C:\Users\ombul\.m2\repository\net\bytebuddy\byte-buddy\1.12.21\byte-buddy-1.12.21.jar;C:\Users\ombul\.m2\repository\org\junit\platform\junit-platform-suite\1.10.0\junit-platform-suite-1.10.0.jar;C:\Users\ombul\.m2\repository\org\junit\platform\junit-platform-suite-api\1.10.0\junit-platform-suite-api-1.10.0.jar;C:\Users\ombul\.m2\repository\org\junit\platform\junit-platform-suite-engine\1.10.0\junit-platform-suite-engine-1.10.0.jar;C:\Users\ombul\.m2\repository\org\junit\platform\junit-platform-suite-commons\1.10.0\junit-platform-suite-commons-1.10.0.jar;C:\Users\ombul\.m2\repository\io\qameta\allure\allure-junit5\2.24.0\allure-junit5-2.24.0.jar;C:\Users\ombul\.m2\repository\io\qameta\allure\allure-junit-platform\2.24.0\allure-junit-platform-2.24.0.jar;C:\Users\ombul\.m2\repository\io\qameta\allure\allure-java-commons\2.24.0\allure-java-commons-2.24.0.jar;C:\Users\ombul\.m2\repository\org\slf4j\slf4j-api\1.7.36\slf4j-api-1.7.36.jar;C:\Users\ombul\.m2\repository\io\qameta\allure\allure-model\2.24.0\allure-model-2.24.0.jar;C:\Users\ombul\.m2\repository\io\qameta\allure\allure-test-filter\2.24.0\allure-test-filter-2.24.0.jar;C:\Users\ombul\.m2\repository\org\junit\platform\junit-platform-launcher\1.9.2\junit-platform-launcher-1.9.2.jar;"/>
     <property name="allure.results.directory" value="C:\Users\ombul\appknox-cli-automation\target/allure-results"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -32,7 +32,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="C:\Users\ombul\AppData\Local\Temp\surefire17753932180001298\surefirebooter-20251113145147682_3.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\ombul\AppData\Local\Temp\surefire8522229368793408414\surefirebooter-20251114180617657_3.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="25.0.1+8-LTS-27"/>
@@ -43,7 +43,6 @@
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="file.encoding" value="UTF-8"/>
     <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/>
-    <property name="maven.ext.class.path" value="C:\Users\ombul\.vscode\extensions\oracle.oracle-java-24.1.2\nbcode\java\maven-nblib\netbeans-eventspy.jar"/>
     <property name="localRepository" value="C:\Users\ombul\.m2\repository"/>
     <property name="java.vendor.url.bug" value="https://bugreport.java.com/bugreport/"/>
     <property name="java.io.tmpdir" value="C:\Users\ombul\AppData\Local\Temp\"/>
@@ -53,7 +52,7 @@
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
     <property name="sun.os.patch.level" value=""/>
     <property name="native.encoding" value="Cp1252"/>
-    <property name="java.library.path" value="C:\Program Files\Java\jdk-25\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Program Files\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\Program Files\dotnet\;C:\Program Files\Git\cmd;C:\Users\ombul\Appknox\;C:\Program Files\Java\jdk-25\bin;C:\Program Files\apache-maven-3.9.11\bin;C:\Users\ombul\AppData\Local\Microsoft\WindowsApps;C:\Users\ombul\AppData\Local\Programs\Microsoft VS Code\bin;;."/>
+    <property name="java.library.path" value="C:\Program Files\Java\jdk-25\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;c:\Users\ombul\AppData\Roaming\Code\User\globalStorage\github.copilot-chat\debugCommand;c:\Users\ombul\AppData\Roaming\Code\User\globalStorage\github.copilot-chat\copilotCli;C:\Program Files\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\Program Files\dotnet\;C:\Program Files\Git\cmd;C:\Users\ombul\Appknox\;C:\Program Files\Java\jdk-25\bin;C:\Program Files\apache-maven-3.9.11\bin;C:\Users\ombul\AppData\Local\Microsoft\WindowsApps;C:\Users\ombul\AppData\Local\Programs\Microsoft VS Code\bin;c:\Users\ombul\.vscode\extensions\vscjava.vscode-java-debug-0.58.3\bundled\scripts\noConfigScripts;."/>
     <property name="java.vm.info" value="mixed mode, sharing"/>
     <property name="stderr.encoding" value="Cp1252"/>
     <property name="java.vendor" value="Oracle Corporation"/>
@@ -62,8 +61,9 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="69.0"/>
   </properties>
-  <testcase name="testUploadSameApkTwice" classname="com.appknox.tests.upload.UploadTests" time="44.424">
-    <system-out><![CDATA[Re-upload File ID: 0.0 b / 2.1 MiB [-------------------------| 00:00 ] 0.00 b/s
+  <testcase name="testValidApkUpload" classname="com.appknox.tests.upload.UploadTests" time="53.758">
+    <system-out><![CDATA[UPLOAD-001 Output:
+0.0 b / 2.1 MiB [-------------------------| 00:00 ] 0.00 b/s
 &amp#27;[1A&amp#27;[J0.0 b / 2.1 MiB [-------------------------| 00:00 ] 0.00 b/s
 &amp#27;[1A&amp#27;[J0.0 b / 2.1 MiB [-------------------------| 00:00 ] 0.00 b/s
 &amp#27;[1A&amp#27;[J0.0 b / 2.1 MiB [-------------------------| 00:00 ] 0.00 b/s
@@ -75,494 +75,504 @@
 &amp#27;[1A&amp#27;[J0.0 b / 2.1 MiB [-------------------------| 00:00 ] 0.00 b/s
 &amp#27;[1A&amp#27;[J0.0 b / 2.1 MiB [-------------------------| 00:00 ] 0.00 b/s
 &amp#27;[1A&amp#27;[J0.0 b / 2.1 MiB [-------------------------| 00:00 ] 0.00 b/s
-&amp#27;[1A&amp#27;[J0.0 b / 2.1 MiB [-------------------------| 00:00 ] 0.00 b/s
-&amp#27;[1A&amp#27;[J0.0 b / 2.1 MiB [-------------------------| 00:00 ] 0.00 b/s
-&amp#27;[1A&amp#27;[J96.0 KiB / 2.1 MiB [>------------------| 00:00 ] 35.42 KiB/s
-&amp#27;[1A&amp#27;[J96.0 KiB / 2.1 MiB [>------------------| 00:00 ] 33.32 KiB/s
-&amp#27;[1A&amp#27;[J96.0 KiB / 2.1 MiB [>------------------| 00:00 ] 31.28 KiB/s
-&amp#27;[1A&amp#27;[J96.0 KiB / 2.1 MiB [>------------------| 00:00 ] 29.49 KiB/s
-&amp#27;[1A&amp#27;[J128.0 KiB / 2.1 MiB [>-----------------| 00:00 ] 37.36 KiB/s
-&amp#27;[1A&amp#27;[J160.0 KiB / 2.1 MiB [>-----------------| 00:00 ] 44.38 KiB/s
-&amp#27;[1A&amp#27;[J224.0 KiB / 2.1 MiB [=>----------------| 00:00 ] 59.20 KiB/s
-&amp#27;[1A&amp#27;[J288.0 KiB / 2.1 MiB [=>----------------| 00:00 ] 72.57 KiB/s
-&amp#27;[1A&amp#27;[J320.0 KiB / 2.1 MiB [==>---------------| 00:00 ] 77.04 KiB/s
-&amp#27;[1A&amp#27;[J480.0 KiB / 2.1 MiB [===>-------------| 00:20 ] 110.99 KiB/s
-&amp#27;[1A&amp#27;[J800.0 KiB / 2.1 MiB [=====>-----------| 00:16 ] 177.42 KiB/s
-&amp#27;[1A&amp#27;[J864.0 KiB / 2.1 MiB [======>----------| 00:15 ] 184.08 KiB/s
-&amp#27;[1A&amp#27;[J896.0 KiB / 2.1 MiB [======>----------| 00:15 ] 184.26 KiB/s
-&amp#27;[1A&amp#27;[J960.0 KiB / 2.1 MiB [=======>---------| 00:14 ] 190.15 KiB/s
-&amp#27;[1A&amp#27;[J992.0 KiB / 2.1 MiB [=======>---------| 00:13 ] 189.59 KiB/s
-&amp#27;[1A&amp#27;[J1.0 MiB / 2.1 MiB [========>----------| 00:13 ] 195.33 KiB/s
-&amp#27;[1A&amp#27;[J1.1 MiB / 2.1 MiB [=========>---------| 00:12 ] 194.61 KiB/s
-&amp#27;[1A&amp#27;[J1.1 MiB / 2.1 MiB [=========>---------| 00:12 ] 193.95 KiB/s
-&amp#27;[1A&amp#27;[J1.7 MiB / 2.1 MiB [==============>----| 00:05 ] 285.28 KiB/s
-&amp#27;[1A&amp#27;[J1.7 MiB / 2.1 MiB [===============>---| 00:04 ] 281.83 KiB/s
-&amp#27;[1A&amp#27;[J1.8 MiB / 2.1 MiB [===============>---| 00:03 ] 284.38 KiB/s
-&amp#27;[1A&amp#27;[J1.8 MiB / 2.1 MiB [===============>---| 00:03 ] 281.20 KiB/s
-&amp#27;[1A&amp#27;[J1.8 MiB / 2.1 MiB [================>--| 00:03 ] 278.20 KiB/s
-&amp#27;[1A&amp#27;[J1.8 MiB / 2.1 MiB [================>--| 00:02 ] 276.01 KiB/s
-&amp#27;[1A&amp#27;[J1.9 MiB / 2.1 MiB [================>--| 00:02 ] 273.20 KiB/s
-&amp#27;[1A&amp#27;[J1.9 MiB / 2.1 MiB [=================>-| 00:01 ] 270.61 KiB/s
-&amp#27;[1A&amp#27;[J1.9 MiB / 2.1 MiB [=================>-| 00:01 ] 268.73 KiB/s
-&amp#27;[1A&amp#27;[J2.0 MiB / 2.1 MiB [=================>-| 00:00 ] 270.54 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 272.51 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 266.55 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 260.47 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 254.67 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 249.58 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 244.24 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 239.06 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 234.53 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 229.77 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 225.61 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 221.18 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-42
-Test Passed: Different file IDs created (38 vs 0.0 b / 2.1 MiB [-------------------------| 00:00 ] 0.00 b/s
-&amp#27;[1A&amp#27;[J0.0 b / 2.1 MiB [-------------------------| 00:00 ] 0.00 b/s
-&amp#27;[1A&amp#27;[J0.0 b / 2.1 MiB [-------------------------| 00:00 ] 0.00 b/s
-&amp#27;[1A&amp#27;[J0.0 b / 2.1 MiB [-------------------------| 00:00 ] 0.00 b/s
-&amp#27;[1A&amp#27;[J0.0 b / 2.1 MiB [-------------------------| 00:00 ] 0.00 b/s
-&amp#27;[1A&amp#27;[J0.0 b / 2.1 MiB [-------------------------| 00:00 ] 0.00 b/s
-&amp#27;[1A&amp#27;[J0.0 b / 2.1 MiB [-------------------------| 00:00 ] 0.00 b/s
-&amp#27;[1A&amp#27;[J0.0 b / 2.1 MiB [-------------------------| 00:00 ] 0.00 b/s
-&amp#27;[1A&amp#27;[J0.0 b / 2.1 MiB [-------------------------| 00:00 ] 0.00 b/s
-&amp#27;[1A&amp#27;[J0.0 b / 2.1 MiB [-------------------------| 00:00 ] 0.00 b/s
-&amp#27;[1A&amp#27;[J0.0 b / 2.1 MiB [-------------------------| 00:00 ] 0.00 b/s
-&amp#27;[1A&amp#27;[J0.0 b / 2.1 MiB [-------------------------| 00:00 ] 0.00 b/s
-&amp#27;[1A&amp#27;[J0.0 b / 2.1 MiB [-------------------------| 00:00 ] 0.00 b/s
-&amp#27;[1A&amp#27;[J0.0 b / 2.1 MiB [-------------------------| 00:00 ] 0.00 b/s
-&amp#27;[1A&amp#27;[J96.0 KiB / 2.1 MiB [>------------------| 00:00 ] 35.42 KiB/s
-&amp#27;[1A&amp#27;[J96.0 KiB / 2.1 MiB [>------------------| 00:00 ] 33.32 KiB/s
-&amp#27;[1A&amp#27;[J96.0 KiB / 2.1 MiB [>------------------| 00:00 ] 31.28 KiB/s
-&amp#27;[1A&amp#27;[J96.0 KiB / 2.1 MiB [>------------------| 00:00 ] 29.49 KiB/s
-&amp#27;[1A&amp#27;[J128.0 KiB / 2.1 MiB [>-----------------| 00:00 ] 37.36 KiB/s
-&amp#27;[1A&amp#27;[J160.0 KiB / 2.1 MiB [>-----------------| 00:00 ] 44.38 KiB/s
-&amp#27;[1A&amp#27;[J224.0 KiB / 2.1 MiB [=>----------------| 00:00 ] 59.20 KiB/s
-&amp#27;[1A&amp#27;[J288.0 KiB / 2.1 MiB [=>----------------| 00:00 ] 72.57 KiB/s
-&amp#27;[1A&amp#27;[J320.0 KiB / 2.1 MiB [==>---------------| 00:00 ] 77.04 KiB/s
-&amp#27;[1A&amp#27;[J480.0 KiB / 2.1 MiB [===>-------------| 00:20 ] 110.99 KiB/s
-&amp#27;[1A&amp#27;[J800.0 KiB / 2.1 MiB [=====>-----------| 00:16 ] 177.42 KiB/s
-&amp#27;[1A&amp#27;[J864.0 KiB / 2.1 MiB [======>----------| 00:15 ] 184.08 KiB/s
-&amp#27;[1A&amp#27;[J896.0 KiB / 2.1 MiB [======>----------| 00:15 ] 184.26 KiB/s
-&amp#27;[1A&amp#27;[J960.0 KiB / 2.1 MiB [=======>---------| 00:14 ] 190.15 KiB/s
-&amp#27;[1A&amp#27;[J992.0 KiB / 2.1 MiB [=======>---------| 00:13 ] 189.59 KiB/s
-&amp#27;[1A&amp#27;[J1.0 MiB / 2.1 MiB [========>----------| 00:13 ] 195.33 KiB/s
-&amp#27;[1A&amp#27;[J1.1 MiB / 2.1 MiB [=========>---------| 00:12 ] 194.61 KiB/s
-&amp#27;[1A&amp#27;[J1.1 MiB / 2.1 MiB [=========>---------| 00:12 ] 193.95 KiB/s
-&amp#27;[1A&amp#27;[J1.7 MiB / 2.1 MiB [==============>----| 00:05 ] 285.28 KiB/s
-&amp#27;[1A&amp#27;[J1.7 MiB / 2.1 MiB [===============>---| 00:04 ] 281.83 KiB/s
-&amp#27;[1A&amp#27;[J1.8 MiB / 2.1 MiB [===============>---| 00:03 ] 284.38 KiB/s
-&amp#27;[1A&amp#27;[J1.8 MiB / 2.1 MiB [===============>---| 00:03 ] 281.20 KiB/s
-&amp#27;[1A&amp#27;[J1.8 MiB / 2.1 MiB [================>--| 00:03 ] 278.20 KiB/s
-&amp#27;[1A&amp#27;[J1.8 MiB / 2.1 MiB [================>--| 00:02 ] 276.01 KiB/s
-&amp#27;[1A&amp#27;[J1.9 MiB / 2.1 MiB [================>--| 00:02 ] 273.20 KiB/s
-&amp#27;[1A&amp#27;[J1.9 MiB / 2.1 MiB [=================>-| 00:01 ] 270.61 KiB/s
-&amp#27;[1A&amp#27;[J1.9 MiB / 2.1 MiB [=================>-| 00:01 ] 268.73 KiB/s
-&amp#27;[1A&amp#27;[J2.0 MiB / 2.1 MiB [=================>-| 00:00 ] 270.54 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 272.51 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 266.55 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 260.47 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 254.67 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 249.58 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 244.24 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 239.06 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 234.53 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 229.77 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 225.61 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 221.18 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 220.05 KiB/s
-42)
+&amp#27;[1A&amp#27;[J96.0 KiB / 2.1 MiB [>------------------| 00:00 ] 40.95 KiB/s
+&amp#27;[1A&amp#27;[J96.0 KiB / 2.1 MiB [>------------------| 00:00 ] 37.95 KiB/s
+&amp#27;[1A&amp#27;[J96.0 KiB / 2.1 MiB [>------------------| 00:00 ] 35.51 KiB/s
+&amp#27;[1A&amp#27;[J96.0 KiB / 2.1 MiB [>------------------| 00:00 ] 33.23 KiB/s
+&amp#27;[1A&amp#27;[J128.0 KiB / 2.1 MiB [>-----------------| 00:00 ] 41.80 KiB/s
+&amp#27;[1A&amp#27;[J160.0 KiB / 2.1 MiB [>-----------------| 00:00 ] 49.25 KiB/s
+&amp#27;[1A&amp#27;[J160.0 KiB / 2.1 MiB [>-----------------| 00:00 ] 46.58 KiB/s
+&amp#27;[1A&amp#27;[J224.0 KiB / 2.1 MiB [=>----------------| 00:00 ] 62.12 KiB/s
+&amp#27;[1A&amp#27;[J416.0 KiB / 2.1 MiB [==>--------------| 00:19 ] 109.64 KiB/s
+&amp#27;[1A&amp#27;[J448.0 KiB / 2.1 MiB [===>-------------| 00:18 ] 113.01 KiB/s
+&amp#27;[1A&amp#27;[J480.0 KiB / 2.1 MiB [===>-------------| 00:18 ] 115.73 KiB/s
+&amp#27;[1A&amp#27;[J544.0 KiB / 2.1 MiB [===>-------------| 00:17 ] 125.90 KiB/s
+&amp#27;[1A&amp#27;[J576.0 KiB / 2.1 MiB [====>------------| 00:17 ] 127.82 KiB/s
+&amp#27;[1A&amp#27;[J608.0 KiB / 2.1 MiB [====>------------| 00:16 ] 129.62 KiB/s
+&amp#27;[1A&amp#27;[J640.0 KiB / 2.1 MiB [====>------------| 00:16 ] 131.63 KiB/s
+&amp#27;[1A&amp#27;[J896.0 KiB / 2.1 MiB [======>----------| 00:13 ] 177.48 KiB/s
+&amp#27;[1A&amp#27;[J960.0 KiB / 2.1 MiB [=======>---------| 00:12 ] 183.88 KiB/s
+&amp#27;[1A&amp#27;[J960.0 KiB / 2.1 MiB [=======>---------| 00:12 ] 177.41 KiB/s
+&amp#27;[1A&amp#27;[J1.0 MiB / 2.1 MiB [========>----------| 00:12 ] 183.48 KiB/s
+&amp#27;[1A&amp#27;[J1.0 MiB / 2.1 MiB [========>----------| 00:12 ] 177.49 KiB/s
+&amp#27;[1A&amp#27;[J1.0 MiB / 2.1 MiB [========>----------| 00:11 ] 177.34 KiB/s
+&amp#27;[1A&amp#27;[J1.1 MiB / 2.1 MiB [=========>---------| 00:11 ] 177.62 KiB/s
+&amp#27;[1A&amp#27;[J1.1 MiB / 2.1 MiB [=========>---------| 00:10 ] 177.41 KiB/s
+&amp#27;[1A&amp#27;[J1.2 MiB / 2.1 MiB [==========>--------| 00:10 ] 182.64 KiB/s
+&amp#27;[1A&amp#27;[J1.2 MiB / 2.1 MiB [==========>--------| 00:09 ] 182.34 KiB/s
+&amp#27;[1A&amp#27;[J1.2 MiB / 2.1 MiB [==========>--------| 00:09 ] 182.06 KiB/s
+&amp#27;[1A&amp#27;[J1.2 MiB / 2.1 MiB [==========>--------| 00:09 ] 182.17 KiB/s
+&amp#27;[1A&amp#27;[J1.3 MiB / 2.1 MiB [===========>-------| 00:08 ] 182.11 KiB/s
+&amp#27;[1A&amp#27;[J1.3 MiB / 2.1 MiB [===========>-------| 00:08 ] 182.08 KiB/s
+&amp#27;[1A&amp#27;[J1.3 MiB / 2.1 MiB [===========>-------| 00:08 ] 181.82 KiB/s
+&amp#27;[1A&amp#27;[J1.4 MiB / 2.1 MiB [============>------| 00:07 ] 181.57 KiB/s
+&amp#27;[1A&amp#27;[J1.4 MiB / 2.1 MiB [============>------| 00:07 ] 181.73 KiB/s
+&amp#27;[1A&amp#27;[J1.4 MiB / 2.1 MiB [============>------| 00:07 ] 181.51 KiB/s
+&amp#27;[1A&amp#27;[J1.5 MiB / 2.1 MiB [=============>-----| 00:06 ] 181.63 KiB/s
+&amp#27;[1A&amp#27;[J1.5 MiB / 2.1 MiB [=============>-----| 00:06 ] 181.38 KiB/s
+&amp#27;[1A&amp#27;[J1.5 MiB / 2.1 MiB [=============>-----| 00:05 ] 181.17 KiB/s
+&amp#27;[1A&amp#27;[J1.6 MiB / 2.1 MiB [=============>-----| 00:05 ] 181.28 KiB/s
+&amp#27;[1A&amp#27;[J1.6 MiB / 2.1 MiB [=============>-----| 00:05 ] 177.55 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 231.82 KiB/s
+57
+Extracted File ID: 57
+Saved File ID to config.properties: 57
 ]]></system-out>
-    <system-err><![CDATA[SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
-SLF4J: Defaulting to no-operation (NOP) logger implementation
-SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
-]]></system-err>
+  </testcase>
+  <testcase name="testSpecialCharacterFileNameUpload" classname="com.appknox.tests.upload.UploadTests" time="20.964">
+    <system-out><![CDATA[UPLOAD-008 Output - File ID: 0.0 b / 2.1 MiB [-------------------------| 00:00 ] 0.00 b/s
+&amp#27;[1A&amp#27;[J0.0 b / 2.1 MiB [-------------------------| 00:00 ] 0.00 b/s
+&amp#27;[1A&amp#27;[J0.0 b / 2.1 MiB [-------------------------| 00:00 ] 0.00 b/s
+&amp#27;[1A&amp#27;[J0.0 b / 2.1 MiB [-------------------------| 00:00 ] 0.00 b/s
+&amp#27;[1A&amp#27;[J0.0 b / 2.1 MiB [-------------------------| 00:00 ] 0.00 b/s
+&amp#27;[1A&amp#27;[J0.0 b / 2.1 MiB [-------------------------| 00:00 ] 0.00 b/s
+&amp#27;[1A&amp#27;[J0.0 b / 2.1 MiB [-------------------------| 00:00 ] 0.00 b/s
+&amp#27;[1A&amp#27;[J0.0 b / 2.1 MiB [-------------------------| 00:00 ] 0.00 b/s
+&amp#27;[1A&amp#27;[J0.0 b / 2.1 MiB [-------------------------| 00:00 ] 0.00 b/s
+&amp#27;[1A&amp#27;[J0.0 b / 2.1 MiB [-------------------------| 00:00 ] 0.00 b/s
+&amp#27;[1A&amp#27;[J0.0 b / 2.1 MiB [-------------------------| 00:00 ] 0.00 b/s
+&amp#27;[1A&amp#27;[J0.0 b / 2.1 MiB [-------------------------| 00:00 ] 0.00 b/s
+&amp#27;[1A&amp#27;[J96.0 KiB / 2.1 MiB [>------------------| 00:00 ] 40.86 KiB/s
+&amp#27;[1A&amp#27;[J96.0 KiB / 2.1 MiB [>------------------| 00:00 ] 38.08 KiB/s
+&amp#27;[1A&amp#27;[J96.0 KiB / 2.1 MiB [>------------------| 00:00 ] 35.44 KiB/s
+&amp#27;[1A&amp#27;[J96.0 KiB / 2.1 MiB [>------------------| 00:00 ] 33.32 KiB/s
+&amp#27;[1A&amp#27;[J128.0 KiB / 2.1 MiB [>-----------------| 00:00 ] 41.71 KiB/s
+&amp#27;[1A&amp#27;[J160.0 KiB / 2.1 MiB [>-----------------| 00:00 ] 49.15 KiB/s
+&amp#27;[1A&amp#27;[J224.0 KiB / 2.1 MiB [=>----------------| 00:00 ] 65.45 KiB/s
+&amp#27;[1A&amp#27;[J224.0 KiB / 2.1 MiB [=>----------------| 00:00 ] 62.00 KiB/s
+&amp#27;[1A&amp#27;[J384.0 KiB / 2.1 MiB [==>--------------| 00:19 ] 101.49 KiB/s
+&amp#27;[1A&amp#27;[J416.0 KiB / 2.1 MiB [==>--------------| 00:19 ] 104.81 KiB/s
+&amp#27;[1A&amp#27;[J480.0 KiB / 2.1 MiB [===>-------------| 00:18 ] 115.50 KiB/s
+&amp#27;[1A&amp#27;[J512.0 KiB / 2.1 MiB [===>-------------| 00:18 ] 118.36 KiB/s
+&amp#27;[1A&amp#27;[J544.0 KiB / 2.1 MiB [===>-------------| 00:17 ] 120.55 KiB/s
+&amp#27;[1A&amp#27;[J576.0 KiB / 2.1 MiB [====>------------| 00:17 ] 123.01 KiB/s
+&amp#27;[1A&amp#27;[J608.0 KiB / 2.1 MiB [====>------------| 00:17 ] 124.80 KiB/s
+&amp#27;[1A&amp#27;[J608.0 KiB / 2.1 MiB [====>------------| 00:17 ] 120.58 KiB/s
+&amp#27;[1A&amp#27;[J896.0 KiB / 2.1 MiB [======>----------| 00:13 ] 171.35 KiB/s
+&amp#27;[1A&amp#27;[J928.0 KiB / 2.1 MiB [======>----------| 00:13 ] 171.84 KiB/s
+&amp#27;[1A&amp#27;[J928.0 KiB / 2.1 MiB [======>----------| 00:13 ] 166.13 KiB/s
+&amp#27;[1A&amp#27;[J960.0 KiB / 2.1 MiB [=======>---------| 00:12 ] 166.28 KiB/s
+&amp#27;[1A&amp#27;[J992.0 KiB / 2.1 MiB [=======>---------| 00:12 ] 166.88 KiB/s
+&amp#27;[1A&amp#27;[J1.0 MiB / 2.1 MiB [========>----------| 00:12 ] 166.94 KiB/s
+&amp#27;[1A&amp#27;[J1.0 MiB / 2.1 MiB [========>----------| 00:12 ] 162.39 KiB/s
+&amp#27;[1A&amp#27;[J1.0 MiB / 2.1 MiB [========>----------| 00:11 ] 162.70 KiB/s
+&amp#27;[1A&amp#27;[J1.1 MiB / 2.1 MiB [=========>---------| 00:11 ] 163.26 KiB/s
+&amp#27;[1A&amp#27;[J1.1 MiB / 2.1 MiB [=========>---------| 00:11 ] 163.50 KiB/s
+&amp#27;[1A&amp#27;[J1.1 MiB / 2.1 MiB [=========>---------| 00:10 ] 164.08 KiB/s
+&amp#27;[1A&amp#27;[J1.2 MiB / 2.1 MiB [==========>--------| 00:10 ] 164.28 KiB/s
+&amp#27;[1A&amp#27;[J1.2 MiB / 2.1 MiB [==========>--------| 00:09 ] 164.75 KiB/s
+&amp#27;[1A&amp#27;[J1.2 MiB / 2.1 MiB [==========>--------| 00:09 ] 164.98 KiB/s
+&amp#27;[1A&amp#27;[J1.2 MiB / 2.1 MiB [==========>--------| 00:09 ] 160.97 KiB/s
+&amp#27;[1A&amp#27;[J1.2 MiB / 2.1 MiB [==========>--------| 00:09 ] 161.61 KiB/s
+&amp#27;[1A&amp#27;[J1.3 MiB / 2.1 MiB [===========>-------| 00:08 ] 161.81 KiB/s
+&amp#27;[1A&amp#27;[J1.3 MiB / 2.1 MiB [===========>-------| 00:08 ] 158.16 KiB/s
+&amp#27;[1A&amp#27;[J1.3 MiB / 2.1 MiB [===========>-------| 00:08 ] 162.48 KiB/s
+&amp#27;[1A&amp#27;[J1.4 MiB / 2.1 MiB [============>------| 00:07 ] 162.90 KiB/s
+&amp#27;[1A&amp#27;[J1.4 MiB / 2.1 MiB [============>------| 00:07 ] 163.12 KiB/s
+&amp#27;[1A&amp#27;[J1.4 MiB / 2.1 MiB [============>------| 00:07 ] 163.32 KiB/s
+&amp#27;[1A&amp#27;[J1.5 MiB / 2.1 MiB [=============>-----| 00:06 ] 163.75 KiB/s
+&amp#27;[1A&amp#27;[J1.5 MiB / 2.1 MiB [=============>-----| 00:05 ] 167.28 KiB/s
+&amp#27;[1A&amp#27;[J1.6 MiB / 2.1 MiB [=============>-----| 00:05 ] 167.69 KiB/s
+&amp#27;[1A&amp#27;[J1.6 MiB / 2.1 MiB [==============>----| 00:05 ] 167.81 KiB/s
+&amp#27;[1A&amp#27;[J1.6 MiB / 2.1 MiB [==============>----| 00:04 ] 167.88 KiB/s
+&amp#27;[1A&amp#27;[J1.7 MiB / 2.1 MiB [==============>----| 00:04 ] 168.21 KiB/s
+&amp#27;[1A&amp#27;[J1.7 MiB / 2.1 MiB [===============>---| 00:04 ] 168.28 KiB/s
+&amp#27;[1A&amp#27;[J1.7 MiB / 2.1 MiB [===============>---| 00:03 ] 168.55 KiB/s
+&amp#27;[1A&amp#27;[J1.8 MiB / 2.1 MiB [===============>---| 00:03 ] 168.65 KiB/s
+&amp#27;[1A&amp#27;[J1.8 MiB / 2.1 MiB [================>--| 00:02 ] 171.65 KiB/s
+&amp#27;[1A&amp#27;[J1.8 MiB / 2.1 MiB [================>--| 00:02 ] 171.89 KiB/s
+&amp#27;[1A&amp#27;[J1.9 MiB / 2.1 MiB [================>--| 00:02 ] 171.88 KiB/s
+&amp#27;[1A&amp#27;[J1.9 MiB / 2.1 MiB [=================>-| 00:01 ] 172.13 KiB/s
+&amp#27;[1A&amp#27;[J1.9 MiB / 2.1 MiB [=================>-| 00:01 ] 172.10 KiB/s
+&amp#27;[1A&amp#27;[J2.0 MiB / 2.1 MiB [=================>-| 00:01 ] 172.31 KiB/s
+&amp#27;[1A&amp#27;[J2.0 MiB / 2.1 MiB [=================>-| 00:00 ] 172.28 KiB/s
+&amp#27;[1A&amp#27;[J2.0 MiB / 2.1 MiB [===================| 00:00 ] 172.27 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 172.49 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 172.44 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 172.44 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 172.44 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 172.44 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 172.44 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 172.44 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 172.44 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 172.44 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 172.44 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 172.44 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 172.44 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 172.44 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 172.44 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 172.44 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 172.44 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 172.44 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 172.44 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 172.44 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 172.44 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 172.44 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 172.44 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 172.44 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 172.44 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 172.44 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 172.44 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 172.44 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 172.44 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 172.44 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 172.44 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 172.44 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 172.44 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 172.44 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 172.44 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 172.44 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 172.44 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 172.44 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 172.44 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 172.44 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 172.44 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 172.44 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 172.44 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 172.44 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 172.44 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 172.44 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 172.44 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 172.44 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 172.44 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 172.44 KiB/s
+&amp#27;[1A&amp#27;[J2.1 MiB / 2.1 MiB [===================| 00:00 ] 172.44 KiB/s
+58
+]]></system-out>
+  </testcase>
+  <testcase name="testNonExistentFileUpload" classname="com.appknox.tests.upload.UploadTests" time="0.092">
+    <system-out><![CDATA[UPLOAD-003 Output: Error: open C:/non-existent-file.apk: The system cannot find the file specified.
+Usage:
+  appknox upload [flags]
+
+Flags:
+  -h, --help   help for upload
+
+Global Flags:
+  -a, --access-token string   Appknox Access Token
+      --host string           Appknox Server
+  -k, --insecure              Disable Security Checks
+      --pac string            pac file path or url
+      --proxy string          proxy url
+      --region string         Region names, e.g., global, saudi, uae. By default, global is used
+]]></system-out>
+  </testcase>
+  <testcase name="testInvalidFileTypeUpload" classname="com.appknox.tests.upload.UploadTests" time="8.358">
+    <system-out><![CDATA[UPLOAD-007 Output: 0.0 b / 759.0 b [-------------------------| 00:00 ] 0.00 b/s
+&amp#27;[1A&amp#27;[J0.0 b / 759.0 b [-------------------------| 00:00 ] 0.00 b/s
+&amp#27;[1A&amp#27;[J0.0 b / 759.0 b [-------------------------| 00:00 ] 0.00 b/s
+&amp#27;[1A&amp#27;[J0.0 b / 759.0 b [-------------------------| 00:00 ] 0.00 b/s
+&amp#27;[1A&amp#27;[J0.0 b / 759.0 b [-------------------------| 00:00 ] 0.00 b/s
+&amp#27;[1A&amp#27;[J0.0 b / 759.0 b [-------------------------| 00:00 ] 0.00 b/s
+&amp#27;[1A&amp#27;[J0.0 b / 759.0 b [-------------------------| 00:00 ] 0.00 b/s
+&amp#27;[1A&amp#27;[J0.0 b / 759.0 b [-------------------------| 00:00 ] 0.00 b/s
+&amp#27;[1A&amp#27;[J0.0 b / 759.0 b [-------------------------| 00:00 ] 0.00 b/s
+&amp#27;[1A&amp#27;[J0.0 b / 759.0 b [-------------------------| 00:00 ] 0.00 b/s
+&amp#27;[1A&amp#27;[J0.0 b / 759.0 b [-------------------------| 00:00 ] 0.00 b/s
+&amp#27;[1A&amp#27;[J0.0 b / 759.0 b [-------------------------| 00:00 ] 0.00 b/s
+&amp#27;[1A&amp#27;[J0.0 b / 759.0 b [-------------------------| 00:00 ] 0.00 b/s
+&amp#27;[1A&amp#27;[J759.0 b / 759.0 b [=====================| 00:00 ] 315.00 b/s
+&amp#27;[1A&amp#27;[J759.0 b / 759.0 b [=====================| 00:00 ] 315.00 b/s
+&amp#27;[1A&amp#27;[J759.0 b / 759.0 b [=====================| 00:00 ] 315.00 b/s
+&amp#27;[1A&amp#27;[J759.0 b / 759.0 b [=====================| 00:00 ] 315.00 b/s
+&amp#27;[1A&amp#27;[J759.0 b / 759.0 b [=====================| 00:00 ] 315.00 b/s
+&amp#27;[1A&amp#27;[J759.0 b / 759.0 b [=====================| 00:00 ] 315.00 b/s
+&amp#27;[1A&amp#27;[J759.0 b / 759.0 b [=====================| 00:00 ] 315.00 b/s
+&amp#27;[1A&amp#27;[J759.0 b / 759.0 b [=====================| 00:00 ] 315.00 b/s
+&amp#27;[1A&amp#27;[J759.0 b / 759.0 b [=====================| 00:00 ] 315.00 b/s
+&amp#27;[1A&amp#27;[J759.0 b / 759.0 b [=====================| 00:00 ] 315.00 b/s
+&amp#27;[1A&amp#27;[J759.0 b / 759.0 b [=====================| 00:00 ] 315.00 b/s
+&amp#27;[1A&amp#27;[J759.0 b / 759.0 b [=====================| 00:00 ] 315.00 b/s
+&amp#27;[1A&amp#27;[J759.0 b / 759.0 b [=====================| 00:00 ] 315.00 b/s
+&amp#27;[1A&amp#27;[J759.0 b / 759.0 b [=====================| 00:00 ] 315.00 b/s
+&amp#27;[1A&amp#27;[J759.0 b / 759.0 b [=====================| 00:00 ] 315.00 b/s
+&amp#27;[1A&amp#27;[J759.0 b / 759.0 b [=====================| 00:00 ] 315.00 b/s
+&amp#27;[1A&amp#27;[J759.0 b / 759.0 b [=====================| 00:00 ] 315.00 b/s
+&amp#27;[1A&amp#27;[J759.0 b / 759.0 b [=====================| 00:00 ] 315.00 b/s
+&amp#27;[1A&amp#27;[J759.0 b / 759.0 b [=====================| 00:00 ] 315.00 b/s
+&amp#27;[1A&amp#27;[J759.0 b / 759.0 b [=====================| 00:00 ] 315.00 b/s
+&amp#27;[1A&amp#27;[J759.0 b / 759.0 b [=====================| 00:00 ] 315.00 b/s
+&amp#27;[1A&amp#27;[J759.0 b / 759.0 b [=====================| 00:00 ] 315.00 b/s
+&amp#27;[1A&amp#27;[J759.0 b / 759.0 b [=====================| 00:00 ] 315.00 b/s
+&amp#27;[1A&amp#27;[J759.0 b / 759.0 b [=====================| 00:00 ] 315.00 b/s
+&amp#27;[1A&amp#27;[J759.0 b / 759.0 b [=====================| 00:00 ] 315.00 b/s
+&amp#27;[1A&amp#27;[J759.0 b / 759.0 b [=====================| 00:00 ] 315.00 b/s
+&amp#27;[1A&amp#27;[J759.0 b / 759.0 b [=====================| 00:00 ] 315.00 b/s
+&amp#27;[1A&amp#27;[J759.0 b / 759.0 b [=====================| 00:00 ] 315.00 b/s
+&amp#27;[1A&amp#27;[J759.0 b / 759.0 b [=====================| 00:00 ] 315.00 b/s
+&amp#27;[1A&amp#27;[J759.0 b / 759.0 b [=====================| 00:00 ] 315.00 b/s
+&amp#27;[1A&amp#27;[J759.0 b / 759.0 b [=====================| 00:00 ] 315.00 b/s
+&amp#27;[1A&amp#27;[J759.0 b / 759.0 b [=====================| 00:00 ] 315.00 b/s
+&amp#27;[1A&amp#27;[J759.0 b / 759.0 b [=====================| 00:00 ] 315.00 b/s
+&amp#27;[1A&amp#27;[J759.0 b / 759.0 b [=====================| 00:00 ] 315.00 b/s
+&amp#27;[1A&amp#27;[J759.0 b / 759.0 b [=====================| 00:00 ] 315.00 b/s
+The app you are trying to scan is not a valid mobile application
+]]></system-out>
+  </testcase>
+  <testcase name="testUploadWithoutFilePath" classname="com.appknox.tests.upload.UploadTests" time="0.089">
+    <system-out><![CDATA[UPLOAD-005 Output: Error: file path is required
+Usage:
+  appknox upload [flags]
+
+Flags:
+  -h, --help   help for upload
+
+Global Flags:
+  -a, --access-token string   Appknox Access Token
+      --host string           Appknox Server
+  -k, --insecure              Disable Security Checks
+      --pac string            pac file path or url
+      --proxy string          proxy url
+      --region string         Region names, e.g., global, saudi, uae. By default, global is used
+]]></system-out>
   </testcase>
 </testsuite>

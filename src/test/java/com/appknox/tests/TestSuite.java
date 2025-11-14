@@ -13,7 +13,7 @@ import org.junit.platform.suite.api.Suite;
 import org.junit.platform.suite.api.SuiteDisplayName;
 
 @Suite
-@SuiteDisplayName("Appknox CLI Complete Test Suite")
+@SuiteDisplayName("Appknox CLI Test Suite")
 @SelectClasses({
     AuthenticationTests.class,// 1st - Run authentication first
     InformationTests.class,   //2nd - Information tests  

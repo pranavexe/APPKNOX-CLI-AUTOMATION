@@ -109,8 +109,6 @@ public class AnalysesTests extends BaseTest {
 
             assertThat(result.isSuccess()).isTrue()
                     .as("Command should fail with invalid vulnerability ID");
-        //     assertThat(result.getOutput().toLowerCase())
-        //             .containsAnyOf("description", "compliant", "intro");
 
             Allure.addAttachment("ANA-004 Output", result.getOutput());
         });

@@ -167,10 +167,10 @@ public void testCICheckWithHighRiskThreshold() {
         System.out.println("Extracted Risks: " + risksFound);
         Allure.addAttachment("Extracted Risks", String.join(", ", risksFound));
 
-        // ✅ Allowed risks for 'high' threshold
+        //Allowed risks for 'high' threshold
         Set<String> allowedRisks = Set.of("High", "Critical");
 
-        // ✅ Verify all risks are allowed
+        //Verify all risks are allowed
         for (String risk : risksFound) {
             assertThat(allowedRisks)
                     .as("Risk '" + risk + "' should be allowed for high threshold")
@@ -215,7 +215,7 @@ public void testCICheckWithCriticalRiskThreshold() {
                 .as("Output should not be empty")
                 .isNotEmpty();
 
-        // ✅ Extract RISK column values (Low, Medium, High, Critical)
+        // Extract RISK column values 
         Pattern riskPattern = Pattern.compile("\\b(Low|Medium|High|Critical)\\b", Pattern.CASE_INSENSITIVE);
         Matcher matcher = riskPattern.matcher(output);
         List<String> risksFound = new ArrayList<>();
@@ -227,10 +227,10 @@ public void testCICheckWithCriticalRiskThreshold() {
         System.out.println("Extracted Risks: " + risksFound);
         Allure.addAttachment("Extracted Risks", String.join(", ", risksFound));
 
-        // ✅ Allowed risk for 'critical' threshold
+        // Allowed risk for 'critical' threshold
         Set<String> allowedRisks = Set.of("Critical");
 
-        // ✅ Validate all risks are Critical only
+        //Validate all risks are Critical only
         for (String risk : risksFound) {
             assertThat(allowedRisks)
                     .as("Risk '" + risk + "' should not appear for critical threshold")

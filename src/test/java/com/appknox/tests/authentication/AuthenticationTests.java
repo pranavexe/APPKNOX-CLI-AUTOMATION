@@ -23,7 +23,7 @@ public class AuthenticationTests extends BaseTest {
     @Story("Valid Token Authentication")
     @Severity(SeverityLevel.CRITICAL)
     @Description("Verify authentication using a valid Appknox access token and a valid host configuration.")
-    @DisplayName("AUTH-001: Verify authentication using a valid token")
+    @DisplayName("AUTH-001: Verify authentication using a valid token and host")
     public void testValidTokenAuthentication() {
         String host = config.getValidHost();
         String token = config.getValidToken();
@@ -41,6 +41,7 @@ public class AuthenticationTests extends BaseTest {
                     .containsAnyOf("email", "name", "username", "id");
 
             Allure.addAttachment("AUTH-001 Output", result.getOutput());
+            System.out.println("AUTH-001 Output:" + result.getOutput());
         });
     }
 
@@ -65,6 +66,7 @@ public class AuthenticationTests extends BaseTest {
                     .containsAnyOf("invalid", "expired", "token", "unauthorized", "authentication");
 
             Allure.addAttachment("AUTH-002 Output", result.getOutput());
+            
         });
     }
 

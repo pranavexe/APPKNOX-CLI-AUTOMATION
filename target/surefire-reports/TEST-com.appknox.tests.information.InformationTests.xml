@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.appknox.tests.information.InformationTests" time="5.944" tests="4" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.appknox.tests.information.InformationTests" time="6.512" tests="4" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="25"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -15,7 +15,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="IN"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-25\bin"/>
-    <property name="sun.java.command" value="C:\Users\ombul\AppData\Local\Temp\surefire5881244254459110233\surefirebooter-20251113140928592_3.jar C:\Users\ombul\AppData\Local\Temp\surefire5881244254459110233 2025-11-13T14-09-28_469-jvmRun1 surefire-20251113140928592_1tmp surefire_0-20251113140928592_2tmp"/>
+    <property name="sun.java.command" value="C:\Users\ombul\AppData\Local\Temp\surefire8522229368793408414\surefirebooter-20251114180617657_3.jar C:\Users\ombul\AppData\Local\Temp\surefire8522229368793408414 2025-11-14T18-06-17_538-jvmRun1 surefire-20251114180617657_1tmp surefire_0-20251114180617657_2tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="test" value="TestSuite"/>
     <property name="surefire.test.class.path" value="C:\Users\ombul\appknox-cli-automation\target\test-classes;C:\Users\ombul\appknox-cli-automation\target\classes;C:\Users\ombul\.m2\repository\org\junit\jupiter\junit-jupiter\5.9.3\junit-jupiter-5.9.3.jar;C:\Users\ombul\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.9.3\junit-jupiter-api-5.9.3.jar;C:\Users\ombul\.m2\repository\org\opentest4j\opentest4j\1.2.0\opentest4j-1.2.0.jar;C:\Users\ombul\.m2\repository\org\junit\platform\junit-platform-commons\1.9.3\junit-platform-commons-1.9.3.jar;C:\Users\ombul\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\ombul\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.9.3\junit-jupiter-params-5.9.3.jar;C:\Users\ombul\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.9.3\junit-jupiter-engine-5.9.3.jar;C:\Users\ombul\.m2\repository\org\junit\platform\junit-platform-engine\1.9.3\junit-platform-engine-1.9.3.jar;C:\Users\ombul\.m2\repository\org\assertj\assertj-core\3.24.2\assertj-core-3.24.2.jar;C:\Users\ombul\.m2\repository\net\bytebuddy\byte-buddy\1.12.21\byte-buddy-1.12.21.jar;C:\Users\ombul\.m2\repository\org\junit\platform\junit-platform-suite\1.10.0\junit-platform-suite-1.10.0.jar;C:\Users\ombul\.m2\repository\org\junit\platform\junit-platform-suite-api\1.10.0\junit-platform-suite-api-1.10.0.jar;C:\Users\ombul\.m2\repository\org\junit\platform\junit-platform-suite-engine\1.10.0\junit-platform-suite-engine-1.10.0.jar;C:\Users\ombul\.m2\repository\org\junit\platform\junit-platform-suite-commons\1.10.0\junit-platform-suite-commons-1.10.0.jar;C:\Users\ombul\.m2\repository\io\qameta\allure\allure-junit5\2.24.0\allure-junit5-2.24.0.jar;C:\Users\ombul\.m2\repository\io\qameta\allure\allure-junit-platform\2.24.0\allure-junit-platform-2.24.0.jar;C:\Users\ombul\.m2\repository\io\qameta\allure\allure-java-commons\2.24.0\allure-java-commons-2.24.0.jar;C:\Users\ombul\.m2\repository\org\slf4j\slf4j-api\1.7.36\slf4j-api-1.7.36.jar;C:\Users\ombul\.m2\repository\io\qameta\allure\allure-model\2.24.0\allure-model-2.24.0.jar;C:\Users\ombul\.m2\repository\io\qameta\allure\allure-test-filter\2.24.0\allure-test-filter-2.24.0.jar;C:\Users\ombul\.m2\repository\org\junit\platform\junit-platform-launcher\1.9.2\junit-platform-launcher-1.9.2.jar;"/>
@@ -32,7 +32,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="C:\Users\ombul\AppData\Local\Temp\surefire5881244254459110233\surefirebooter-20251113140928592_3.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\ombul\AppData\Local\Temp\surefire8522229368793408414\surefirebooter-20251114180617657_3.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="25.0.1+8-LTS-27"/>
@@ -52,7 +52,7 @@
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
     <property name="sun.os.patch.level" value=""/>
     <property name="native.encoding" value="Cp1252"/>
-    <property name="java.library.path" value="C:\Program Files\Java\jdk-25\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Program Files\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\Program Files\dotnet\;C:\Program Files\Git\cmd;C:\Users\ombul\Appknox\;C:\Program Files\Java\jdk-25\bin;C:\Program Files\apache-maven-3.9.11\bin;C:\Users\ombul\AppData\Local\Microsoft\WindowsApps;C:\Users\ombul\AppData\Local\Programs\Microsoft VS Code\bin;c:\Users\ombul\.vscode\extensions\vscjava.vscode-java-debug-0.58.3\bundled\scripts\noConfigScripts;c:\Users\ombul\AppData\Roaming\Code\User\globalStorage\github.copilot-chat\debugCommand;."/>
+    <property name="java.library.path" value="C:\Program Files\Java\jdk-25\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;c:\Users\ombul\AppData\Roaming\Code\User\globalStorage\github.copilot-chat\debugCommand;c:\Users\ombul\AppData\Roaming\Code\User\globalStorage\github.copilot-chat\copilotCli;C:\Program Files\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\Program Files\dotnet\;C:\Program Files\Git\cmd;C:\Users\ombul\Appknox\;C:\Program Files\Java\jdk-25\bin;C:\Program Files\apache-maven-3.9.11\bin;C:\Users\ombul\AppData\Local\Microsoft\WindowsApps;C:\Users\ombul\AppData\Local\Programs\Microsoft VS Code\bin;c:\Users\ombul\.vscode\extensions\vscjava.vscode-java-debug-0.58.3\bundled\scripts\noConfigScripts;."/>
     <property name="java.vm.info" value="mixed mode, sharing"/>
     <property name="stderr.encoding" value="Cp1252"/>
     <property name="java.vendor" value="Oracle Corporation"/>
@@ -61,7 +61,7 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="69.0"/>
   </properties>
-  <testcase name="testFilesListWithoutProjectId" classname="com.appknox.tests.information.InformationTests" time="0.114">
+  <testcase name="testFilesListWithoutProjectId" classname="com.appknox.tests.information.InformationTests" time="0.124">
     <system-out><![CDATA[INFO-005 Output:
 Error: project id is required
 Usage:
@@ -82,33 +82,33 @@ Global Flags:
       --region string         Region names, e.g., global, saudi, uae. By default, global is used
 ]]></system-out>
   </testcase>
-  <testcase name="testFilesListForInvalidProject" classname="com.appknox.tests.information.InformationTests" time="0.399">
+  <testcase name="testFilesListForInvalidProject" classname="com.appknox.tests.information.InformationTests" time="0.576">
     <system-out><![CDATA[INFO-004 Output:
 GET https://ratelimiting.staging.do.appknox.io/api/projects/999999999/files: 404 No Project matches the given query.
 ]]></system-out>
   </testcase>
-  <testcase name="testOrganizationsList" classname="com.appknox.tests.information.InformationTests" time="0.358">
+  <testcase name="testOrganizationsList" classname="com.appknox.tests.information.InformationTests" time="0.508">
     <system-out><![CDATA[INFO-001 Output:
 ID:              1
 Username:        Appknox
 ProjectsCount:   13
 ]]></system-out>
   </testcase>
-  <testcase name="testFilesListForDynamicProject" classname="com.appknox.tests.information.InformationTests" time="5.061">
+  <testcase name="testFilesListForDynamicProject" classname="com.appknox.tests.information.InformationTests" time="5.291">
     <system-out><![CDATA[Using Project ID: 1
 Files output:
 ID  NAME  VERSION  VERSION-CODE  DYNAMIC-STATUS  API-SCAN-PROGRESS  IS-STATIC-DONE  IS-DYNAMIC-DONE  STATIC-SCAN-PROGRESS  API-SCAN-STATUS  RATING  IS-MANUAL-DONE  IS-API-DONE  CREATED-ON
 --  ----  -------  ------------  --------------  -----------------  --------------  ---------------  --------------------  ---------------  ------  --------------  -----------  ----------
-37  MFVA  1.1.1    8             None            0                  true            false            100                   Unknown          24.21   false           false        2025-11-13 08:32:11.540764 +0000 UTC
-36  MFVA  1.1.1    8             None            0                  true            false            100                   Unknown          24.21   false           false        2025-11-13 08:31:41.352662 +0000 UTC
-35  MFVA  1.1.1    8             None            0                  true            false            100                   Unknown          24.21   false           false        2025-11-13 08:31:16.459781 +0000 UTC
-34  MFVA  1.1.1    8             None            0                  true            false            100                   Unknown          24.21   false           false        2025-11-13 08:30:30.673183 +0000 UTC
-33  MFVA  1.1.1    8             None            0                  true            false            100                   Unknown          24.21   false           false        2025-11-13 08:03:51.002499 +0000 UTC
-32  MFVA  1.1.1    8             None            0                  true            false            100                   Unknown          24.21   false           false        2025-11-13 08:03:28.945445 +0000 UTC
-31  MFVA  1.1.1    8             None            0                  true            false            100                   Unknown          24.21   false           false        2025-11-13 08:02:33.811652 +0000 UTC
-30  MFVA  1.1.1    8             None            0                  true            false            100                   Unknown          24.21   false           false        2025-11-13 08:02:20.732051 +0000 UTC
-29  MFVA  1.1.1    8             None            0                  true            false            100                   Unknown          24.21   false           false        2025-11-13 07:57:15.595751 +0000 UTC
-28  MFVA  1.1.1    8             None            0                  true            false            100                   Unknown          24.21   false           false        2025-11-13 07:56:56.506103 +0000 UTC
+56  MFVA  1.1.1    8             None            0                  true            false            100                   Unknown          24.21   false           false        2025-11-14 11:56:16.876369 +0000 UTC
+55  MFVA  1.1.1    8             None            0                  true            false            100                   Unknown          24.21   false           false        2025-11-14 11:56:05.126748 +0000 UTC
+54  MFVA  1.1.1    8             None            0                  true            false            100                   Unknown          24.21   false           false        2025-11-13 12:25:14.882243 +0000 UTC
+53  MFVA  1.1.1    8             None            0                  true            false            100                   Unknown          24.21   false           false        2025-11-13 12:25:02.009262 +0000 UTC
+52  MFVA  1.1.1    8             None            0                  true            false            100                   Unknown          24.21   false           false        2025-11-13 12:24:47.717367 +0000 UTC
+51  MFVA  1.1.1    8             None            0                  true            false            100                   Unknown          24.21   false           false        2025-11-13 12:11:34.758434 +0000 UTC
+50  MFVA  1.1.1    8             None            0                  true            false            100                   Unknown          24.21   false           false        2025-11-13 12:11:28.747454 +0000 UTC
+49  MFVA  1.1.1    8             None            0                  true            false            100                   Unknown          24.21   false           false        2025-11-13 12:11:17.156888 +0000 UTC
+48  MFVA  1.1.1    8             None            0                  true            false            100                   Unknown          24.21   false           false        2025-11-13 12:03:47.061542 +0000 UTC
+47  MFVA  1.1.1    8             None            0                  true            false            100                   Unknown          24.21   false           false        2025-11-13 11:54:17.142797 +0000 UTC
 ]]></system-out>
   </testcase>
 </testsuite>

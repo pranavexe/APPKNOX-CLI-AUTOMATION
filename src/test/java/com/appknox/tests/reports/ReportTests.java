@@ -1,5 +1,4 @@
 
-
 package com.appknox.tests.reports;
 
 import com.appknox.tests.BaseTest;
@@ -45,11 +44,18 @@ public void testReportCreation() {
     Allure.step("Execute CLI command: appknox reports create " + fileId);
     CommandResult result = cliExecutor.executeCommand(cmdList, env);
 
+    // assertThat(result.getOutput())
+    //     .as("CLI output should not contain 400 or Bad Request")
+    //     .doesNotContain("400")
+    //     .doesNotContain("Bad Request")
+    //     .doesNotContain("POST");
+
     assertThat(result.isSuccess())
             .as("Report creation should succeed with valid file ID")
             .isTrue();
 
     String output = result.getOutput().trim();
+
 
     // Extract numeric report ID from output
     String reportId = output.replaceAll("[^0-9]", "");
@@ -104,14 +110,19 @@ public void testReportCreation() {
 
         Allure.step("Execute CLI command: appknox reports download summary-csv " + reportId);
         CommandResult result = cliExecutor.executeCommand(cmdList, env);
-
+        
         assertThat(result.isSuccess()).isTrue();
         assertThat(csvFile.exists()).isTrue();
         assertThat(csvFile.length()).isGreaterThan(0);
-        
+     try {
+         waitForNonEmptyFile(csvFile, 20);
+     } catch (InterruptedException ex) {
+     }
 
         Allure.addAttachment("REP-004 CLI Output", new ByteArrayInputStream(result.getOutput().getBytes()));
         Allure.addAttachment("Downloaded CSV Report", "text/csv", new FileInputStream(csvFile), "csv");
+        System.out.println("for report id "+reportId);
+        System.out.println("REP-004 Output - CSV Report downloaded at: " + fullPath);
     }
 
     @Test
@@ -148,11 +159,18 @@ public void testReportCreation() {
         assertThat(result.isSuccess()).isTrue();
         assertThat(excelFile.exists()).isTrue();
         assertThat(excelFile.length()).isGreaterThan(0);
+         try {
+         waitForNonEmptyFile(excelFile, 20);
+     } catch (InterruptedException ex) {
+     }
 
         Allure.addAttachment("REP-005 CLI Output", new ByteArrayInputStream(result.getOutput().getBytes()));
         Allure.addAttachment("Downloaded Excel Report", 
                 "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
                 new FileInputStream(excelFile), "xlsx");
+
+        System.out.println("for report id "+reportId);
+
     }
 
     @Test
@@ -175,13 +193,18 @@ public void testReportCreation() {
         Allure.step("Execute CLI command: appknox sarif " + fileId);
         CommandResult result = cliExecutor.executeCommand(cmdList, env);
 
+        
+
         assertThat(result.isSuccess()).isTrue();
         String output = result.getOutput();
         assertThat(output).isNotEmpty();
 
         String lowerOutput = output.toLowerCase();
         assertThat(lowerOutput).containsAnyOf("sarif", "version", "runs", "results");
+        System.out.println("REP-009 Output - SARIF report generated for File ID: " + fileId);
 
         Allure.addAttachment("REP-009 CLI Output", new ByteArrayInputStream(output.getBytes()));
+        config.reload();
+
     }
 }
