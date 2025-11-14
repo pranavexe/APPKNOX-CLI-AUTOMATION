@@ -51,12 +51,12 @@ jobs:
         echo "Checking if appknox is in PATH..."
         which appknox
         appknox --version
-    
+        
     - name: Run TestSuite
       run: mvn clean test "-Dtest=com.appknox.tests.TestSuite"
       env:
-        APPKNOX_API_HOST: ${{ secrets.APPKNOX_HOST }}
-        APPKNOX_ACCESS_TOKEN: ${{ secrets.APPKNOX_TOKEN }}
+        export APPKNOX_API_HOST: ${{ secrets.APPKNOX_HOST }}
+        export APPKNOX_ACCESS_TOKEN: ${{ secrets.APPKNOX_TOKEN }}
     
     - name: Generate Allure Report
       if: always()
