@@ -9,7 +9,7 @@ on:
 
 jobs:
   test:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest  # Changed from windows-latest
     
     steps:
     - name: Checkout Code
@@ -22,45 +22,44 @@ jobs:
         distribution: 'temurin'
         cache: maven
     
-  
-
-
-    - name: Install Appknox CLI (Windows)
-      shell: pwsh
+    - name: Install Appknox CLI (Linux)
       run: |
-          Write-Host "Fetching latest Appknox CLI release URL..."
-          $latestRelease = Invoke-RestMethod -Uri "https://api.github.com/repos/appknox/appknox-go/releases/latest"
-          $asset = $latestRelease.assets | Where-Object { $_.name -match "Windows-x86_64.exe" }
-          if (-not $asset) { throw "Appknox Windows binary not found in latest release assets!" }
-
-          $downloadUrl = $asset.browser_download_url
-          $installPath = "$env:USERPROFILE\appknox.exe"
-
-          Write-Host "Downloading from: $downloadUrl"
-          Invoke-WebRequest -Uri $downloadUrl -OutFile $installPath
-          Write-Host "Adding Appknox CLI to PATH..."
-          Add-Content -Path $env:GITHUB_PATH -Value "$env:USERPROFILE"
-          Write-Host "Verifying installation..."
-          & $installPath --version
-
+        echo "🔽 Fetching latest Appknox CLI release URL..."
+        LATEST_RELEASE=$(curl -s https://api.github.com/repos/appknox/appknox-go/releases/latest | grep "browser_download_url.*Linux-x86_64" | cut -d '"' -f 4)
+        
+        if [ -z "$LATEST_RELEASE" ]; then
+          echo "❌ Failed to get latest release URL"
+          exit 1
+        fi
+        
+        echo "📦 Downloading from: $LATEST_RELEASE"
+        curl -L -o appknox "$LATEST_RELEASE"
+        
+        echo "✅ Making executable..."
+        chmod +x appknox
+        
+        echo "📁 Moving to /usr/local/bin..."
+        sudo mv appknox /usr/local/bin/
+        
+        echo "🔍 Verifying installation..."
+        appknox --version
+        
+        echo "✅ Appknox CLI installed successfully!"
     
     - name: Verify Appknox CLI in PATH
-      shell: pwsh
       run: |
-        Write-Host "Checking if appknox is in PATH..."
-        $env:PATH = "$env:USERPROFILE;$env:PATH"
-        appknox.exe --version
+        echo "Checking if appknox is in PATH..."
+        which appknox
+        appknox --version
     
     - name: Run TestSuite
-      shell: pwsh
-      run: mvn clean test "-Dtest=com.appknox.tests.TestSuite"
+      run: mvn clean test -Dtest=com.appknox.tests.TestSuite
       env:
         APPKNOX_API_HOST: ${{ secrets.APPKNOX_HOST }}
         APPKNOX_ACCESS_TOKEN: ${{ secrets.APPKNOX_TOKEN }}
     
     - name: Generate Allure Report
       if: always()
-      shell: pwsh
       run: mvn allure:report
     
     - name: Upload Allure Results
@@ -83,54 +82,110 @@ jobs:
     
     - name: Test Summary
       if: always()
-      shell: pwsh
       run: |
-        Write-Host "Test Execution Summary" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append
-        Write-Host "" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append
+        echo "# 📊 Test Execution Summary" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
         
-        $xmlFiles = Get-ChildItem -Path "target/surefire-reports" -Filter "*.xml" -ErrorAction SilentlyContinue
-
-        if ($xmlFiles) {
-          $totalTests = 0
-          $failures = 0
-          $errors = 0
-          $failedTests = @()
-
-          foreach ($file in $xmlFiles) {
-            [xml]$xml = Get-Content $file.FullName
-            if ($xml.testsuite) {
-              $totalTests += [int]$xml.testsuite.tests
-              $failures += [int]$xml.testsuite.failures
-              $errors += [int]$xml.testsuite.errors
-
-              # Collect failed test names and messages
-              foreach ($testcase in $xml.testsuite.testcase) {
-                if ($testcase.failure) {
-                  $failedTests += "❌ $($testcase.name) — $($testcase.failure.message)"
-                } elseif ($testcase.error) {
-                  $failedTests += "💥$($testcase.name) — $($testcase.error.message)"
-                }
-              }
-            }
-          }
-
-          # Write summary
-          Write-Host "**Test Statistics:**" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append
-          Write-Host "-Total Tests: $totalTests" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append
-          Write-Host "-✅Passed: $($totalTests - $failures - $errors)" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append
-          Write-Host "- ❌Failed: $failures" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append
-          Write-Host "- Errors: $errors" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append
-          Write-Host "" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append
-
-          if ($failedTests.Count -gt 0) {
-            Write-Host "❌ Failed Test Cases" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append
-            foreach ($fail in $failedTests) {
-              Write-Host "$fail" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append
-            }
-          } else {
-            Write-Host "✅ All test cases passed successfully!" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append
-          }
-
-        } else {
-          Write-Host "❌Tests failed to generate reports" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append
-        }
+        if ls target/surefire-reports/*.xml 1> /dev/null 2>&1; then
+          TOTAL=0
+          FAILURES=0
+          ERRORS=0
+          FAILED_TESTS=""
+          
+          for file in target/surefire-reports/TEST-*.xml; do
+            if [ -f "$file" ]; then
+              # Extract test statistics
+              TESTS=$(grep -o 'tests="[0-9]*"' "$file" | grep -o '[0-9]*' || echo "0")
+              FAIL=$(grep -o 'failures="[0-9]*"' "$file" | grep -o '[0-9]*' || echo "0")
+              ERR=$(grep -o 'errors="[0-9]*"' "$file" | grep -o '[0-9]*' || echo "0")
+              
+              TOTAL=$((TOTAL + TESTS))
+              FAILURES=$((FAILURES + FAIL))
+              ERRORS=$((ERRORS + ERR))
+              
+              # Extract failed test details
+              if [ "$FAIL" -gt 0 ] || [ "$ERR" -gt 0 ]; then
+                FAILED_TESTS="${FAILED_TESTS}\n$(grep -A 5 '<failure\|<error' "$file" | grep -o 'name="[^"]*"' | cut -d'"' -f2 || true)"
+              fi
+            fi
+          done
+          
+          PASSED=$((TOTAL - FAILURES - ERRORS))
+          
+          # Status header
+          if [ $FAILURES -eq 0 ] && [ $ERRORS -eq 0 ]; then
+            echo "## ✅ All Tests Passed!" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "## ❌ Tests Failed" >> $GITHUB_STEP_SUMMARY
+          fi
+          
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### 📈 Test Statistics" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Metric | Count |" >> $GITHUB_STEP_SUMMARY
+          echo "|--------|-------|" >> $GITHUB_STEP_SUMMARY
+          echo "| ✅ **Passed** | $PASSED |" >> $GITHUB_STEP_SUMMARY
+          echo "| ❌ **Failed** | $FAILURES |" >> $GITHUB_STEP_SUMMARY
+          echo "| ⚠️ **Errors** | $ERRORS |" >> $GITHUB_STEP_SUMMARY
+          echo "| 📊 **Total** | $TOTAL |" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          # Failed tests details
+          if [ $FAILURES -gt 0 ] || [ $ERRORS -gt 0 ]; then
+            echo "### ❌ Failed Test Cases" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            
+            for file in target/surefire-reports/TEST-*.xml; do
+              if [ -f "$file" ]; then
+                # Parse XML for failed tests
+                grep -A 10 '<testcase' "$file" | grep -B 1 '<failure\|<error' | while IFS= read -r line; do
+                  if echo "$line" | grep -q 'testcase'; then
+                    TEST_NAME=$(echo "$line" | grep -o 'name="[^"]*"' | cut -d'"' -f2)
+                    CLASS_NAME=$(echo "$line" | grep -o 'classname="[^"]*"' | cut -d'"' -f2)
+                    if [ ! -z "$TEST_NAME" ]; then
+                      echo "- ❌ \`${CLASS_NAME}#${TEST_NAME}\`" >> $GITHUB_STEP_SUMMARY
+                    fi
+                  fi
+                done
+              fi
+            done
+            
+            echo "" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "✅ **All test cases passed successfully!**" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+          fi
+          
+          echo "---" >> $GITHUB_STEP_SUMMARY
+          echo "📁 **Download detailed reports from Artifacts section below**" >> $GITHUB_STEP_SUMMARY
+          
+        else
+          echo "## ❌ Tests Failed to Generate Reports" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "No test reports found in \`target/surefire-reports/\`" >> $GITHUB_STEP_SUMMARY
+        fi
+    
+    - name: Check Test Results
+      if: always()
+      run: |
+        HAS_FAILURES=false
+        
+        if ls target/surefire-reports/TEST-*.xml 1> /dev/null 2>&1; then
+          for file in target/surefire-reports/TEST-*.xml; do
+            FAILURES=$(grep -o 'failures="[0-9]*"' "$file" | grep -o '[0-9]*' || echo "0")
+            ERRORS=$(grep -o 'errors="[0-9]*"' "$file" | grep -o '[0-9]*' || echo "0")
+            
+            if [ "$FAILURES" -gt 0 ] || [ "$ERRORS" -gt 0 ]; then
+              HAS_FAILURES=true
+              break
+            fi
+          done
+        fi
+        
+        if [ "$HAS_FAILURES" == "true" ]; then
+          echo "❌ Tests failed - marking workflow as failed"
+          exit 1
+        else
+          echo "✅ All tests passed - workflow successful"
+          exit 0
+        fi
