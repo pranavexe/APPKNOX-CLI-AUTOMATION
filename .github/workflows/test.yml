@@ -10,53 +10,76 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-
+    
     steps:
     - name: Checkout Code
       uses: actions/checkout@v3
-
+    
     - name: Set up JDK 21
       uses: actions/setup-java@v3
       with:
         java-version: '21'
         distribution: 'temurin'
         cache: maven
-
+    
     - name: Install Appknox CLI (Linux)
       run: |
-        echo "📥 Fetching latest Appknox CLI release..."
-
-        LATEST_RELEASE=$(curl -s https://api.github.com/repos/appknox/appknox-go/releases/latest \
-          | grep "browser_download_url.*Linux-x86_64" \
-          | cut -d '"' -f 4)
-
+        echo "🔽 Fetching latest Appknox CLI release..."
+        LATEST_RELEASE=$(curl -s https://api.github.com/repos/appknox/appknox-go/releases/latest | grep "browser_download_url.*Linux-x86_64" | cut -d '"' -f 4)
+        
         if [ -z "$LATEST_RELEASE" ]; then
           echo "❌ Failed to get latest release URL"
           exit 1
         fi
-
+        
         echo "📦 Downloading from: $LATEST_RELEASE"
         curl -L -o appknox "$LATEST_RELEASE"
-
-        echo "🔧 Making executable..."
         chmod +x appknox
-
-        echo "📂 Moving to /usr/local/bin..."
         sudo mv appknox /usr/local/bin/
-
+        
         echo "🔍 Verifying installation..."
         appknox --version
-
-    - name: Run TestSuite
-      run: mvn clean test -Dtest=com.appknox.tests.TestSuite
+        echo "✅ Appknox CLI installed successfully!"
+    
+    # NEW: Explicitly set environment variables and verify
+    - name: Configure Appknox Authentication
+      run: |
+        echo "🔐 Configuring Appknox authentication..."
+        
+        # Export environment variables
+        export APPKNOX_API_HOST="${{ secrets.APPKNOX_HOST }}"
+        export APPKNOX_ACCESS_TOKEN="${{ secrets.APPKNOX_TOKEN }}"
+        
+        # Verify environment variables are set
+        echo "✓ APPKNOX_API_HOST: ${APPKNOX_API_HOST}"
+        echo "✓ APPKNOX_ACCESS_TOKEN: ****${APPKNOX_ACCESS_TOKEN: -4}"
+        
+        # Test authentication
+        echo "🧪 Testing authentication..."
+        appknox whoami
+        
+        if [ $? -eq 0 ]; then
+          echo "✅ Authentication successful!"
+        else
+          echo "❌ Authentication failed!"
+          exit 1
+        fi
       env:
         APPKNOX_API_HOST: ${{ secrets.APPKNOX_HOST }}
         APPKNOX_ACCESS_TOKEN: ${{ secrets.APPKNOX_TOKEN }}
-
+    
+    - name: Run TestSuite
+      run: |
+        echo "▶️ Running test suite..."
+        mvn clean test -Dtest=com.appknox.tests.TestSuite
+      env:
+        APPKNOX_API_HOST: ${{ secrets.APPKNOX_HOST }}
+        APPKNOX_ACCESS_TOKEN: ${{ secrets.APPKNOX_TOKEN }}
+    
     - name: Generate Allure Report
       if: always()
       run: mvn allure:report
-
+    
     - name: Upload Allure Results
       if: always()
       uses: actions/upload-artifact@v4
@@ -64,7 +87,7 @@ jobs:
         name: allure-results
         path: target/allure-results
         retention-days: 30
-
+    
     - name: Upload Test Reports
       if: always()
       uses: actions/upload-artifact@v4
@@ -74,35 +97,73 @@ jobs:
           target/surefire-reports
           target/site/allure-maven-plugin
         retention-days: 30
-
+    
     - name: Test Summary
       if: always()
       run: |
-        echo "## Test Execution Summary" >> $GITHUB_STEP_SUMMARY
+        echo "# 📊 Test Execution Summary" >> $GITHUB_STEP_SUMMARY
         echo "" >> $GITHUB_STEP_SUMMARY
-
-        xml_files=$(ls target/surefire-reports/*.xml 2>/dev/null | wc -l)
-
-        if [ "$xml_files" -gt 0 ]; then
-          total=0
-          fail=0
-          err=0
-
-          for f in target/surefire-reports/*.xml; do
-            tests=$(xmllint --xpath "string(/testsuite/@tests)" "$f")
-            failures=$(xmllint --xpath "string(/testsuite/@failures)" "$f")
-            errors=$(xmllint --xpath "string(/testsuite/@errors)" "$f")
-
-            total=$((total + tests))
-            fail=$((fail + failures))
-            err=$((err + errors))
+        
+        if ls target/surefire-reports/*.xml 1> /dev/null 2>&1; then
+          TOTAL=0
+          FAILURES=0
+          ERRORS=0
+          
+          for file in target/surefire-reports/TEST-*.xml; do
+            if [ -f "$file" ]; then
+              TESTS=$(grep -o 'tests="[0-9]*"' "$file" | grep -o '[0-9]*' || echo "0")
+              FAIL=$(grep -o 'failures="[0-9]*"' "$file" | grep -o '[0-9]*' || echo "0")
+              ERR=$(grep -o 'errors="[0-9]*"' "$file" | grep -o '[0-9]*' || echo "0")
+              
+              TOTAL=$((TOTAL + TESTS))
+              FAILURES=$((FAILURES + FAIL))
+              ERRORS=$((ERRORS + ERR))
+            fi
           done
-
-          pass=$((total - fail - err))
-
-          echo "**Total Tests:** $total" >> $GITHUB_STEP_SUMMARY
-          echo "✅ **Passed:** $pass" >> $GITHUB_STEP_SUMMARY
-          echo "❌ **Failed:** $fail" >> $GITHUB_STEP_SUMMARY
-          echo "💥 **Errors:** $err" >> $GITHUB_STEP_SUMMARY
+          
+          PASSED=$((TOTAL - FAILURES - ERRORS))
+          
+          if [ $FAILURES -eq 0 ] && [ $ERRORS -eq 0 ]; then
+            echo "## ✅ All Tests Passed!" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "## ❌ Tests Failed" >> $GITHUB_STEP_SUMMARY
+          fi
+          
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### 📈 Test Statistics" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Metric | Count |" >> $GITHUB_STEP_SUMMARY
+          echo "|--------|-------|" >> $GITHUB_STEP_SUMMARY
+          echo "| ✅ Passed | $PASSED |" >> $GITHUB_STEP_SUMMARY
+          echo "| ❌ Failed | $FAILURES |" >> $GITHUB_STEP_SUMMARY
+          echo "| ⚠️ Errors | $ERRORS |" >> $GITHUB_STEP_SUMMARY
+          echo "| 📊 Total | $TOTAL |" >> $GITHUB_STEP_SUMMARY
+          
         else
-          echo "❌ No test reports found" >> $GITHUB_STEP_SUMMARY
+          echo "## ❌ Tests Failed to Generate Reports" >> $GITHUB_STEP_SUMMARY
+        fi
+    
+    - name: Check Test Results
+      if: always()
+      run: |
+        HAS_FAILURES=false
+        
+        if ls target/surefire-reports/TEST-*.xml 1> /dev/null 2>&1; then
+          for file in target/surefire-reports/TEST-*.xml; do
+            FAILURES=$(grep -o 'failures="[0-9]*"' "$file" | grep -o '[0-9]*' || echo "0")
+            ERRORS=$(grep -o 'errors="[0-9]*"' "$file" | grep -o '[0-9]*' || echo "0")
+            
+            if [ "$FAILURES" -gt 0 ] || [ "$ERRORS" -gt 0 ]; then
+              HAS_FAILURES=true
+              break
+            fi
+          done
+        fi
+        
+        if [ "$HAS_FAILURES" == "true" ]; then
+          echo "❌ Tests failed"
+          exit 1
+        else
+          echo "✅ All tests passed"
+          exit 0
+        fi
