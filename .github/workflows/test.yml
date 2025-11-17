@@ -26,13 +26,13 @@ jobs:
       run: |
         echo "Fetching latest Appknox CLI release..."
 
-        LATEST_RELEASE=$(curl -s https://api.github.com/repos/appknox/appknox-go/releases/latest |
-          grep "browser_download_url" |
-          grep "linux-amd64.deb" |
-          cut -d '"' -f 4)
+        LATEST_RELEASE=$(curl -s https://api.github.com/repos/appknox/appknox-go/releases/latest \
+          | grep "browser_download_url" \
+          | grep "linux-amd64.deb" \
+          | cut -d '"' -f 4)
 
         if [ -z "$LATEST_RELEASE" ]; then
-          echo "❌ No Linux .deb file found"
+          echo "❌ No Linux .deb release found!"
           exit 1
         fi
 
@@ -42,13 +42,12 @@ jobs:
         echo "Installing..."
         sudo dpkg -i appknox.deb || sudo apt-get install -f -y
 
-        echo "Adding /usr/local/bin to PATH"
+        echo "Verifying installation..."
+        which appknox || echo "⚠️ CLI not found"
+        
         echo "/usr/local/bin" >> $GITHUB_PATH
 
-        echo "Verifying installation:"
-        which appknox || echo "⚠️ appknox not found"
-        ls -l /usr/local/bin
-        appknox --version || echo "⚠️ appknox failed to run"
+        appknox --version
 
     - name: Run TestSuite
       run: mvn clean test -Dtest=com.appknox.tests.TestSuite
