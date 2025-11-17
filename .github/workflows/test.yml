@@ -44,6 +44,9 @@ jobs:
         echo "📂 Moving to /usr/local/bin..."
         sudo mv appknox /usr/local/bin/
 
+
+        echo "/usr/local/bin" >> $GITHUB_PATH
+
         echo "🔍 Verifying installation..."
         appknox --version
 
