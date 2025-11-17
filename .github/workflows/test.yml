@@ -114,3 +114,4 @@ jobs:
           echo "💥 **Errors:** $err" >> $GITHUB_STEP_SUMMARY
         else
           echo "❌ No test reports found" >> $GITHUB_STEP_SUMMARY
+        fi
