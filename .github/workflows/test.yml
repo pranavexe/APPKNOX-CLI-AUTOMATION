@@ -5,64 +5,57 @@ on:
     branches: [ main, master, develop ]
   pull_request:
     branches: [ main, master ]
-  workflow_dispatch:  # Allows manual trigger
+  workflow_dispatch:
 
 jobs:
   test:
-    runs-on: windows-latest
-    
+    runs-on: ubuntu-latest
+
     steps:
     - name: Checkout Code
       uses: actions/checkout@v3
-    
+
     - name: Set up JDK 21
       uses: actions/setup-java@v3
       with:
         java-version: '21'
         distribution: 'temurin'
         cache: maven
-    
-  
 
-
-    - name: Install Appknox CLI (Windows)
-      shell: pwsh
+    - name: Install Appknox CLI (Linux)
       run: |
-          Write-Host "Fetching latest Appknox CLI release URL..."
-          $latestRelease = Invoke-RestMethod -Uri "https://api.github.com/repos/appknox/appknox-go/releases/latest"
-          $asset = $latestRelease.assets | Where-Object { $_.name -match "Windows-x86_64.exe" }
-          if (-not $asset) { throw "Appknox Windows binary not found in latest release assets!" }
+        echo "Fetching latest Appknox CLI release..."
 
-          $downloadUrl = $asset.browser_download_url
-          $installPath = "$env:USERPROFILE\appknox.exe"
+        latest=$(curl -s https://api.github.com/repos/appknox/appknox-go/releases/latest)
 
-          Write-Host "Downloading from: $downloadUrl"
-          Invoke-WebRequest -Uri $downloadUrl -OutFile $installPath
-          Write-Host "Adding Appknox CLI to PATH..."
-          Add-Content -Path $env:GITHUB_PATH -Value "$env:USERPROFILE"
-          Write-Host "Verifying installation..."
-          & $installPath --version
+        # Extract the .deb asset URL
+        url=$(echo "$latest" | grep browser_download_url | grep "linux-amd64.deb" | cut -d '"' -f 4)
 
-    
-    - name: Verify Appknox CLI in PATH
-      shell: pwsh
-      run: |
-        Write-Host "Checking if appknox is in PATH..."
-        $env:PATH = "$env:USERPROFILE;$env:PATH"
-        appknox.exe --version
-    
+        if [ -z "$url" ]; then
+          echo "❌ Linux .deb package not found in latest release!"
+          exit 1
+        fi
+
+        echo "Downloading: $url"
+        wget "$url" -O appknox.deb
+
+        echo "Installing..."
+        sudo dpkg -i appknox.deb || sudo apt-get install -f -y
+
+        echo "Verifying..."
+        appknox --version
+
+
     - name: Run TestSuite
-      shell: pwsh
-      run: mvn clean test "-Dtest=com.appknox.tests.TestSuite"
+      run: mvn clean test -Dtest=com.appknox.tests.TestSuite
       env:
         APPKNOX_API_HOST: ${{ secrets.APPKNOX_HOST }}
         APPKNOX_ACCESS_TOKEN: ${{ secrets.APPKNOX_TOKEN }}
-    
+
     - name: Generate Allure Report
       if: always()
-      shell: pwsh
       run: mvn allure:report
-    
+
     - name: Upload Allure Results
       if: always()
       uses: actions/upload-artifact@v4
@@ -70,7 +63,7 @@ jobs:
         name: allure-results
         path: target/allure-results
         retention-days: 30
-    
+
     - name: Upload Test Reports
       if: always()
       uses: actions/upload-artifact@v4
@@ -80,57 +73,36 @@ jobs:
           target/surefire-reports
           target/site/allure-maven-plugin
         retention-days: 30
-    
+
     - name: Test Summary
       if: always()
-      shell: pwsh
       run: |
-        Write-Host "Test Execution Summary" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append
-        Write-Host "" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append
+        echo "## Test Execution Summary" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+
+        xml_files=$(ls target/surefire-reports/*.xml 2>/dev/null | wc -l)
+
+        if [ "$xml_files" -gt 0 ]; then
+          total=0
+          fail=0
+          err=0
+
+          for f in target/surefire-reports/*.xml; do
+            tests=$(xmllint --xpath "string(/testsuite/@tests)" "$f")
+            failures=$(xmllint --xpath "string(/testsuite/@failures)" "$f")
+            errors=$(xmllint --xpath "string(/testsuite/@errors)" "$f")
+
+            total=$((total + tests))
+            fail=$((fail + failures))
+            err=$((err + errors))
+          done
+
+          pass=$((total - fail - err))
+
+          echo "**Total Tests:** $total" >> $GITHUB_STEP_SUMMARY
+          echo "✅ **Passed:** $pass" >> $GITHUB_STEP_SUMMARY
+          echo "❌ **Failed:** $fail" >> $GITHUB_STEP_SUMMARY
+          echo "💥 **Errors:** $err" >> $GITHUB_STEP_SUMMARY
+        else
+          echo "❌ No test reports found" >> $GITHUB_STEP_SUMMARY
         
-        $xmlFiles = Get-ChildItem -Path "target/surefire-reports" -Filter "*.xml" -ErrorAction SilentlyContinue
-
-        if ($xmlFiles) {
-          $totalTests = 0
-          $failures = 0
-          $errors = 0
-          $failedTests = @()
-
-          foreach ($file in $xmlFiles) {
-            [xml]$xml = Get-Content $file.FullName
-            if ($xml.testsuite) {
-              $totalTests += [int]$xml.testsuite.tests
-              $failures += [int]$xml.testsuite.failures
-              $errors += [int]$xml.testsuite.errors
-
-              # Collect failed test names and messages
-              foreach ($testcase in $xml.testsuite.testcase) {
-                if ($testcase.failure) {
-                  $failedTests += "❌ $($testcase.name) — $($testcase.failure.message)"
-                } elseif ($testcase.error) {
-                  $failedTests += "💥$($testcase.name) — $($testcase.error.message)"
-                }
-              }
-            }
-          }
-
-          # Write summary
-          Write-Host "**Test Statistics:**" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append
-          Write-Host "-Total Tests: $totalTests" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append
-          Write-Host "-✅Passed: $($totalTests - $failures - $errors)" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append
-          Write-Host "- ❌Failed: $failures" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append
-          Write-Host "- Errors: $errors" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append
-          Write-Host "" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append
-
-          if ($failedTests.Count -gt 0) {
-            Write-Host "❌ Failed Test Cases" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append
-            foreach ($fail in $failedTests) {
-              Write-Host "$fail" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append
-            }
-          } else {
-            Write-Host "✅ All test cases passed successfully!" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append
-          }
-
-        } else {
-          Write-Host "❌Tests failed to generate reports" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append
-        }
