@@ -21,33 +21,39 @@ jobs:
         java-version: '21'
         distribution: 'temurin'
         cache: maven
-
+        
     - name: Install Appknox CLI (Linux)
       run: |
         echo "Fetching latest Appknox CLI release..."
 
-        LATEST_RELEASE=$(curl -s https://api.github.com/repos/appknox/appknox-go/releases/latest \
-          | grep "browser_download_url" \
-          | grep "linux-amd64.deb" \
-          | cut -d '"' -f 4)
+        latest=$(curl -s https://api.github.com/repos/appknox/appknox-go/releases/latest)
 
-        if [ -z "$LATEST_RELEASE" ]; then
-          echo "❌ No Linux .deb release found!"
+        # Extract the .deb asset URL
+        url=$(echo "$latest" | grep browser_download_url | grep "linux-amd64.deb" | cut -d '"' -f 4)
+
+        if [ -z "$url" ]; then
+          echo "❌ Linux .deb package not found in latest release!"
           exit 1
         fi
 
-        echo "Downloading: $LATEST_RELEASE"
-        curl -L -o appknox.deb "$LATEST_RELEASE"
+        echo "Downloading: $url"
+        wget "$url" -O appknox.deb
 
         echo "Installing..."
         sudo dpkg -i appknox.deb || sudo apt-get install -f -y
 
         echo "Verifying installation..."
-        which appknox || echo "⚠️ CLI not found"
-        
-        echo "/usr/local/bin" >> $GITHUB_PATH
-
+        which appknox || echo "❌ appknox not found in PATH"
         appknox --version
+
+    - name: Add /usr/bin to PATH
+      run: echo "/usr/bin" >> $GITHUB_PATH
+
+    - name: Debug PATH
+      run: |
+        echo "PATH is: $PATH"
+        which appknox
+
 
     - name: Run TestSuite
       run: mvn clean test -Dtest=com.appknox.tests.TestSuite
