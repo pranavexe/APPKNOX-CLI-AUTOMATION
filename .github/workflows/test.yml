@@ -83,6 +83,11 @@ jobs:
           target/site/allure-maven-plugin
         retention-days: 30
 
+
+    - name: Install XML tools (xmllint)
+      run: sudo apt-get install -y libxml2-utils
+
+
     - name: Test Summary
       if: always()
       run: |
