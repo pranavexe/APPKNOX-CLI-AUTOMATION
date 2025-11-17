@@ -17,10 +17,13 @@ public class CLIExecutor {
     public CommandResult executeCommand(List<String> command, Map<String, String> env) {
         try {
             ProcessBuilder pb = new ProcessBuilder(command);
+
+            Map<String, String> processEnv = pb.environment();
+            processEnv.put("PATH", System.getenv("PATH"));
             
             // Set env variableee
             if (env != null && !env.isEmpty()) {
-                Map<String, String> processEnv = pb.environment();
+                
                 processEnv.putAll(env);
             }
 
