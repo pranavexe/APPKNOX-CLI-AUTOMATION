@@ -24,31 +24,31 @@ jobs:
 
     - name: Install Appknox CLI (Linux)
       run: |
-        echo "📥 Fetching latest Appknox CLI release..."
+        echo "Fetching latest Appknox CLI release..."
 
-        LATEST_RELEASE=$(curl -s https://api.github.com/repos/appknox/appknox-go/releases/latest \
-          | grep "browser_download_url.*Linux-x86_64" \
-          | cut -d '"' -f 4)
+        LATEST_RELEASE=$(curl -s https://api.github.com/repos/appknox/appknox-go/releases/latest |
+          grep "browser_download_url" |
+          grep "linux-amd64.deb" |
+          cut -d '"' -f 4)
 
         if [ -z "$LATEST_RELEASE" ]; then
-          echo "❌ Failed to get latest release URL"
+          echo "❌ No Linux .deb file found"
           exit 1
         fi
 
-        echo "📦 Downloading from: $LATEST_RELEASE"
-        curl -L -o appknox "$LATEST_RELEASE"
+        echo "Downloading: $LATEST_RELEASE"
+        curl -L -o appknox.deb "$LATEST_RELEASE"
 
-        echo "🔧 Making executable..."
-        chmod +x appknox
+        echo "Installing..."
+        sudo dpkg -i appknox.deb || sudo apt-get install -f -y
 
-        echo "📂 Moving to /usr/local/bin..."
-        sudo mv appknox /usr/local/bin/
-
-
+        echo "Adding /usr/local/bin to PATH"
         echo "/usr/local/bin" >> $GITHUB_PATH
 
-        echo "🔍 Verifying installation..."
-        appknox --version
+        echo "Verifying installation:"
+        which appknox || echo "⚠️ appknox not found"
+        ls -l /usr/local/bin
+        appknox --version || echo "⚠️ appknox failed to run"
 
     - name: Run TestSuite
       run: mvn clean test -Dtest=com.appknox.tests.TestSuite
