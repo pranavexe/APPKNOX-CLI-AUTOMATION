@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.appknox.tests.cicheck.CICheckTests" time="46.582" tests="5" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.appknox.tests.cicheck.CICheckTests" time="48.191" tests="5" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="25"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -15,7 +15,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="IN"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-25\bin"/>
-    <property name="sun.java.command" value="C:\Users\ombul\AppData\Local\Temp\surefire8522229368793408414\surefirebooter-20251114180617657_3.jar C:\Users\ombul\AppData\Local\Temp\surefire8522229368793408414 2025-11-14T18-06-17_538-jvmRun1 surefire-20251114180617657_1tmp surefire_0-20251114180617657_2tmp"/>
+    <property name="sun.java.command" value="C:\Users\ombul\AppData\Local\Temp\surefire9873304426205355404\surefirebooter-20251117101037523_3.jar C:\Users\ombul\AppData\Local\Temp\surefire9873304426205355404 2025-11-17T10-10-37_400-jvmRun1 surefire-20251117101037523_1tmp surefire_0-20251117101037523_2tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="test" value="TestSuite"/>
     <property name="surefire.test.class.path" value="C:\Users\ombul\appknox-cli-automation\target\test-classes;C:\Users\ombul\appknox-cli-automation\target\classes;C:\Users\ombul\.m2\repository\org\junit\jupiter\junit-jupiter\5.9.3\junit-jupiter-5.9.3.jar;C:\Users\ombul\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.9.3\junit-jupiter-api-5.9.3.jar;C:\Users\ombul\.m2\repository\org\opentest4j\opentest4j\1.2.0\opentest4j-1.2.0.jar;C:\Users\ombul\.m2\repository\org\junit\platform\junit-platform-commons\1.9.3\junit-platform-commons-1.9.3.jar;C:\Users\ombul\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\ombul\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.9.3\junit-jupiter-params-5.9.3.jar;C:\Users\ombul\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.9.3\junit-jupiter-engine-5.9.3.jar;C:\Users\ombul\.m2\repository\org\junit\platform\junit-platform-engine\1.9.3\junit-platform-engine-1.9.3.jar;C:\Users\ombul\.m2\repository\org\assertj\assertj-core\3.24.2\assertj-core-3.24.2.jar;C:\Users\ombul\.m2\repository\net\bytebuddy\byte-buddy\1.12.21\byte-buddy-1.12.21.jar;C:\Users\ombul\.m2\repository\org\junit\platform\junit-platform-suite\1.10.0\junit-platform-suite-1.10.0.jar;C:\Users\ombul\.m2\repository\org\junit\platform\junit-platform-suite-api\1.10.0\junit-platform-suite-api-1.10.0.jar;C:\Users\ombul\.m2\repository\org\junit\platform\junit-platform-suite-engine\1.10.0\junit-platform-suite-engine-1.10.0.jar;C:\Users\ombul\.m2\repository\org\junit\platform\junit-platform-suite-commons\1.10.0\junit-platform-suite-commons-1.10.0.jar;C:\Users\ombul\.m2\repository\io\qameta\allure\allure-junit5\2.24.0\allure-junit5-2.24.0.jar;C:\Users\ombul\.m2\repository\io\qameta\allure\allure-junit-platform\2.24.0\allure-junit-platform-2.24.0.jar;C:\Users\ombul\.m2\repository\io\qameta\allure\allure-java-commons\2.24.0\allure-java-commons-2.24.0.jar;C:\Users\ombul\.m2\repository\org\slf4j\slf4j-api\1.7.36\slf4j-api-1.7.36.jar;C:\Users\ombul\.m2\repository\io\qameta\allure\allure-model\2.24.0\allure-model-2.24.0.jar;C:\Users\ombul\.m2\repository\io\qameta\allure\allure-test-filter\2.24.0\allure-test-filter-2.24.0.jar;C:\Users\ombul\.m2\repository\org\junit\platform\junit-platform-launcher\1.9.2\junit-platform-launcher-1.9.2.jar;"/>
@@ -32,7 +32,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="C:\Users\ombul\AppData\Local\Temp\surefire8522229368793408414\surefirebooter-20251114180617657_3.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\ombul\AppData\Local\Temp\surefire9873304426205355404\surefirebooter-20251117101037523_3.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="25.0.1+8-LTS-27"/>
@@ -61,19 +61,15 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="69.0"/>
   </properties>
-  <testcase name="testCICheckWithLowRiskThreshold" classname="com.appknox.tests.cicheck.CICheckTests" time="22.621"/>
-  <testcase name="testCICheckWithCriticalRiskThreshold" classname="com.appknox.tests.cicheck.CICheckTests" time="7.472">
+  <testcase name="testCICheckWithLowRiskThreshold" classname="com.appknox.tests.cicheck.CICheckTests" time="26.13"/>
+  <testcase name="testCICheckWithCriticalRiskThreshold" classname="com.appknox.tests.cicheck.CICheckTests" time="6.64">
     <system-out><![CDATA[Extracted Risks: [Critical, Critical]
 Validation passed: Only Critical vulnerabilities are displayed.
 === CLI Raw Output ===
-Starting scan at: 2025-11-14T18:08:19+05:30 with timeout of 30m0s
+Starting scan at: 2025-11-17T10:13:10+05:30 with timeout of 30m0s
 Static Scan Progress:  0 % [----------------------------| ] 
 &amp#27;[1A&amp#27;[JStatic Scan Progress:  0 % [----------------------------| ] 
 &amp#27;[1A&amp#27;[JStatic Scan Progress:  0 % [----------------------------| ] 
-&amp#27;[1A&amp#27;[JStatic Scan Progress:  0 % [----------------------------| ] 
-&amp#27;[1A&amp#27;[JStatic Scan Progress:  0 % [----------------------------| ] 
-&amp#27;[1A&amp#27;[JStatic Scan Progress:  0 % [----------------------------| ] 
-&amp#27;[1A&amp#27;[JStatic Scan Progress:  100 % [==========================| ] 
 &amp#27;[1A&amp#27;[JStatic Scan Progress:  100 % [==========================| ] 
 &amp#27;[1A&amp#27;[JStatic Scan Progress:  100 % [==========================| ] 
 &amp#27;[1A&amp#27;[JStatic Scan Progress:  100 % [==========================| ] 
@@ -113,23 +109,18 @@ Found 1 vulnerabilities with risk >= Critical
 
 ANALYSIS-ID  RISK      CVSS-VECTOR                                   CVSS-BASE  VULNERABILITY-ID  VULNERABILITY-NAME
 -----------  ----      -----------                                   ---------  ----------------  ------------------
-5709         Critical  CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:N  9.1        113               Network Security Misconfiguration
+5917         Critical  CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:N  9.1        113               Network Security Misconfiguration
 
-Check file ID 57 on appknox dashboard for more details.
+Check file ID 59 on appknox dashboard for more details.
 ]]></system-out>
   </testcase>
-  <testcase name="testCICheckWithMediumRiskThreshold" classname="com.appknox.tests.cicheck.CICheckTests" time="9.002">
+  <testcase name="testCICheckWithMediumRiskThreshold" classname="com.appknox.tests.cicheck.CICheckTests" time="8.188">
     <system-out><![CDATA[=== CLI Raw Output ===
-Starting scan at: 2025-11-14T18:08:26+05:30 with timeout of 30m0s
+Starting scan at: 2025-11-17T10:13:16+05:30 with timeout of 30m0s
 Static Scan Progress:  0 % [----------------------------| ] 
 &amp#27;[1A&amp#27;[JStatic Scan Progress:  0 % [----------------------------| ] 
 &amp#27;[1A&amp#27;[JStatic Scan Progress:  0 % [----------------------------| ] 
-&amp#27;[1A&amp#27;[JStatic Scan Progress:  100 % [==========================| ] 
-&amp#27;[1A&amp#27;[JStatic Scan Progress:  100 % [==========================| ] 
-&amp#27;[1A&amp#27;[JStatic Scan Progress:  100 % [==========================| ] 
-&amp#27;[1A&amp#27;[JStatic Scan Progress:  100 % [==========================| ] 
-&amp#27;[1A&amp#27;[JStatic Scan Progress:  100 % [==========================| ] 
-&amp#27;[1A&amp#27;[JStatic Scan Progress:  100 % [==========================| ] 
+&amp#27;[1A&amp#27;[JStatic Scan Progress:  0 % [----------------------------| ] 
 &amp#27;[1A&amp#27;[JStatic Scan Progress:  100 % [==========================| ] 
 &amp#27;[1A&amp#27;[JStatic Scan Progress:  100 % [==========================| ] 
 &amp#27;[1A&amp#27;[JStatic Scan Progress:  100 % [==========================| ] 
@@ -176,29 +167,29 @@ Found 13 vulnerabilities with risk >= Medium
 
 ANALYSIS-ID  RISK      CVSS-VECTOR                                   CVSS-BASE  VULNERABILITY-ID  VULNERABILITY-NAME
 -----------  ----      -----------                                   ---------  ----------------  ------------------
-5630         High      CVSS:3.0/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:L  7.3        2                 Improper Content Provider Permissions
-5631         High      CVSS:3.0/AV:L/AC:H/PR:N/UI:R/S:C/C:H/I:H/A:H  7.7        3                 Application Debugging
-5642         High      CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:L/A:L  8.6        16                Derived Crypto Keys
-5643         Medium    CVSS:3.0/AV:L/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N  6.2        17                Application Logs
-5647         High      CVSS:3.0/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H  8.1        37                Connection to External Redis Server
-5682         Medium    CVSS:3.0/AV:N/AC:H/PR:N/UI:R/S:U/C:H/I:L/A:N  5.9        83                Disabled SSL CA Validation and Certificate Pinning
-5690         Medium    CVSS:3.0/AV:L/AC:L/PR:N/UI:N/S:U/C:H/I:L/A:N  6.8        92                MediaProjection: Android Service Allows Recording of Audio, Screen Activity
-5691         Medium    CVSS:3.0/AV:L/AC:L/PR:L/UI:N/S:U/C:L/I:L/A:L  5.3        93                External data in raw SQL queries
-5709         Critical  CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:N  9.1        113               Network Security Misconfiguration
-5712         Medium    CVSS:3.1/AV:L/AC:L/PR:H/UI:N/S:U/C:H/I:H/A:H  6.7        117               Janus Vulnerability (CVE-2017-13156)
-5713         Medium    CVSS:3.1/AV:L/AC:H/PR:N/UI:R/S:U/C:H/I:L/A:H  6.5        118               StrandHogg Vulnerability
-5715         Medium    CVSS:3.1/AV:L/AC:L/PR:L/UI:R/S:U/C:L/I:L/A:L  4.8        121               Android Tapjacking
-5717         Medium    CVSS:3.1/AV:P/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:N  6.1        127               Weak PRNG (Pseudorandom number generator)
+5838         High      CVSS:3.0/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:L  7.3        2                 Improper Content Provider Permissions
+5839         High      CVSS:3.0/AV:L/AC:H/PR:N/UI:R/S:C/C:H/I:H/A:H  7.7        3                 Application Debugging
+5850         High      CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:L/A:L  8.6        16                Derived Crypto Keys
+5851         Medium    CVSS:3.0/AV:L/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N  6.2        17                Application Logs
+5855         High      CVSS:3.0/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H  8.1        37                Connection to External Redis Server
+5890         Medium    CVSS:3.0/AV:N/AC:H/PR:N/UI:R/S:U/C:H/I:L/A:N  5.9        83                Disabled SSL CA Validation and Certificate Pinning
+5898         Medium    CVSS:3.0/AV:L/AC:L/PR:N/UI:N/S:U/C:H/I:L/A:N  6.8        92                MediaProjection: Android Service Allows Recording of Audio, Screen Activity
+5899         Medium    CVSS:3.0/AV:L/AC:L/PR:L/UI:N/S:U/C:L/I:L/A:L  5.3        93                External data in raw SQL queries
+5917         Critical  CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:N  9.1        113               Network Security Misconfiguration
+5920         Medium    CVSS:3.1/AV:L/AC:L/PR:H/UI:N/S:U/C:H/I:H/A:H  6.7        117               Janus Vulnerability (CVE-2017-13156)
+5921         Medium    CVSS:3.1/AV:L/AC:H/PR:N/UI:R/S:U/C:H/I:L/A:H  6.5        118               StrandHogg Vulnerability
+5923         Medium    CVSS:3.1/AV:L/AC:L/PR:L/UI:R/S:U/C:L/I:L/A:L  4.8        121               Android Tapjacking
+5925         Medium    CVSS:3.1/AV:P/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:N  6.1        127               Weak PRNG (Pseudorandom number generator)
 
-Check file ID 57 on appknox dashboard for more details.
+Check file ID 59 on appknox dashboard for more details.
 Extracted Risks: [Medium, High, High, High, Medium, High, Medium, Medium, Medium, Critical, Medium, Medium, Medium, Medium]
 Validation passed: Only Medium, High, and Critical risks are displayed.
 ]]></system-out>
   </testcase>
-  <testcase name="testCICheckWithHighRiskThreshold" classname="com.appknox.tests.cicheck.CICheckTests" time="7.37">
+  <testcase name="testCICheckWithHighRiskThreshold" classname="com.appknox.tests.cicheck.CICheckTests" time="7.079">
     <system-out><![CDATA[Extracted Risks: [High, High, High, High, High, Critical]
 ✅ Validation passed: Only High and Critical risks are displayed.
 ]]></system-out>
   </testcase>
-  <testcase name="testCICheckWithInvalidRiskThreshold" classname="com.appknox.tests.cicheck.CICheckTests" time="0.1"/>
+  <testcase name="testCICheckWithInvalidRiskThreshold" classname="com.appknox.tests.cicheck.CICheckTests" time="0.12"/>
 </testsuite>

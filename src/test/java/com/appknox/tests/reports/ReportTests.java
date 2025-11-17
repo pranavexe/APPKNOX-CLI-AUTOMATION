@@ -198,6 +198,7 @@ public void testReportCreation() {
         assertThat(result.isSuccess()).isTrue();
         String output = result.getOutput();
         assertThat(output).isNotEmpty();
+      
 
         String lowerOutput = output.toLowerCase();
         assertThat(lowerOutput).containsAnyOf("sarif", "version", "runs", "results");
